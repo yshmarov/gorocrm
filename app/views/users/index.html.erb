@@ -12,6 +12,7 @@
     <tr>
       <th>id</th>
       <th>email</th>
+      <th>tenants</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,9 @@
         </td>
         <td>
           <%= user.email %>
+        </td>
+        <td>
+          <%= user.tenants.compact.join(', ') %>
         </td>
       </tr>
     <% end %>

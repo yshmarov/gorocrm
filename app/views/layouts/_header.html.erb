@@ -32,6 +32,12 @@
             New Tenant
           <% end %>
         </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(members_path) %> nav-item">
+          <%= link_to members_path, class: 'nav-link' do %>
+            <div class="fa fa-users"></div>
+            Members
+          <% end %>
+        </li>
       </ul>
       <ul class="navbar-nav mr-right">
         <li class="nav-item dropdown">
