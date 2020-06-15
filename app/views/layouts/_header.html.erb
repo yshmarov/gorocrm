@@ -26,6 +26,12 @@
             Tenants
           <% end %>
         </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(my_tenants_path) %> nav-item">
+          <%= link_to my_tenants_path, class: 'nav-link' do %>
+            <div class="fa fa-users"></div>
+            My Tenants
+          <% end %>
+        </li>
         <li class="<%= 'active font-weight-bold' if current_page?(new_tenant_path) %> nav-item">
           <%= link_to new_tenant_path, class: 'nav-link' do %>
             <div class="fa fa-users"></div>
