@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">
+    Navbar
+  </a>
+  <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <% if current_user %>
+      <ul class="navbar-nav mr-auto">
+        <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
+          <%= link_to root_path, class: 'nav-link' do %>
+            <div class="fa fa-home"></div>
+            Home
+          <% end %>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-right">
+        <li class="nav-item dropdown">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+            <b>
+              <%= current_user.email %>
+            </b>
+          </a>
+          <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
+            <%= link_to edit_user_registration_path, class: "dropdown-item #{'active' if current_page?(edit_user_registration_path)}" do %>
+              <div class="fa fa-cog"></div>
+              <b>Account settings</b>
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+              <div class="fa fa-sign-out-alt"></div>
+              <b>Sign out</b>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="navbar-nav mr-auto"></ul>
+      <ul class="navbar-nav mr-right">
+        <li class="<%= 'active font-weight-bold' if current_page?(new_user_registration_path) %> nav-item">
+          <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(new_user_session_path) %> nav-item">
+          <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</nav>
