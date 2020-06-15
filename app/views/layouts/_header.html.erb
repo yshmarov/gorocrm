@@ -14,6 +14,12 @@
             Home
           <% end %>
         </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
+          <%= link_to users_path, class: 'nav-link' do %>
+            <div class="fa fa-users"></div>
+            Users
+          <% end %>
+        </li>
       </ul>
       <ul class="navbar-nav mr-right">
         <li class="nav-item dropdown">
