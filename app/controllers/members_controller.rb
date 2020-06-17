@@ -18,7 +18,7 @@ class MembersController < ApplicationController
         #send email that user was invited to this tenant
       end
     elsif user_from_email.nil? #invite new user to a tenant
-      new_user = User.invite!(email: email) #devise invitable create user and send email
+      new_user = User.invite!({ email: email }, current_user) #devise invitable create user and send email. invited_by current_user
       Member.create!(user: new_user, tenant: current_tenant) #make new user part of this tenant
       redirect_to members_path, notice: "#{email} was invited to join the tenant #{current_tenant.name}"
     end
