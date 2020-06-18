@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get :my, on: :collection
   end
 
-  resources :members do
+  resources :members, except: [:create, :new] do
     get :invite, on: :collection
   end
 
