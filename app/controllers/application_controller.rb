@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_tenant
 
   def set_tenant
-    current_account = Tenant.first
+    current_account = Tenant.second
     set_current_tenant(current_account)
   end
 

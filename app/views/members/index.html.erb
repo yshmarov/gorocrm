@@ -12,6 +12,7 @@
     <tr>
       <th>id</th>
       <th>User</th>
+      <th>Tenant id</th>
       <th>Tenant</th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
       <tr>
         <td><%= member.id %></td>
         <td><%= member.user %></td>
+        <td><%= member.tenant.id %></td>
         <td><%= member.tenant %></td>
         <td><%= link_to 'Show', member %></td>
         <td><%= link_to 'Edit', edit_member_path(member) %></td>
