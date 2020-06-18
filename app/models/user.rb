@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :members
   has_many :tenants, through: :members
+  
+  belongs_to :tenant, required: false
 
   def to_s
     email

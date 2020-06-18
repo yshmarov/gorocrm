@@ -14,6 +14,7 @@
       <th>email</th>
       <th>tenants</th>
       <th>invitable</th>
+      <th>current_tenant</th>
     </tr>
   </thead>
   <tbody>
@@ -42,6 +43,9 @@
               <%= link_to 'Resend invitation', resend_invitation_user_path(user), method: :patch %>
             <% end %>
           <% end %>
+        </td>
+        <td>
+          <%= user.tenant_id %>
         </td>
       </tr>
     <% end %>
