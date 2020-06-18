@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :tenants do
     get :my, on: :collection
+    member do
+      patch :switch
+    end
   end
 
   resources :members, except: [:create, :new] do
