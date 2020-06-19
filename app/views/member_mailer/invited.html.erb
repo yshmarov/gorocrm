@@ -1,0 +1,9 @@
+You have been invited to join the tenant:
+<%= @member.tenant.name %>
+<br>
+You can access the tenant 
+<%= link_to 'Here', root_url %>
+<br>
+Regards,
+<br>
+<%= User.find_by(id: @member.user.invited_by_id) %>
