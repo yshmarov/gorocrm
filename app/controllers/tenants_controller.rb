@@ -36,6 +36,7 @@ class TenantsController < ApplicationController
     respond_to do |format|
       if @tenant.save
         @member = Member.create!(tenant: @tenant, user: current_user) #when a tenant is created, the creator becomes a member
+        current_user.update_attribute(:tenant_id, @tenant.id) #when a tenant is created, the creator sets it as current_tenant
         format.html { redirect_to @tenant, notice: 'Tenant was successfully created.' }
         format.json { render :show, status: :created, location: @tenant }
       else
