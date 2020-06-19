@@ -1,5 +1,16 @@
-<b>id:</b>
-<%= @user.id %>
-<div class="row"></div>
-<b>email:</b>
-<%= @user.email %>
+<div class="card">
+  <div class="card-header">
+    <h4>
+      <strong>User id:</strong>
+      <%= @user.id %>
+    </h4>
+  </div>
+  <div class="card-body">
+    <strong>Email:</strong>
+    <%= @user.email %>
+    <br>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Back', users_path %>
+  </div>
+</div>
