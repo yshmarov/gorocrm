@@ -8,17 +8,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
-        <% if current_tenant %>
-          <div class="nav-link">
-            <%= current_tenant %>
-          </div>
-          <div class="nav-link">
-            <%= current_tenant.id %>
-          </div>
-          <div class="nav-link">
-            <%= current_tenant.name %>
-          </div>
-        <% end %>
         <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
           <%= link_to root_path, class: 'nav-link' do %>
             <div class="fa fa-home"></div>
@@ -37,26 +26,40 @@
             Tenants
           <% end %>
         </li>
-        <li class="<%= 'active font-weight-bold' if current_page?(my_tenants_path) %> nav-item">
-          <%= link_to my_tenants_path, class: 'nav-link' do %>
-            <div class="fa fa-users"></div>
-            My Tenants
-          <% end %>
-        </li>
-        <li class="<%= 'active font-weight-bold' if current_page?(new_tenant_path) %> nav-item">
-          <%= link_to new_tenant_path, class: 'nav-link' do %>
-            <div class="fa fa-users"></div>
-            New Tenant
-          <% end %>
-        </li>
-        <li class="<%= 'active font-weight-bold' if current_page?(members_path) %> nav-item">
-          <%= link_to members_path, class: 'nav-link' do %>
-            <div class="fa fa-users"></div>
-            Members
-          <% end %>
-        </li>
+        <% if current_user.tenant_id %>
+          <li class="<%= 'active font-weight-bold' if current_page?(members_path) %> nav-item">
+            <%= link_to members_path, class: 'nav-link' do %>
+              <div class="fa fa-users"></div>
+              Members
+            <% end %>
+          </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav mr-right">
+        <li class="nav-item dropdown">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+            <% if current_tenant %>
+              <b>
+                <%= current_tenant.id %>
+                <%= current_tenant.name %>
+              </b>
+            <% else %>
+              <b>
+                Tenants
+              </b>
+            <% end %>
+          </a>
+          <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
+            <%= link_to my_tenants_path, class: "dropdown-item #{'active' if current_page?(my_tenants_path)}" do %>
+              <div class="fa fa-cog"></div>
+              <b>My Tenants</b>
+            <% end %>
+            <%= link_to new_tenant_path, class: "dropdown-item #{'active' if current_page?(new_tenant_path)}" do %>
+              <div class="fa fa-sign-out-alt"></div>
+              <b>New Tenant</b>
+            <% end %>
+          </div>
+        </li>
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
             <b>
