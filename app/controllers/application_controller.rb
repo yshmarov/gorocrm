@@ -6,11 +6,19 @@ class ApplicationController < ActionController::Base
 
   def set_tenant
     if current_user
-      #current_account = Tenant.second
-      #current_account = Tenant.find_by(id: current_user.tenant_id)
-      current_account = current_user.tenant
-      #User.find_by(email: "wawa@w.com").update_attributes!(tenant_id: 2)
-      set_current_tenant(current_account)
+      if current_user.tenant_id.present?
+        if current_user.tenants.include?(current_user.tenant)
+          #current_account = Tenant.second
+          #current_account = Tenant.find_by(id: current_user.tenant_id)
+          current_account = current_user.tenant
+          #User.find_by(email: "wawa@w.com").update_attributes!(tenant_id: 2)
+          set_current_tenant(current_account)
+        else
+          set_current_tenant(nil)
+        end
+      else
+        set_current_tenant(nil)
+      end
     else
       set_current_tenant(nil)
     end
