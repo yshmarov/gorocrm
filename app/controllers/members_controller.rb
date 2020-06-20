@@ -1,7 +1,8 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
-  include RequireTenant #no tenant = no access to entire controller
+  include SetTenant #set ActsAsTenant.current_tenant
+  include RequireTenant #no current_tenant = no access to entire controller
 
   def index
     @members = Member.all

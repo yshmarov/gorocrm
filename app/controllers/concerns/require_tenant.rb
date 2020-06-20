@@ -8,7 +8,7 @@ module RequireTenant
     #this is required for all models that will be using acts_as_tenant(:tenant)
     #info: https://github.com/ErwinM/acts_as_tenant#scoping-your-models
     def require_tenant
-      if current_tenant.nil?
+      if ActsAsTenant.current_tenant.nil?
         redirect_to root_path, alert: "No tenant set!"
       end
     end
