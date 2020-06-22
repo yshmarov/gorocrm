@@ -5,7 +5,7 @@ class MembersController < ApplicationController
   include RequireTenant #no current_tenant = no access to entire controller
 
   def index
-    @members = Member.all
+    @members = Member.includes(:user, :tenant).all #"includes" for eager loading
   end
 
   def invite

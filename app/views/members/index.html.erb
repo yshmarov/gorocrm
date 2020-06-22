@@ -7,6 +7,14 @@
     </div>
   </div>
 </h3>
+
+<%= form_tag invite_members_path, method: :get do %>
+  <%= email_field_tag 'email' %>
+  <%= submit_tag("Invite a member") %>
+<% end %>
+
+<br>
+
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
@@ -14,6 +22,7 @@
       <th>User</th>
       <th>Tenant id</th>
       <th>Tenant</th>
+      <th>invitable</th>
     </tr>
   </thead>
   <tbody>
@@ -23,15 +32,24 @@
         <td><%= member.user %></td>
         <td><%= member.tenant.id %></td>
         <td><%= member.tenant %></td>
+        <td>
+          <% if member.user.created_by_invite? %>
+              <span class="badge badge-secondary">
+                created by invite by
+                <%= member.user.invited_by %>
+              </span>
+            <% if member.user.invitation_accepted_at.present? %>
+              <span class="badge badge-secondary">
+                invitation accepted
+              </span>
+            <% else %>
+              <%= link_to 'Resend invitation', resend_invitation_user_path(member.user), method: :patch %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= link_to 'Edit', edit_member_path(member) %></td>
         <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tbody>
 </table>
 <br/>
-
-<hr/>
-<%= form_tag invite_members_path, method: :get do %>
-  <%= email_field_tag 'email' %>
-  <%= submit_tag("Invite a member") %>
-<% end %>

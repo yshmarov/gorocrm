@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :members
   has_many :tenants, through: :members
   
-  belongs_to :tenant, required: false
+  belongs_to :tenant, required: false #tenant_id = to get current_tenant; false = can exist without any tenants
 
   def to_s
     email
