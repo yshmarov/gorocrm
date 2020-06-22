@@ -18,19 +18,30 @@
           <%= link_to users_path, class: 'nav-link' do %>
             <div class="fa fa-users"></div>
             Users
+            <div class="badge badge-info">
+              <%= User.count %>
+            </div>
           <% end %>
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(tenants_path) %> nav-item">
           <%= link_to tenants_path, class: 'nav-link' do %>
             <div class="fa fa-users"></div>
             Tenants
+            <div class="badge badge-info">
+              <%= Tenant.count %>
+            </div>
           <% end %>
         </li>
-        <% if current_user.tenant_id && ActsAsTenant.current_tenant %>
+        <% if current_user.tenants.include?(current_user.tenant) %>
           <li class="<%= 'active font-weight-bold' if current_page?(members_path) %> nav-item">
             <%= link_to members_path, class: 'nav-link' do %>
               <div class="fa fa-users"></div>
               Members
+              <% if ActsAsTenant.current_tenant %>
+                <div class="badge badge-info">
+                  <%= Member.count %>
+                </div>
+              <% end %>
             <% end %>
           </li>
         <% end %>
@@ -38,10 +49,10 @@
       <ul class="navbar-nav mr-right">
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
-            <% if ActsAsTenant.current_tenant %>
+            <% if current_user.tenants.include?(current_user.tenant) %>
               <b>
-                <%= current_tenant.id %>
-                <%= current_tenant.name %>
+                <%= current_user.tenant.id %>
+                <%= current_user.tenant.name %>
               </b>
             <% else %>
               <b>
