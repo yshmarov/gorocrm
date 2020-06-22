@@ -8,6 +8,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
+        <!--/ show current_tenant if it is set in specific controller action-->
+        <div class="nav-link active">
+          <% if ActsAsTenant.current_tenant %>
+            <%= current_tenant %>
+          <% end %>
+        </div>
         <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
           <%= link_to root_path, class: 'nav-link' do %>
             <div class="fa fa-home"></div>
