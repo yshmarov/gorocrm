@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'home/index'
   root 'home#index'
+  get 'home/dashboard'
   
   resources :users, only: [:index, :show] do
     member do
