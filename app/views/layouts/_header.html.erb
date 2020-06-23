@@ -39,8 +39,8 @@
           <% end %>
         </li>
         <% if current_user.tenants.include?(current_user.tenant) %>
-          <li class="<%= 'active font-weight-bold' if current_page?(home_dashboard_path) %> nav-item">
-            <%= link_to home_dashboard_path, class: 'nav-link' do %>
+          <li class="<%= 'active font-weight-bold' if current_page?(dashboard_path) %> nav-item">
+            <%= link_to dashboard_path, class: 'nav-link' do %>
               <div class="fa fa-users"></div>
               Dashboard
             <% end %>
