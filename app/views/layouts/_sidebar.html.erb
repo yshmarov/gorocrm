@@ -1,0 +1,18 @@
+<li class="<%= 'active font-weight-bold' if current_page?(tenant_path(current_tenant)) %> nav-item">
+  <%= link_to tenant_path(current_tenant), class: 'nav-link' do %>
+    <%= current_tenant %>
+  <% end %>
+</li>
+<li class="<%= 'active font-weight-bold' if current_page?(dashboard_path) %> nav-item">
+  <%= link_to dashboard_path, class: 'nav-link' do %>
+    Dashboard
+  <% end %>
+</li>
+<li class="<%= 'active font-weight-bold' if current_page?(members_path) %> nav-item">
+  <%= link_to members_path, class: 'nav-link' do %>
+    Members
+    <div class="badge badge-info">
+      <%= Member.count %>
+    </div>
+  <% end %>
+</li>

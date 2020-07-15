@@ -14,9 +14,20 @@
 
    <%= flash_messages %>
 
-    <div class="container">
-    <p></p>
-    <%= yield %>
+    <div class="container-fluid">
+      <p></p>
+        <% if ActsAsTenant.current_tenant && current_user.tenants.include?(current_user.tenant) %>
+          <div class="row">
+            <div class="col-lg-2">
+              <%= render 'layouts/sidebar' %>
+            </div>
+            <div class="col-lg-10">
+              <%= yield %>
+            </div>
+          </div>
+        <% else %>
+          <%= yield %>
+        <% end %>
     </div>
   </body>
 </html>
