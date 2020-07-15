@@ -6,9 +6,16 @@ class StaticPagesController < ApplicationController
   def index
   end
 
-  #example pages that can be here:
-  #about
-  #terms_of_service
-  #privacy_policy
+  def about
+  end
+
+  def pricing
+  end
+
+  def privacy
+  end
+
+  def terms
+  end
 
 end
