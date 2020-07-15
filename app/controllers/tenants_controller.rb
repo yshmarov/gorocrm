@@ -2,7 +2,7 @@ class TenantsController < ApplicationController
   before_action :set_tenant, only: [:show, :edit, :update, :destroy, :switch]
 
   def index
-    @tenants = Tenant.all
+    @tenants = Tenant.includes(:members, :users, members: [:user])
   end
 
   def switch

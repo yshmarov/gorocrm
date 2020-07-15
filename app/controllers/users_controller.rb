@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   def index
-    @users = User.includes(:members, members: [:tenant])
+    @users = User.includes(:members, :tenants, members: [:tenant])
   end
   
   def resend_invitation #link in members#index
