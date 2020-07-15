@@ -7,32 +7,34 @@
     </div>
   </div>
 </h3>
-<table class="table table-striped table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>email</th>
-      <th>tenants</th>
-      <th>current_tenant</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
       <tr>
-        <td>
-          <%= link_to user.id, user %>
-        </td>
-        <td>
-          <%= user.email %>
-        </td>
-        <td>
-          <%= user.tenants.compact.join(', ') %>
-        </td>
-        <td>
-          <%= user.tenant_id %>
-        </td>
+        <th>id</th>
+        <th>email</th>
+        <th>tenants</th>
+        <th>current_tenant</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user.id, user %>
+          </td>
+          <td>
+            <%= user.email %>
+          </td>
+          <td>
+            <%= user.tenants.compact.join(', ') %>
+          </td>
+          <td>
+            <%= user.tenant_id %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br/>
