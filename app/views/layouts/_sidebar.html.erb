@@ -2,16 +2,19 @@
   <ul class="nav flex-column bg-dark shadow rounded">
     <li class="<%= 'active font-weight-bold bg-light shadow rounded' if current_page?(tenant_path(current_tenant)) %> nav-item">
       <%= link_to tenant_path(current_tenant), class: 'nav-link' do %>
+        <i class="fas fa-briefcase"></i>
         <%= current_tenant %>
       <% end %>
     </li>
     <li class="<%= 'active font-weight-bold bg-light shadow rounded' if current_page?(dashboard_path) %> nav-item">
       <%= link_to dashboard_path, class: 'nav-link' do %>
+        <i class="fas fa-tachometer-alt"></i>
         Dashboard
       <% end %>
     </li>
     <li class="<%= 'active font-weight-bold bg-light shadow rounded' if current_page?(members_path) %> nav-item">
       <%= link_to members_path, class: 'nav-link' do %>
+        <i class="fas fa-users"></i>
         Members
         <div class="badge badge-info">
           <%= Member.count %>

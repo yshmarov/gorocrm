@@ -10,11 +10,13 @@
       <ul class="navbar-nav mr-auto">
         <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
           <%= link_to root_path, class: 'nav-link' do %>
+            <i class="fas fa-home"></i>
             Home
           <% end %>
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
           <%= link_to users_path, class: 'nav-link' do %>
+            <i class="fas fa-users"></i>
             Users
             <div class="badge badge-info">
               <%= User.count %>
@@ -23,6 +25,7 @@
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(tenants_path) %> nav-item">
           <%= link_to tenants_path, class: 'nav-link' do %>
+            <i class="fas fa-building"></i>
             Tenants
             <div class="badge badge-info">
               <%= Tenant.count %>
@@ -34,19 +37,23 @@
         <% if current_user.tenants.include?(current_user.tenant) %>
           <li class="<%= 'active font-weight-bold' if ActsAsTenant.current_tenant %> nav-item">
             <%= link_to tenant_path(current_user.tenant), class: 'nav-link' do %>
+              <i class="fas fa-briefcase"></i>
               <%= current_user.tenant.name %>
             <% end %>
           </li>
         <% end %>
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+            <i class="fas fa-building"></i>
             Tenants
           </a>
           <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to my_tenants_path, class: "dropdown-item #{'active' if current_page?(my_tenants_path)}" do %>
+              <i class="fas fa-building"></i>
               My Tenants
             <% end %>
             <%= link_to new_tenant_path, class: "dropdown-item #{'active' if current_page?(new_tenant_path)}" do %>
+              <i class="fas fa-plus"></i>
               New Tenant
             <% end %>
           </div>
