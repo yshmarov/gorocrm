@@ -1,0 +1,386 @@
+<div class="jumbotron bg-light shadow">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>
+        Ruby on Rails 6: SaaS multitenancy boilerplate
+      </h1>
+      <br>
+      <h4>
+        Imagine having different secure organisations in Slack, or different team projects in Trello 
+        <p></p>
+        This is a Ruby on Rails Software as a Service boilerplate app
+        <p></p>
+        Users can create organisations, invite members, and manage access rights to different data
+      </h4>
+    </div>
+    <div class="col-md-6">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/FuJi-v96fiM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <h1>
+    Features
+  </h1>
+  The core functionality works well.
+  <br>
+  We are always working on adding more features.
+  <br>
+  You can see the existing features, as well as the roadmap here:
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          Authentication
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          Log in with email
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+        <li>
+          Log in with google
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Log in with facebook
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Log in with github
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          Team Multitenancy
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          User can create tenants (same as [:organisations, :teams, :accounts])
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+        <li>
+          User can invite others to become members of the tenant
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+        <li>
+          Flexible ways to set current_tenant only where you need it
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+        <li>
+          Data is scoped based on current_tenant
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          Authorization
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          When a user creates a tenant, he gets tenant "admin" role
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          When a user invites a collaborator, the other user get "viewer" role
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          3 default roles: [:admin, :editor, :viewer]
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Admin can manage roles and delete users
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Admin can manage general tenant settings
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Editor can create, read, update, delete tenant-specific
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Viewer can only see the tenant-specific data
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          Bootstrap 4.5 native UI
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          Full mobile responsiveness
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+        <li>
+          Nice styling with minimal css
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+        <li>
+          Fontawesome icons
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          Super scaffolding
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          New scaffolds are automatically styled
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Search functionality integrated into new scaffolds.
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Sorting functionality integrated into new scaffolds.
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          Plan-based restrictions
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          Free and Premium plans
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Free plan - 1 user limit
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Premium plan - unlimited users
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          You can change the plan for a tenant
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          Billing
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          Braintree integration
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Stripe integration
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          One-time Payments
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Subscriptions
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Invoicing
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          Production & SEO ready
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          recaptcha
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          google analytics
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          SEO tags
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Breadcrumbs
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="text-center">
+  <h1>
+    Inspiration
+  </h1>
+  Apps that you can create using multitenancy
+</div>
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          <i class="fab fa-salesforce"></i>
+          Salesforce
+        </h3>
+      </div>
+      <div class="card-body">
+        Each organisation/account/tenant can have its own complex information in the same database, but separated and secure. Bill organisations (tenants), not individuals
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          <i class="fab fa-slack"></i>
+          Slack
+        </h3>
+      </div>
+      <div class="card-body">
+        Users can create multiple independent environments for different teams
+      </div>
+    </div>
+    <p></p>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          <i class="fab fa-trello"></i>
+          Trello
+        </h3>
+      </div>
+      <div class="card-body">
+        Invite different collaborators for different projects.
+      </div>
+    </div>
+    <p></p>
+  </div>
+</div>

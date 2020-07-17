@@ -1,4 +1,15 @@
-<%= link_to 'About', about_path %>
-<%= link_to 'Pricing', pricing_path %>
-<%= link_to 'Terms', terms_path %>
-<%= link_to 'Privacy', privacy_path %>
+<br>
+<div class="bg-light">
+  <br>
+  <div class="container-fluid">
+    <div class="d-flex justify-content-end">
+       © CorsegoSaaS
+      <%= Time.now.year %>
+      <%= link_to 'About', about_path, class: 'ml-3' %>
+      <%= link_to 'Pricing', pricing_path, class: 'ml-3' %>
+      <%= link_to 'Terms', terms_path, class: 'ml-3' %>
+      <%= link_to 'Privacy', privacy_path, class: 'ml-3' %>
+    </div>
+  </div>
+  <br>
+</div>

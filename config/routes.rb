@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root 'static_pages#index'
+  root 'static_pages#landing_page'
   get 'about', to: 'static_pages#about'
   get 'pricing', to: 'static_pages#pricing'
   get 'privacy', to: 'static_pages#privacy'
