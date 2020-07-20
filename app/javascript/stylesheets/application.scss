@@ -3,3 +3,19 @@
 body { background: #f8f0e6; }
 
 .bg-purple { background-color: #7952b3; }
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 200px;
+}
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    //height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
