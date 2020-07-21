@@ -8,4 +8,21 @@ class Member < ApplicationRecord
   validates :tenant_id, presence: true
   validates_uniqueness_of :user_id, scope: :tenant_id
 
+  # List user roles
+  ROLES = [:admin, :editor, :viewer]
+
+  # json column to store roles
+  store_accessor :roles, *ROLES
+
+  # Cast roles to/from booleans
+  ROLES.each do |role|
+    scope role, -> { where("roles @> ?", {role => true}.to_json) }
+    define_method(:"#{role}=") { |value| super ActiveRecord::Type::Boolean.new.cast(value) }
+    define_method(:"#{role}?") { send(role) }
+  end
+
+  def active_roles # Where value true
+    ROLES.select { |role| send(:"#{role}?") }.compact
+  end
+
 end

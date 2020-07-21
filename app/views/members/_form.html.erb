@@ -3,8 +3,14 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.association :user %>
+  <div class="form-group">
+    <% Member::ROLES.each do |role| %>
+      <label>
+        <%= f.check_box role %>
+        <%= role.to_s.humanize %>
+      </label>
+      <br>
+    <% end %>
   </div>
 
   <div class="form-actions">
