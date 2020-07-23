@@ -1,6 +1,16 @@
 class TenantsController < ApplicationController
   before_action :set_tenant, only: [:show, :edit, :update, :destroy, :switch]
 
+  before_action :require_admin, only: [:edit, :update, :destroy]
+  def require_admin
+    if Member.find_by(user: current_user, tenant: @tenant).present? && 
+      Member.find_by(user: current_user, tenant: @tenant).admin?
+      # success
+    else
+      redirect_to tenants_path, alert: "You are not authorized"
+    end
+  end
+
   def index
     @tenants = Tenant.includes(:members, :users, members: [:user])
   end
