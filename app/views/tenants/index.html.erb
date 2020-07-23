@@ -23,7 +23,11 @@
       <% @tenants.each do |tenant| %>
         <tr>
           <td>
-            <%= link_to tenant.id, tenant %>
+            <% if current_user.tenants.include?(tenant) %>
+              <%= link_to tenant.id, tenant %>
+            <% else %>
+              <%= tenant.id %>
+            <% end %>
           </td>
           <td>
             <%= tenant.name %>
@@ -42,8 +46,10 @@
               <% end %>
             <% end %>
           </td>
-          <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td>
-          <td><%= link_to 'Destroy', tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_user.tenants.include?(tenant) && Member.find_by(user: current_user, tenant: tenant).admin? %>
+            <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td>
+            <td><%= link_to 'Destroy', tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
