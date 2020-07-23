@@ -1,6 +1,9 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
+  include SetTenant #set ActsAsTenant.current_tenant
+  include RequireTenant #no current_tenant = no access to entire controller
+
   def index
     @contacts = Contact.all
   end
@@ -55,6 +58,6 @@ class ContactsController < ApplicationController
     end
 
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :phone_number, :email, :tenant_id)
+      params.require(:contact).permit(:first_name, :last_name, :phone_number, :email)
     end
 end
