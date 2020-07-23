@@ -8,9 +8,11 @@
   </div>
 </h3>
 
-<%= form_tag invite_members_path, method: :get do %>
-  <%= email_field_tag 'email' %>
-  <%= submit_tag("Invite a member") %>
+<% if @current_member.admin? %>
+  <%= form_tag invite_members_path, method: :get do %>
+    <%= email_field_tag 'email' %>
+    <%= submit_tag("Invite a member") %>
+  <% end %>
 <% end %>
 
 <br>
@@ -61,7 +63,7 @@
             -->
             <%= member.active_roles.join(", ") %>
           </td>
-          <% if Member.find_by(user: current_user).admin? %>
+          <% if @current_member.admin? %>
             <td><%= link_to 'Edit', edit_member_path(member) %></td>
             <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% else %>

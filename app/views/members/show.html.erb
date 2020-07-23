@@ -16,7 +16,9 @@
     <%= @member.active_roles.join(", ") %>
   </div>
   <div class="card-footer">
-    <%= link_to 'Edit', edit_member_path(@member) %> |
+    <% if @current_member.admin? %>
+      <%= link_to 'Edit', edit_member_path(@member) %>
+    <% end %>
     <%= link_to 'Back', members_path %>
   </div>
 </div>
