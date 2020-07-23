@@ -3,20 +3,20 @@
   <div class="container-fluid text-center">
     <div class="row">
       <div class="col-md-4">
-        <%= link_to 'CorsegoSaaS', root_path %>
+        <%= link_to 'CorsegoSaaS', root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}" %>
         © 
         <%= Time.now.year %>
         <br/>
       </div>
       <div class="col-md-4">
-        <%= link_to 'About', about_path %>
+        <%= link_to 'About', about_path, class: "#{'active font-weight-bold' if current_page?(about_path)}" %>
         <br/>
-        <%= link_to 'Pricing', pricing_path %>
+        <%= link_to 'Pricing', pricing_path, class: "#{'active font-weight-bold' if current_page?(pricing_path)}" %>
       </div>
       <div class="col-md-4">
-        <%= link_to 'Terms', terms_path %>
+        <%= link_to 'Terms', terms_path, class: "#{'active font-weight-bold' if current_page?(terms_path)}" %>
         <br/>
-        <%= link_to 'Privacy', privacy_path %>
+        <%= link_to 'Privacy', privacy_path, class: "#{'active font-weight-bold' if current_page?(privacy_path)}" %>
       </div>
     </div>
   </div>

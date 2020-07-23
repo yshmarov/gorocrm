@@ -38,7 +38,7 @@ class MembersController < ApplicationController
         new_user = User.invite!({ email: email }, current_user) #devise invitable create user and send email. invited_by current_user
         if new_user.persisted?
           Member.create!(user: new_user) #make new user part of this tenant
-          redirect_to members_path, notice: "#{email} was invited to join the tenant #{current_tenant.id}"
+          redirect_to members_path, notice: "#{email} was invited to join the tenant #{current_tenant.name}"
         else
           redirect_to members_path, alert: "Something went wrong. Please try again"
         end
