@@ -4,6 +4,15 @@ class MembersController < ApplicationController
   include SetTenant #set ActsAsTenant.current_tenant
   include RequireTenant #no current_tenant = no access to entire controller
 
+  before_action :require_admin, only: [:invite, :edit, :update, :destroy]
+  def require_admin
+    if Member.find_by(user: current_user).admin?
+      # success
+    else
+      redirect_to members_path, alert: "You are not authorized"
+    end
+  end
+
   def index
     @members = Member.includes(:user, :tenant).all #"includes" for eager loading
   end

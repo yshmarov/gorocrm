@@ -11,6 +11,9 @@
     <br>
     <strong>Tenant:</strong>
     <%= @member.tenant %>
+    <br>
+    <strong>Roles:</strong>
+    <%= @member.active_roles.join(", ") %>
   </div>
   <div class="card-footer">
     <%= link_to 'Edit', edit_member_path(@member) %> |
