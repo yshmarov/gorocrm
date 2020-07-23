@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :contacts
   devise_for :users
 
   root 'static_pages#landing_page'
