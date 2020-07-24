@@ -3,6 +3,16 @@ class ContactsController < ApplicationController
 
   include SetTenant #set ActsAsTenant.current_tenant
   include RequireTenant #no current_tenant = no access to entire controller
+  include SetCurrentMember #for role-based authorization
+
+  before_action :require_admin_or_editor, only: [:edit, :update, :destroy]
+  def require_admin_or_editor
+    if @current_member.admin? || @current_member.editor?
+      # success
+    else
+      redirect_to contacts_path, alert: "You are not authorized"
+    end
+  end
 
   def index
     @contacts = Contact.all

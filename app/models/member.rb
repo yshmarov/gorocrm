@@ -10,6 +10,7 @@ class Member < ApplicationRecord
 
   # List user roles
   ROLES = [:admin, :editor, :viewer]
+  #Member.find(13).update_attributes!(admin: true) #add admin in console
 
   # json column to store roles
   store_accessor :roles, *ROLES

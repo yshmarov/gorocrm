@@ -21,6 +21,15 @@
         </div>
       <% end %>
     </li>
+    <li class="<%= 'active font-weight-bold bg-light shadow rounded' if current_page?(contacts_path) %> nav-item">
+      <%= link_to contacts_path, class: 'nav-link' do %>
+        <i class="far fa-address-book"></i>
+        Contacts
+        <div class="badge badge-info">
+          <%= Contact.count %>
+        </div>
+      <% end %>
+    </li>
   </ul>
 </div>
 <br>
