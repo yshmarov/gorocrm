@@ -1,6 +1,14 @@
-<h1>Editing Contact</h1>
-
-<%= render 'form', contact: @contact %>
-
-<%= link_to 'Show', @contact %> |
-<%= link_to 'Back', contacts_path %>
+<div class="card shadow">
+  <div class="card-header">
+    <h4>
+      Editing Contact
+    </h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', contact: @contact %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Show', @contact %> |
+    <%= link_to 'Back', contacts_path %>
+  </div>
+</div>
