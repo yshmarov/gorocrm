@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :contacts
   devise_for :users
 
   root 'static_pages#landing_page'
@@ -27,5 +26,9 @@ Rails.application.routes.draw do
   resources :members, except: [:create, :new] do
     get :invite, on: :collection
   end
+
+  resources :contacts
+
+  get "tenants/:id/leads/new", to: 'leads#new'
 
 end
