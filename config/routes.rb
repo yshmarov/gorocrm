@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :contacts
 
-  get "tenants/:id/leads/new", to: 'leads#new'
+  get "tenants/:tenant_id/leads/new", to: 'leads#new'
+  get "tenants/:tenant_id/leads/:id", to: "leads#show"
 
 end
