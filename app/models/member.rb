@@ -8,6 +8,12 @@ class Member < ApplicationRecord
   validates :tenant_id, presence: true
   validates_uniqueness_of :user_id, scope: :tenant_id
 
+  def to_s
+    user.email.to_s + tenant.name.to_s
+  end
+  extend FriendlyId
+  friendly_id :to_s, use: :slugged
+
   # List user roles
   ROLES = [:admin, :editor, :viewer]
   #Member.find(13).update_attributes!(admin: true) #add admin in console

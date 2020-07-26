@@ -13,5 +13,7 @@ class User < ApplicationRecord
   def to_s
     email
   end
+  extend FriendlyId
+  friendly_id :email, use: :slugged
 
 end
