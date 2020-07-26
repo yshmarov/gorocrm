@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :contacts
 
   get "tenants/:tenant_id/leads/new", to: 'leads#new'
-  get "tenants/:tenant_id/leads/:id", to: "leads#show"
+  get "tenants/:tenant_id/leads/:id", to: "leads#show", as: :tenant_lead
+  match "tenants/:tenant_id/leads", to: "leads#create", via: [:post], as: :create_lead
 
 end

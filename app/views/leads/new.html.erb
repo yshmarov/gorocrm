@@ -1,3 +1,19 @@
 Current tenant:
 <%= current_tenant.name %>
 <%= current_tenant.id %>
+
+<%= simple_form_for(@contact, method: :post, url: create_lead_path) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :phone_number %>
+    <%= f.input :email %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
