@@ -31,7 +31,7 @@ class LeadsController < ApplicationController
 
   private
     def set_tenant
-      @tenant = Tenant.find(params[:tenant_id])
+      @tenant = Tenant.friendly.find(params[:tenant_id])
       set_current_tenant(@tenant)
     end
 
