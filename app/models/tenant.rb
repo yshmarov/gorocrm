@@ -9,5 +9,8 @@ class Tenant < ApplicationRecord
   def to_s
     name
   end
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   
 end

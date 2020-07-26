@@ -90,7 +90,7 @@ class TenantsController < ApplicationController
 
   private
     def set_tenant
-      @tenant = Tenant.find(params[:id])
+      @tenant = Tenant.friendly.find(params[:id])
     end
 
     def tenant_params
