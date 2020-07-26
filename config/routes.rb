@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   resources :contacts
 
+  #get ":tenant_id", to: 'leads#new', as: :new_lead #short url option
+  #get "t/:tenant_id/l/n", to: 'leads#new', as: :new_lead #short url option
   get "tenants/:tenant_id/leads/new", to: 'leads#new', as: :new_lead
   get "tenants/:tenant_id/leads/:id", to: "leads#show", as: :tenant_lead
   match "tenants/:tenant_id/leads", to: "leads#create", via: [:post], as: :create_lead
