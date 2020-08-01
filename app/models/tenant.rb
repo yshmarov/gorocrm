@@ -5,6 +5,11 @@ class Tenant < ApplicationRecord
   RESERVED_NAMES = %w(blog app pricing terms help support tenant tenants user users)
   validates :name, exclusion: { in: RESERVED_NAMES, message: "%{value} is reserved." }
 
+  validates :plan, presence: true
+  RESERVED_PLANS = %w(solo team)
+  validates :plan, inclusion: { in: RESERVED_PLANS, message: "%{value} is not available." }
+  PLANS = [:solo, :team]
+
   has_many :members, dependent: :destroy
   has_many :users, through: :members
 

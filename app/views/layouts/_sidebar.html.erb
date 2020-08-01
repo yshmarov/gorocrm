@@ -4,6 +4,9 @@
       <%= link_to tenant_path(current_tenant), class: 'nav-link' do %>
         <i class="fas fa-briefcase"></i>
         <%= current_tenant %>
+        <span class="badge badge-primary">
+          <%= current_tenant.plan %>
+        </span>
       <% end %>
     </li>
     <li class="<%= 'active font-weight-bold bg-light shadow rounded' if current_page?(dashboard_path) %> nav-item">

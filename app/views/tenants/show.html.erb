@@ -12,6 +12,9 @@
     <strong>Members count:</strong>
     <%= @tenant.members.count %>
     <br>
+    <strong>Plan:</strong>
+    <%= @tenant.plan %>
+    <br>
   </div>
   <div class="card-footer">
     <% if current_user.tenants.include?(@tenant) && Member.find_by(user: current_user, tenant: @tenant).admin? %>
