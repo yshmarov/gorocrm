@@ -49,6 +49,9 @@
           <% if current_user.tenants.include?(tenant) && Member.find_by(user: current_user, tenant: tenant).admin? %>
             <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td>
             <td><%= link_to 'Destroy', tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td></td>
+            <td></td>
           <% end %>
         </tr>
       <% end %>
