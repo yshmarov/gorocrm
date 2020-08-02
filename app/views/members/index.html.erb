@@ -8,7 +8,7 @@
   </div>
 </h3>
 
-<% if @current_member.admin? %>
+<% if @current_member.admin? && current_tenant.can_invite_members? %>
   <%= form_tag invite_members_path, method: :get do %>
     <%= email_field_tag 'email' %>
     <%= submit_tag("Invite a member") %>

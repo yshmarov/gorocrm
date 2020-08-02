@@ -23,4 +23,8 @@ class Tenant < ApplicationRecord
     #source https://www.rubydoc.info/github/norman/friendly_id/FriendlyId%2FSlugged:should_generate_new_friendly_id%3F
     name_changed?
   end
+  
+  def can_invite_members?
+    self.plan == "team"
+  end
 end
