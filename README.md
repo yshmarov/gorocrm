@@ -1,24 +1,18 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run locally:
+```
+bundle
+yarn
+rails db:create db:migrate
+```
+Push to production:
+```
+heroku create
+git push heroku master
+heroku run rake db:migrate
+heroku addons:create sendgrid:starter
+```
+Connected services:
+* AWS S3 (for tenant logo [production])
+* heroku sendgrid (for sending emails [production])
+* google recaptcha (no bot sign-ups [development, production])
+* 
