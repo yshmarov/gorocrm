@@ -27,14 +27,14 @@ class MembersController < ApplicationController
           if Member.where(user: user_from_email).any? #user is a member in current_tenant
             redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
           else #user is not a member of current_tenant
-            new_member = Member.create!(user: user_from_email) #create member for existing user
+            new_member = Member.create!(user: user_from_email, editor: true) #create member for existing user
             MemberMailer.invited(new_member).deliver_later
             redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
           end
         elsif user_from_email.nil? #invite new user to a tenant
           new_user = User.invite!({ email: email }, current_user) #devise invitable create user and send email. invited_by current_user
           if new_user.persisted?
-            Member.create!(user: new_user) #make new user part of this tenant
+            Member.create!(user: new_user, editor: true) #make new user part of this tenant
             redirect_to members_path, notice: "#{email} was invited to join the tenant #{current_tenant.name}"
           else
             redirect_to members_path, alert: "Something went wrong. Please try again"
