@@ -27,4 +27,7 @@ class Tenant < ApplicationRecord
   def can_invite_members?
     self.plan == "team"
   end
+
+  has_one_attached :logo
+
 end

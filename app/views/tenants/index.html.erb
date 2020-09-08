@@ -13,6 +13,7 @@
       <tr>
         <th>id</th>
         <th>name</th>
+        <th>logo</th>
         <th>plan</th>
         <th>users</th>
         <th></th>
@@ -30,8 +31,11 @@
               <%= tenant.id %>
             <% end %>
           </td>
+          <td><%= tenant.name %></td>
           <td>
-            <%= tenant.name %>
+            <% if tenant.logo.attached? %>
+              <%= image_tag tenant.logo, size: "20x20" %>
+            <% end %>
           </td>
           <td><%= tenant.plan %></td>
           <td>

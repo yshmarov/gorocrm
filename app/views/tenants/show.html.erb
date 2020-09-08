@@ -15,6 +15,11 @@
     <strong>Plan:</strong>
     <%= @tenant.plan %>
     <br>
+    <br>
+    <strong>Logo:</strong>
+    <% if @tenant.logo.attached? %>
+      <%= image_tag @tenant.logo, size: "50x50" %>
+    <% end %>
   </div>
   <div class="card-footer">
     <% if current_user.tenants.include?(@tenant) && Member.find_by(user: current_user, tenant: @tenant).admin? %>
