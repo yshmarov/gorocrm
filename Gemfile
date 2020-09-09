@@ -29,4 +29,6 @@ gem 'friendly_id'
 
 #storage
 gem 'active_storage_validations' #tenant logo
+gem "aws-sdk-s3", require: false
+
 
