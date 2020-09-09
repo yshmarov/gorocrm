@@ -11,6 +11,7 @@
     <% if @tenant.logo.attached? %>
       <%= image_tag @tenant.logo, size: "50x50" %>
       <%= @tenant.logo.filename %>
+      <%= number_to_human_size(@tenant.logo.byte_size) %>
     <% end %>
     <%= f.input :logo %>
 

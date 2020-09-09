@@ -20,8 +20,13 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+#multitenancy
 gem 'devise'
 gem 'simple_form'
 gem 'devise_invitable', '~> 2.0.0'
 gem 'acts_as_tenant'
 gem 'friendly_id'
+
+#storage
+gem 'active_storage_validations' #tenant logo
+
