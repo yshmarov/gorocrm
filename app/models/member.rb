@@ -34,8 +34,17 @@ class Member < ApplicationRecord
 
   #role validation
   validate :must_have_a_role, on: :update
+  validate :must_have_an_admin
 
   private
+  
+  def must_have_an_admin
+    if persisted? &&
+       (self.tenant.members.pluck(:roles).count { |h| h["admin"] == true} == 1) && #see to it that
+       (roles_changed? && admin == false)
+      errors.add(:base, 'The tenant must have at least one admin') 
+    end
+  end
 
   def must_have_a_role
     if self.roles.values.none?
