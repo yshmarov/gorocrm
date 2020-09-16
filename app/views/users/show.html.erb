@@ -13,4 +13,13 @@
   <div class="card-footer">
     <%= link_to 'Back', users_path %>
   </div>
+  <div class="card-footer">
+    Confirmed email?
+    <% if @user.confirmed_at.present? %>
+      <div class="badge badge-success">Yes</div>
+    <% else %>
+      <div class="badge badge-danger">No</div>
+    <% end %>
+  </div>
+
 </div>
