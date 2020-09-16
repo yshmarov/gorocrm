@@ -32,4 +32,15 @@ class Member < ApplicationRecord
     ROLES.select { |role| send(:"#{role}?") }.compact
   end
 
+  #role validation
+  validate :must_have_a_role, on: :update
+
+  private
+
+  def must_have_a_role
+    if self.roles.values.none?
+      errors.add(:base, "A member must have at least one role")
+    end
+  end
+
 end
