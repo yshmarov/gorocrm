@@ -34,3 +34,6 @@ gem "aws-sdk-s3", require: false
 group :production do
   gem 'exception_notification'
 end
+
+gem 'invisible_captcha'
+
