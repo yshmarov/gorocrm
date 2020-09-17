@@ -31,4 +31,6 @@ gem 'friendly_id'
 gem 'active_storage_validations' #tenant logo
 gem "aws-sdk-s3", require: false
 
-
+group :production do
+  gem 'exception_notification'
+end

@@ -5,6 +5,15 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
 
+  #ExceptionNotification
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    email: {
+      deliver_with: :deliver,
+      email_prefix: '[PREFIX] ',
+      sender_address: %{"ewlit error" <support@ewlit.herokuapp.com>},
+      exception_recipients: %w{yshmarov@gmail.com}
+    }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
