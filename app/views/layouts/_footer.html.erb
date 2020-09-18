@@ -6,9 +6,10 @@
         <%= link_to 'CorsegoSaaS', root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}" %>
         © 
         <%= Time.now.year %>
-        <br/>
       </div>
       <div class="col-md-4">
+        <%= link_to 'Home', about_path, class: "#{'active font-weight-bold' if current_page?(about_path)}" %>
+        <br/>
         <%= link_to 'About', about_path, class: "#{'active font-weight-bold' if current_page?(about_path)}" %>
         <br/>
         <%= link_to 'Pricing', pricing_path, class: "#{'active font-weight-bold' if current_page?(pricing_path)}" %>
