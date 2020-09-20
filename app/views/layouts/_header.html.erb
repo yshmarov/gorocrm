@@ -86,6 +86,11 @@
         <li class="<%= 'active font-weight-bold' if current_page?(new_user_session_path) %> nav-item">
           <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
         </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(user_google_oauth2_omniauth_authorize_path) %> nav-item">
+          <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'nav-link' do %>
+            <div class="fab fa-google"></div>
+          <% end %>
+        </li>
       </ul>
     <% end %>
   </div>

@@ -37,3 +37,5 @@ end
 
 gem 'invisible_captcha'
 
+gem 'omniauth-google-oauth2'
+
