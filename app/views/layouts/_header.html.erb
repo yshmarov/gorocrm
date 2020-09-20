@@ -91,6 +91,11 @@
             <div class="fab fa-google"></div>
           <% end %>
         </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(user_github_omniauth_authorize_path) %> nav-item">
+          <%= link_to user_github_omniauth_authorize_path, class: 'nav-link' do %>
+            <div class="fab fa-github"></div>
+          <% end %>
+        </li>
       </ul>
     <% end %>
   </div>

@@ -38,4 +38,5 @@ end
 gem 'invisible_captcha'
 
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 

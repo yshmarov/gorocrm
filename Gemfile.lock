@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/omniauth/omniauth-github.git
+  revision: 5afe8aee3baccd84ce6f265a3e62efbb55ac14b9
+  branch: master
+  specs:
+    omniauth-github (1.4.0)
+      omniauth (~> 1.5)
+      omniauth-oauth2 (>= 1.4.0, < 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -260,6 +269,7 @@ DEPENDENCIES
   invisible_captcha
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  omniauth-github!
   omniauth-google-oauth2
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
