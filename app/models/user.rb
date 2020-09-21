@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :invitable,
          :confirmable,
+         :trackable,
          :omniauthable, omniauth_providers: [:google_oauth2, :github]
 
   has_many :members
