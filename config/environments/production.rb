@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { :host => 'ewlit.herokuapp.com', :protocol => 'https' }
+  config.action_mailer.default_url_options = { :host => 'saascorsego.herokuapp.com', :protocol => 'https' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
@@ -10,7 +10,7 @@ Rails.application.configure do
     email: {
       deliver_with: :deliver,
       email_prefix: '[PREFIX] ',
-      sender_address: %{"ewlit error" <support@ewlit.herokuapp.com>},
+      sender_address: %{"saascorsego error" <support@saascorsego.herokuapp.com>},
       exception_recipients: %w{yshmarov@gmail.com}
     }
 
