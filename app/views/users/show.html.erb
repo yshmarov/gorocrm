@@ -1,13 +1,20 @@
 <div class="card shadow">
   <div class="card-header">
-    <h4>
-      <strong>User id:</strong>
-      <%= @user.id %>
-    </h4>
+    <div class="fa fa-user"></div>
+    <%= link_to @user.email, user_path(@user) %>
   </div>
-  <div class="card-body">
-    <strong>Email:</strong>
-    <%= @user.email %>
+  <div class="card-footer">
+    <% if @user == current_user && @user.uid.nil? %>
+      <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-primary btn-sm' do %>
+        <div class="fab fa-google"></div>
+        Sync with Google
+      <% end %>
+      <p></p>
+    <% end %>
+    <% if @user.image? %>
+      <div class="row"></div>
+      <%= image_tag @user.image, size: '40x40', alt: "#{@user.email}", class: 'rounded-circle' %>
+    <% end %>
     <br>
     <strong>Provider:</strong>
     <%= @user.provider %>
@@ -20,10 +27,38 @@
     <br>
     <strong>Image:</strong>
     <%= @user.image %>
-    <br>
+
   </div>
   <div class="card-footer">
-    <%= link_to 'Back', users_path %>
+    Signed up
+    <%= time_ago_in_words(@user.created_at) %>
+    ago
+  </div>
+  <div class="card-footer">
+    <b>
+      <%= 'sign_in_count'.humanize + ":" %>
+    </b>
+    <%= @user.sign_in_count %>
+    <div class="row"></div>
+    <b>
+      <%= 'current_sign_in_at'.humanize + ":" %>
+    </b>
+    <%= @user.current_sign_in_at %>
+    <div class="row"></div>
+    <b>
+      <%= 'last_sign_in_at'.humanize + ":" %>
+    </b>
+    <%= @user.last_sign_in_at %>
+    <div class="row"></div>
+    <b>
+      <%= 'current_sign_in_ip'.humanize + ":" %>
+    </b>
+    <%= @user.current_sign_in_ip %>
+    <div class="row"></div>
+    <b>
+      <%= 'last_sign_in_ip'.humanize + ":" %>
+    </b>
+    <%= @user.last_sign_in_ip %>
   </div>
   <div class="card-footer">
     Confirmed email?
@@ -33,5 +68,4 @@
       <div class="badge badge-danger">No</div>
     <% end %>
   </div>
-
 </div>
