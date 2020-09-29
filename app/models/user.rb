@@ -16,6 +16,15 @@ class User < ApplicationRecord
   def to_s
     email
   end
+
+  def username
+    if self.name.present?
+      name
+    else
+      self.email.split(/@/).first
+    end
+  end
+
   extend FriendlyId
   friendly_id :email, use: :slugged
 

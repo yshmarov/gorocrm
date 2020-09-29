@@ -65,8 +65,12 @@
         </li>
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
-            <%= current_user.name %>
-            <%= current_user.email %>
+            <% if current_user.image? %>
+              <%= image_tag current_user.image, size: '30x30', alt: "#{current_user.username}", class: 'rounded-circle' %>
+            <% else %>
+              <div class="fa fa-user"></div>
+            <% end %>
+            <%= current_user.username %>
           </a>
           <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to user_path(current_user), class: "dropdown-item #{'active' if current_page?(user_path(current_user))}" do %>
