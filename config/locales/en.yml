@@ -30,4 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  home: "Home"
+  header:
+    home: "Home"
+    users: "Users"
+    tenants: "Tenants"
+    my_tenants: "My Tenants"
+    new_tenant: "New Tenant"
+    my_profile: "My Profile"
+    account_settings: "Account Settings"
+    sign_out: "Sign Out"
+    register: "Register"
+    log_in: "Login"

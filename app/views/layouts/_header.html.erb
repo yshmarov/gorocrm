@@ -7,25 +7,26 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <%= I18n.locale %>
+    <% if I18n.locale == :en %>
+      <%= link_to "ES", root_path(locale: "es") %>
+    <% else %>
+      <%= link_to "EN", root_path(locale: "en") %>
+    <% end %>
+
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
-        <%= I18n.locale %>
-        <% if I18n.locale == :en %>
-          <%= link_to "ES", root_path(locale: "es") %>
-        <% else %>
-          <%= link_to "EN", root_path(locale: "en") %>
-        <% end %>
 
         <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
           <%= link_to root_path, class: 'nav-link' do %>
             <i class="fas fa-home"></i>
-            <%= t :home %>
+            <%= t 'header.home' %>
           <% end %>
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
           <%= link_to users_path, class: 'nav-link' do %>
             <i class="fas fa-users"></i>
-            Users
+            <%= t 'header.users' %>
             <div class="badge badge-info">
               <%= User.count %>
             </div>
@@ -34,7 +35,7 @@
         <li class="<%= 'active font-weight-bold' if current_page?(tenants_path) %> nav-item">
           <%= link_to tenants_path, class: 'nav-link' do %>
             <i class="fas fa-building"></i>
-            Tenants
+            <%= t 'header.tenants' %>
             <div class="badge badge-info">
               <%= Tenant.count %>
             </div>
@@ -57,16 +58,16 @@
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
             <i class="fas fa-building"></i>
-            Tenants
+            <%= t 'header.tenants' %>
           </a>
           <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to my_tenants_path, class: "dropdown-item #{'active' if current_page?(my_tenants_path)}" do %>
               <i class="fas fa-building"></i>
-              My Tenants
+              <%= t 'header.my_tenants' %>
             <% end %>
             <%= link_to new_tenant_path, class: "dropdown-item #{'active' if current_page?(new_tenant_path)}" do %>
               <i class="fas fa-plus"></i>
-              New Tenant
+              <%= t 'header.new_tenant' %>
             <% end %>
           </div>
         </li>
@@ -81,13 +82,13 @@
           </a>
           <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to user_path(current_user), class: "dropdown-item #{'active' if current_page?(user_path(current_user))}" do %>
-              My Profile
+              <%= t 'header.my_profile' %>
             <% end %>
             <%= link_to edit_user_registration_path, class: "dropdown-item #{'active' if current_page?(edit_user_registration_path)}" do %>
-              Account Settings
+              <%= t 'header.account_settings' %>
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
-              Sign out
+              <%= t 'header.sign_out' %>
             <% end %>
           </div>
         </li>
@@ -96,10 +97,10 @@
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav mr-right">
         <li class="<%= 'active font-weight-bold' if current_page?(new_user_registration_path) %> nav-item">
-          <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
+          <%= link_to t("header.register"), new_user_registration_path, class: 'nav-link' %>
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(new_user_session_path) %> nav-item">
-          <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+          <%= link_to t("header.login"), new_user_session_path, class: 'nav-link' %>
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(user_google_oauth2_omniauth_authorize_path) %> nav-item">
           <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'nav-link' do %>

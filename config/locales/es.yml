@@ -1,2 +1,12 @@
 es:
-  home: "Casa"
+  header:
+    home: "A casa"
+    users: "Usuarios"
+    tenants: "Empresas"
+    my_tenants: "Mi Empresas"
+    new_tenant: "Nueva Empresa"
+    my_profile: "Mi Perfil"
+    account_settings: "Ajustes"
+    sign_out: "Desconectar"
+    register: "Registrarse"
+    log_in: "Login"
