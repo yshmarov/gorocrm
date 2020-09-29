@@ -20,16 +20,19 @@ class User < ApplicationRecord
   friendly_id :email, use: :slugged
 
   def self.from_omniauth(access_token)
-      data = access_token.info
-      user = User.where(email: data['email']).first
+      user = User.where(email: access_token.info.email).first # check if user with such email exists
   
       unless user
         user = User.create(
-           email: data['email'],
-           password: Devise.friendly_token[0,20],
-           confirmed_at: Time.now
+           email: access_token.info.email,
+           password: Devise.friendly_token[0,20]
         )
       end
+      
+      unless user.confirmed_at
+        user.confirmed_at = Time.now #confirm user if he logs in with a social media account
+      end
+
       user
   end
 
