@@ -33,6 +33,11 @@ class User < ApplicationRecord
         user.confirmed_at = Time.now #confirm user if he logs in with a social media account
       end
 
+      user.provider = access_token.provider
+      user.uid = access_token.uid
+      user.image = access_token.info.image
+      user.name = access_token.info.name
+
       user
   end
 
