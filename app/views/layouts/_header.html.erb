@@ -10,6 +10,12 @@
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
         <%= I18n.locale %>
+        <% if I18n.locale == :en %>
+          <%= link_to "ES", root_path(locale: "es") %>
+        <% else %>
+          <%= link_to "EN", root_path(locale: "en") %>
+        <% end %>
+
         <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
           <%= link_to root_path, class: 'nav-link' do %>
             <i class="fas fa-home"></i>
