@@ -9,10 +9,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
+        <%= I18n.locale %>
         <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
           <%= link_to root_path, class: 'nav-link' do %>
             <i class="fas fa-home"></i>
-            Home
+            <%= t :home %>
           <% end %>
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
