@@ -38,8 +38,8 @@
           <td>
             <%= user.members_count %>
           </td>
-          <td><%= user.confirmed_at.present? %></td>
-          <td><%= user.superadmin %></td>
+          <td><%= boolean_label(user.confirmed_at.present?) %></td>
+          <td><%= boolean_label(user.superadmin) %></td>
         </tr>
       <% end %>
     </tbody>

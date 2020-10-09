@@ -14,4 +14,14 @@ module ApplicationHelper
     nil
   end
 
+  def boolean_label(value)
+    case value
+      when true
+        #content_tag(:span, "Yes", class: "badge badge-success")
+        content_tag(:span, value, class: "badge badge-success")
+      when false
+        content_tag(:span, value, class: "badge badge-danger")
+    end
+  end
+
 end
