@@ -7,16 +7,23 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <%= I18n.locale %>
-    <% if I18n.locale == :en %>
-      <%= link_to "ES", root_path(locale: "es") %>
-    <% else %>
-      <%= link_to "EN", root_path(locale: "en") %>
-    <% end %>
+    <ul class="navbar-nav mr-left">
+      <li class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="languageDropdown" role="button">
+          <%= I18n.locale %>
+        </a>
+        <div aria-labelledby="languageDropdown" class="dropdown-menu dropdown-menu-right">
+          <% if I18n.locale == :en %>
+            <%= link_to "Español", root_path(locale: "es"), class: "dropdown-item" %>
+          <% else %>
+            <%= link_to "English", root_path(locale: "en"), class: "dropdown-item" %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
 
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
-
         <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
           <%= link_to root_path, class: 'nav-link' do %>
             <i class="fas fa-home"></i>
@@ -56,11 +63,11 @@
           </li>
         <% end %>
         <li class="nav-item dropdown">
-          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="tenantsDropdown" role="button">
             <i class="fas fa-building"></i>
             <%= t 'header.tenants' %>
           </a>
-          <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
+          <div aria-labelledby="tenantsDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to my_tenants_path, class: "dropdown-item #{'active' if current_page?(my_tenants_path)}" do %>
               <i class="fas fa-building"></i>
               <%= t 'header.my_tenants' %>
@@ -72,7 +79,7 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="userDropdown" role="button">
             <% if current_user.image? %>
               <%= image_tag current_user.image, size: '30x30', alt: "#{current_user.username}", class: 'rounded-circle' %>
             <% else %>
@@ -80,7 +87,7 @@
             <% end %>
             <%= current_user.username %>
           </a>
-          <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
+          <div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to user_path(current_user), class: "dropdown-item #{'active' if current_page?(user_path(current_user))}" do %>
               <%= t 'header.my_profile' %>
             <% end %>
