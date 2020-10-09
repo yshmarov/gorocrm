@@ -13,9 +13,11 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'home#dashboard'
   
-  resources :users, only: [:index, :show] do
-    member do
-      patch :resend_invitation
+  scope :superadmin do
+    resources :users, only: [:index, :show] do
+      member do
+        patch :resend_invitation
+      end
     end
   end
 
