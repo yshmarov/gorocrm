@@ -15,10 +15,14 @@ class ApplicationController < ActionController::Base
     elsif session['locale'].present?
       language = session['locale']
     else
-      language = 'en'
+      language = I18n.default_locale
     end
-    
-    I18n.locale = language
+
+    if I18n.available_locales.map(&:to_s).include?(language)
+      I18n.locale = language
+    else
+      I18n.locale = I18n.default_locale
+    end
   end
 
 end
