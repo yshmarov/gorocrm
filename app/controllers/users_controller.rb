@@ -1,4 +1,4 @@
-class Superadmin::UsersController < ApplicationController
+class UsersController < ApplicationController
   
   def index
     @users = User.includes(:members, :tenants, members: [:tenant])

@@ -23,7 +23,7 @@
       <% @users.each do |user| %>
         <tr>
           <td>
-            <%= link_to user.id, superadmin_user_path(user) %>
+            <%= link_to user.id, user %>
           </td>
           <td>
             <%= user.email %>
