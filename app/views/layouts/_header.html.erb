@@ -30,8 +30,8 @@
             <%= t 'header.home' %>
           <% end %>
         </li>
-        <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
-          <%= link_to users_path, class: 'nav-link' do %>
+        <li class="<%= 'active font-weight-bold' if current_page?(superadmin_users_path) %> nav-item">
+          <%= link_to superadmin_users_path, class: 'nav-link' do %>
             <i class="fas fa-users"></i>
             <%= t 'header.users' %>
             <div class="badge badge-info">
@@ -88,7 +88,7 @@
             <%= current_user.username %>
           </a>
           <div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">
-            <%= link_to user_path(current_user), class: "dropdown-item #{'active' if current_page?(user_path(current_user))}" do %>
+            <%= link_to superadmin_user_path(current_user), class: "dropdown-item #{'active' if current_page?(superadmin_user_path(current_user))}" do %>
               <%= t 'header.my_profile' %>
             <% end %>
             <%= link_to edit_user_registration_path, class: "dropdown-item #{'active' if current_page?(edit_user_registration_path)}" do %>

@@ -1,7 +1,7 @@
 <div class="card shadow">
   <div class="card-header">
     <div class="fa fa-user"></div>
-    <%= link_to @user.email, user_path(@user) %>
+    <%= link_to @user.email, superadmin_user_path(@user) %>
   </div>
   <div class="card-footer">
     <% if @user == current_user && @user.uid.nil? %>
