@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_superadmin, only: [:index]
   
   def index
     @users = User.includes(:members, :tenants, members: [:tenant])
@@ -17,6 +18,14 @@ class UsersController < ApplicationController
   
   def show
     @user = User.friendly.find(params[:id])
+  end
+
+  private
+
+  def require_superadmin
+    unless current_user.superadmin?
+      redirect_to root_path, alert: "Only superadmins can see all users"
+    end
   end
   
 end

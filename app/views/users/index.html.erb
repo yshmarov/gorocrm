@@ -17,6 +17,7 @@
         <th>current_tenant</th>
         <th>members_count</th>
         <th>confirmed</th>
+        <th>superadmin</th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +39,7 @@
             <%= user.members_count %>
           </td>
           <td><%= user.confirmed_at.present? %></td>
+          <td><%= user.superadmin %></td>
         </tr>
       <% end %>
     </tbody>
