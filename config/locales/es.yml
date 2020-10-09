@@ -10,3 +10,13 @@ es:
     sign_out: "Desconectar"
     register: "Registrarse"
     log_in: "Login"
+  activerecord:
+    models:
+      tenant: "Empresa"
+    attributes:
+      tenant:
+        id: "codigo"
+        name: "nombre"
+        plan: "programa"
+        logo: "logotipo"
+        users: "usuarios"

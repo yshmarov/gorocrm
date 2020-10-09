@@ -41,3 +41,13 @@ en:
     sign_out: "Sign Out"
     register: "Register"
     log_in: "Login"
+  activerecord:
+    models:
+      tenant: "Tenant"
+    attributes:
+      tenant:
+        id: "id"
+        name: "name"
+        plan: "plan"
+        logo: "logo"
+        users: "users"
