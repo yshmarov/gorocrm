@@ -18,3 +18,9 @@ body {
     width: 100%;
     overflow: hidden;
 }
+
+//header navbar dropdown on top of all other content
+.dropdown {z-index: 9999;}
+
+//header navbar dropdown hover background color (light-blue)
+.dropdown-item:hover {background-color: #9cccff !important;}
