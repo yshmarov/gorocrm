@@ -15,14 +15,15 @@ Rails.application.routes.draw do
   
   authenticated :user, lambda {|u| u.superadmin? } do
     scope :superadmin do
-      resources :users, only: [:index] do
-        member do
-          patch :resend_invitation
-        end
-      end
+      resources :users, only: [:index]
     end
   end
-  resources :users, only: [:show]
+
+  resources :users, only: [:show] do
+    member do
+      patch :resend_invitation
+    end
+  end
 
   resources :tenants do
     get :my, on: :collection
