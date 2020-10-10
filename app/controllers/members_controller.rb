@@ -5,14 +5,7 @@ class MembersController < ApplicationController
   include RequireTenant #no current_tenant = no access to entire controller
   include SetCurrentMember #for role-based authorization
 
-  before_action :require_admin, only: [:invite, :edit, :update, :destroy]
-  def require_admin
-    if @current_member.admin?
-      # success
-    else
-      redirect_to members_path, alert: "You are not authorized"
-    end
-  end
+  before_action :require_tenant_admin, only: [:invite, :edit, :update, :destroy]
 
   def index
     @members = Member.includes(:user, :tenant).all #"includes" for eager loading
@@ -82,4 +75,10 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(*Member::ROLES)
     end
+
+  def require_tenant_admin
+    unless @current_member.admin?
+      redirect_to members_path, alert: "You are not authorized to invite, edit, update, destory members"
+    end
+  end
 end

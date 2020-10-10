@@ -1,25 +1,7 @@
 class TenantsController < ApplicationController
   before_action :set_tenant, only: [:show, :edit, :update, :destroy, :switch]
-
-  before_action :require_admin, only: [:edit, :update, :destroy]
-  def require_admin
-    if current_user.tenants.include?(@tenant) &&
-      Member.find_by(user: current_user, tenant: @tenant).admin?
-      #Member.find_by(user: current_user, tenant: @tenant).present? = current_user.tenants.include?(@tenant)
-      # success
-    else
-      redirect_to tenants_path, alert: "You are not authorized"
-    end
-  end
-
-  before_action :require_member, only: [:show]
-  def require_member
-    if current_user.tenants.include?(@tenant)
-      # success
-    else
-      redirect_to tenants_path, alert: "You are not authorized"
-    end
-  end
+  before_action :require_tenant_admin, only: [:edit, :update, :destroy]
+  before_action :require_tenant_member, only: [:show]
 
   def index
     @tenants = Tenant.includes(:members, :users, members: [:user])
@@ -95,5 +77,18 @@ class TenantsController < ApplicationController
 
     def tenant_params
       params.require(:tenant).permit(:name, :plan, :logo)
+    end
+
+    def require_tenant_admin
+      unless current_user.tenants.include?(@tenant) &&
+        Member.find_by(user: current_user, tenant: @tenant).admin?
+        redirect_to my_tenants_path, alert: "You are not authorized to edit, update or destroy this tenant"
+      end
+    end
+
+    def require_tenant_member
+      unless current_user.tenants.include?(@tenant)
+        redirect_to my_tenants_path, alert: "You are not authorized to view this tenant"
+      end
     end
 end

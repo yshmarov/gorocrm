@@ -24,21 +24,17 @@
 
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
-        <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
-          <%= link_to root_path, class: 'nav-link' do %>
-            <i class="fas fa-home"></i>
-            <%= t 'header.home' %>
-          <% end %>
-        </li>
-        <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
-          <%= link_to users_path, class: 'nav-link' do %>
-            <i class="fas fa-users"></i>
-            <%= t 'header.users' %>
-            <div class="badge badge-info">
-              <%= User.count %>
-            </div>
-          <% end %>
-        </li>
+        <% if current_user.superadmin? %>
+          <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
+            <%= link_to users_path, class: 'nav-link' do %>
+              <i class="fas fa-users"></i>
+              <%= t 'header.users' %>
+              <div class="badge badge-info">
+                <%= User.count %>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
         <li class="<%= 'active font-weight-bold' if current_page?(tenants_path) %> nav-item">
           <%= link_to tenants_path, class: 'nav-link' do %>
             <i class="fas fa-building"></i>

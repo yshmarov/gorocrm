@@ -5,14 +5,7 @@ class ContactsController < ApplicationController
   include RequireTenant #no current_tenant = no access to entire controller
   include SetCurrentMember #for role-based authorization
 
-  before_action :require_admin_or_editor, only: [:edit, :update, :destroy]
-  def require_admin_or_editor
-    if @current_member.admin? || @current_member.editor?
-      # success
-    else
-      redirect_to contacts_path, alert: "You are not authorized"
-    end
-  end
+  before_action :require_tenant_admin_or_editor, only: [:edit, :update, :destroy]
 
   def index
     @contacts = Contact.all
@@ -70,4 +63,10 @@ class ContactsController < ApplicationController
     def contact_params
       params.require(:contact).permit(:first_name, :last_name, :phone_number, :email)
     end
+
+  def require_tenant_admin_or_editor
+    unless @current_member.admin? || @current_member.editor?
+      redirect_to contacts_path, alert: "You are not authorized to edit, update, destroy"
+    end
+  end
 end
