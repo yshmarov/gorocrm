@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_superadmin, only: [:index]
+  #before_action :require_superadmin, only: [:index] #routes-based authorization is working instead
   
   def index
     @users = User.includes(:members, :tenants, members: [:tenant])
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   private
 
-  def require_superadmin
+  def require_superadmin #routes-based authorization is working instead
     unless current_user.superadmin?
       redirect_to root_path, alert: "Only superadmins can see all users"
     end

@@ -13,13 +13,16 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'home#dashboard'
   
-  scope :superadmin do
-    resources :users, only: [:index, :show] do
-      member do
-        patch :resend_invitation
+  authenticated :user, lambda {|u| u.superadmin? } do
+    scope :superadmin do
+      resources :users, only: [:index] do
+        member do
+          patch :resend_invitation
+        end
       end
     end
   end
+  resources :users, only: [:show]
 
   resources :tenants do
     get :my, on: :collection
