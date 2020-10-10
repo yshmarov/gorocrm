@@ -3,6 +3,8 @@ class TenantsController < ApplicationController
   before_action :require_tenant_admin, only: [:edit, :update, :destroy]
   before_action :require_tenant_member, only: [:show]
 
+  before_action :require_superadmin, only: [:index]
+
   def index
     @tenants = Tenant.includes(:members, :users, members: [:user])
   end
@@ -91,4 +93,11 @@ class TenantsController < ApplicationController
         redirect_to my_tenants_path, alert: "You are not authorized to view this tenant"
       end
     end
+
+    def require_superadmin
+      unless current_user.superadmin?
+        redirect_to root_path, alert: "Only superadmins can see all tenants"
+      end
+    end
+
 end

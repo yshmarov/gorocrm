@@ -34,16 +34,16 @@
               </div>
             <% end %>
           </li>
+          <li class="<%= 'active font-weight-bold' if current_page?(tenants_path) %> nav-item">
+            <%= link_to tenants_path, class: 'nav-link' do %>
+              <i class="fas fa-building"></i>
+              <%= t 'header.tenants' %>
+              <div class="badge badge-info">
+                <%= Tenant.count %>
+              </div>
+            <% end %>
+          </li>
         <% end %>
-        <li class="<%= 'active font-weight-bold' if current_page?(tenants_path) %> nav-item">
-          <%= link_to tenants_path, class: 'nav-link' do %>
-            <i class="fas fa-building"></i>
-            <%= t 'header.tenants' %>
-            <div class="badge badge-info">
-              <%= Tenant.count %>
-            </div>
-          <% end %>
-        </li>
       </ul>
       <ul class="navbar-nav mr-right">
         <% if current_user.tenants.include?(current_user.tenant) %>
