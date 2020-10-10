@@ -7,6 +7,21 @@ class ContactsController < ApplicationController
 
   before_action :require_tenant_admin_or_editor, only: [:edit, :update, :destroy]
 
+  def import
+    @contacts = request.env['omnicontacts.contacts']
+    @user = request.env['omnicontacts.user']
+    puts "List of contacts of #{@user[:name]} obtained from #{params[:importer]}:"
+    @contacts.each do |contact|
+      puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
+    end
+
+    #redirect_to contacts_path, notice: "Success"
+  end
+
+  def failure
+    redirect_to contacts_path, alert: "Failure. Please try again."
+  end
+
   def index
     @contacts = Contact.all
   end

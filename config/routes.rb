@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     get :invite, on: :collection
   end
 
+  get "/contacts/:provider/contact_callback", to: "contacts#import"
+  get "/contacts/failure", to: "contacts#failure"
   resources :contacts
 
   #get ":tenant_id", to: 'leads#new', as: :new_lead #short url option
