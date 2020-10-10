@@ -18,7 +18,10 @@
   New Lead
 <% end %>
 
-<%= link_to "Import Google Contacts", "/contacts/gmail" %>
+<%= link_to "/contacts/gmail", class: 'btn btn-danger' do %>
+  <i class="fab fa-google"></i>
+  Import Google Contacts
+<% end %>
 
 <p>
 
@@ -31,6 +34,8 @@
         <th>Last name</th>
         <th>Phone number</th>
         <th>Email</th>
+        <th>Source</th>
+        <th>Import Id</th>
         <th>Tenant</th>
         <th colspan="2"></th>
       </tr>
@@ -44,6 +49,8 @@
           <td><%= contact.last_name %></td>
           <td><%= contact.phone_number %></td>
           <td><%= contact.email %></td>
+          <td><%= contact.source %></td>
+          <td><%= contact.import_id %></td>
           <td><%= contact.tenant.name %></td>
           <% if @current_member.admin? || @current_member.editor? %>
             <td><%= link_to 'Edit', edit_contact_path(contact) %></td>

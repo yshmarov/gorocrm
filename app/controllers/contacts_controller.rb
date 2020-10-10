@@ -12,10 +12,13 @@ class ContactsController < ApplicationController
     @user = request.env['omnicontacts.user']
 
     @contacts.each do |contact|
-      Contact.create(email: contact[:email], 
+      Contact.find_or_create_by(email: contact[:email], 
         first_name: contact[:first_name],
         last_name: contact[:last_name],
-        phone_number: contact[:phone_number])
+        phone_number: contact[:phone_number],
+        import_id: contact[:id],
+        source: @user[:email]
+        )
     end
 
     redirect_to contacts_path, notice: "Successfully imported"
