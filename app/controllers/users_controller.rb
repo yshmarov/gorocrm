@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.friendly.find(params[:id])
+    if current_user.superadmin?
+      @user = User.friendly.find(params[:id])
+    else
+      @user = current_user
+    end
   end
 
   private
