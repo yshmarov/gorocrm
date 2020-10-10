@@ -1,7 +1,10 @@
 Contacts Import
 
-<%= @contacts %>
+<%- @contacts.each do |contact| %>
+  <br>
+  <%= contact[:email] %>
+<% end %>
 
 <hr>
 
-<%= @user %>
+<%= @user[:email] %>

@@ -10,12 +10,15 @@ class ContactsController < ApplicationController
   def import
     @contacts = request.env['omnicontacts.contacts']
     @user = request.env['omnicontacts.user']
-    puts "List of contacts of #{@user[:name]} obtained from #{params[:importer]}:"
+
     @contacts.each do |contact|
-      puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
+      Contact.create(email: contact[:email], 
+        first_name: contact[:first_name],
+        last_name: contact[:last_name],
+        phone_number: contact[:phone_number])
     end
 
-    #redirect_to contacts_path, notice: "Success"
+    redirect_to contacts_path, notice: "Successfully imported"
   end
 
   def failure
