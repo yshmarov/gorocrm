@@ -3,7 +3,7 @@ class TenantsController < ApplicationController
   before_action :require_tenant_admin, only: [:edit, :update, :destroy]
   before_action :require_tenant_member, only: [:show]
 
-  before_action :require_superadmin, only: [:index]
+  #before_action :require_superadmin, only: [:index]
 
   def index
     @tenants = Tenant.includes(:members, :users, members: [:user])
@@ -94,10 +94,10 @@ class TenantsController < ApplicationController
       end
     end
 
-    def require_superadmin
-      unless current_user.superadmin?
-        redirect_to root_path, alert: "Only superadmins can see all tenants"
-      end
-    end
+    #def require_superadmin
+    #  unless current_user.superadmin?
+    #    redirect_to root_path, alert: "Only superadmins can see all tenants"
+    #  end
+    #end
 
 end
