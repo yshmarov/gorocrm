@@ -18,7 +18,7 @@ class ContactsController < ApplicationController
         phone_number: contact[:phone_number],
         import_id: contact[:id],
         source: @user[:email]
-        )
+        ).save(validate: false)
     end
 
     redirect_to contacts_path, notice: "Successfully imported"
