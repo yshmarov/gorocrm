@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'home#dashboard'
   
   authenticated :user, lambda {|u| u.superadmin? } do
-    scope :superadmin do
+    scope :superadmin, as: "superadmin" do
       resources :users, only: [:index]
+      resources :tenants, only: [:index]
     end
   end
 
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tenants do
+  resources :tenants, except: [:index] do
     get :my, on: :collection
     member do
       patch :switch

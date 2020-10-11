@@ -24,6 +24,6 @@
     <% if current_user.tenants.include?(@tenant) && Member.find_by(user: current_user, tenant: @tenant).admin? %>
       <%= link_to 'Edit', edit_tenant_path(@tenant) %>
     <% end %>
-    <%= link_to 'Back', tenants_path %>
+    <%= link_to 'Back', my_tenants_path %>
   </div>
 </div>
