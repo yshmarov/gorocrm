@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     scope :superadmin, as: "superadmin" do
       resources :users, only: [:index]
       resources :tenants, only: [:index]
+      #get "", to: "superadmin#dashboard"
+      root "superadmin#dashboard"
     end
   end
 

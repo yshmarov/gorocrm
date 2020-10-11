@@ -25,22 +25,10 @@
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
         <% if current_user.superadmin? %>
-          <li class="<%= 'active font-weight-bold' if current_page?(superadmin_users_path) %> nav-item">
-            <%= link_to superadmin_users_path, class: 'nav-link' do %>
-              <i class="fas fa-users"></i>
-              <%= t 'header.users' %>
-              <div class="badge badge-info">
-                <%= User.count %>
-              </div>
-            <% end %>
-          </li>
-          <li class="<%= 'active font-weight-bold' if current_page?(superadmin_tenants_path) %> nav-item">
-            <%= link_to superadmin_tenants_path, class: 'nav-link' do %>
-              <i class="fas fa-building"></i>
-              <%= t 'header.tenants' %>
-              <div class="badge badge-info">
-                <%= Tenant.count %>
-              </div>
+          <li class="<%= 'active font-weight-bold' if current_page?(superadmin_root_path) %> nav-item">
+            <%= link_to superadmin_root_path, class: 'nav-link' do %>
+              <i class="fas fa-user-shield"></i>
+              Superadmin
             <% end %>
           </li>
         <% end %>
