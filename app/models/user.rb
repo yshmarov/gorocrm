@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :trackable,
          :omniauthable, omniauth_providers: [:google_oauth2, :github]
 
+  has_many :identities, dependent: :destroy
   has_many :members
   has_many :tenants, through: :members
   
