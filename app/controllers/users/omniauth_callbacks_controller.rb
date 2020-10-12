@@ -10,14 +10,27 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if auth.nil?
         redirect_to root_path, alert: "No data received. Please try again"
       else
-        @user = User.from_omniauth(auth)
-    
-        if @user.persisted?
+        user = User.where(email: auth.info.email).first # check if user with such email exists
+
+        unless user
+          user = User.create(
+             email: auth.info.email,
+             password: Devise.friendly_token[0,20]
+          )
+        end
+        user.skip_confirmation! #confirm account with social login
+
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.image = auth.info.image
+        user.name = auth.info.name
+
+        if user.persisted?
           flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: provider
-          sign_in_and_redirect @user, event: :authentication
+          sign_in_and_redirect user, event: :authentication
         else
           session['devise.github_data'] = auth.except('extra')
-          redirect_to new_user_registration_url, alert: @user.errors.full_messages.join("\n")
+          redirect_to new_user_registration_url, alert: user.errors.full_messages.join("\n")
         end
       end
     end
