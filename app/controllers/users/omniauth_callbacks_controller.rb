@@ -44,7 +44,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user.skip_confirmation! #confirm account with social login
 
         user.provider = auth.provider #to see from which provider the user is logged in now
-        #user.uid = auth.uid
         user.image = auth.info.image
         user.name = auth.info.name
 

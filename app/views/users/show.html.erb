@@ -3,32 +3,47 @@
     <div class="fa fa-user"></div>
     <%= link_to @user.email, user_path(@user) %>
   </div>
+
   <div class="card-footer">
-    <% if @user == current_user && @user.uid.nil? %>
-      <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-primary btn-sm' do %>
-        <div class="fab fa-google"></div>
-        Sync with Google
-      <% end %>
-      <p></p>
-    <% end %>
     <% if @user.image? %>
       <div class="row"></div>
       <%= image_tag @user.image, size: '40x40', alt: "#{@user.email}", class: 'rounded-circle' %>
     <% end %>
     <br>
-    <strong>Provider:</strong>
+    <strong>Latest Social Login:</strong>
     <%= @user.provider %>
-    <br>
-    <strong>Uid:</strong>
-    <%= @user.uid %>
     <br>
     <strong>Name:</strong>
     <%= @user.name %>
-    <br>
-    <strong>Image:</strong>
-    <%= @user.image %>
-
   </div>
+
+  <div class="card-footer">
+    <% if @user == current_user %>
+      <% unless @user.identities.pluck(:provider).include?("google_oauth2") %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-primary btn-sm' do %>
+          <div class="fab fa-google"></div>
+          Connect Google
+        <% end %>
+      <% else %>
+        <button type="button" class="btn btn-sm btn-primary" disabled>
+          <div class="fab fa-google"></div>
+          Google connected
+        </button>
+      <% end %>
+      <% unless @user.identities.pluck(:provider).include?("github") %>
+        <%= link_to user_github_omniauth_authorize_path, class: 'btn btn-outline-secondary btn-sm' do %>
+          <div class="fab fa-github"></div>
+          Connect Github
+        <% end %>
+      <% else %>
+        <button type="button" class="btn btn-sm btn-secondary" disabled>
+          <div class="fab fa-github"></div>
+          Github connected
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="card-footer">
     Signed up
     <%= time_ago_in_words(@user.created_at) %>
