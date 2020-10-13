@@ -13,7 +13,9 @@
     <%= @tenant.members.count %>
     <br>
     <strong>Plan:</strong>
-    <%= @tenant.plan %>
+    <span class="badge badge-secondary">
+      <%= @tenant.plan %>
+    </span>
     <br>
     <strong>Logo:</strong>
     <% if @tenant.logo.attached? %>

@@ -38,7 +38,10 @@
               <%= image_tag tenant.logo, size: "20x20" %>
             <% end %>
           </td>
-          <td><%= tenant.plan %></td>
+          <td>
+            <span class="badge badge-secondary">
+              <%= tenant.plan %></td>
+            </span>
           <td>
             <%= tenant.users.compact.join(', ') %>
           </td>
