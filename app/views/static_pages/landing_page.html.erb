@@ -13,13 +13,15 @@
         Users can create organisations, invite members, and manage access rights to different data
       </h5>
 
-      <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-danger btn-lg mr-1' do %>
-        Try with
-        <div class="fab fa-google"></div>
-      <% end %>
-      <%= link_to user_github_omniauth_authorize_path, class: 'btn btn-outline-dark btn-lg mr-1' do %>
-        Try with
-        <div class="fab fa-github"></div>
+      <% unless user_signed_in? %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-danger btn-lg mr-1' do %>
+          Try with
+          <div class="fab fa-google"></div>
+        <% end %>
+        <%= link_to user_github_omniauth_authorize_path, class: 'btn btn-outline-dark btn-lg mr-1' do %>
+          Try with
+          <div class="fab fa-github"></div>
+        <% end %>
       <% end %>
 
     </div>
