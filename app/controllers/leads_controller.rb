@@ -10,15 +10,23 @@ class LeadsController < ApplicationController
     @contact = Contact.new
   end
   
+  #available only during the same session as the contact was created
   def show
+    #if params[:created_session_id] == session.id.to_s
     @contact = Contact.find(params[:id])
-    render 'contacts/show'
+    if @contact.created_session_id == session.id.to_s
+      render 'contacts/show'
+    else
+      redirect_to root_path, alert: "Session expired"
+    end
   end
   
   def create
     @contact = Contact.new(contact_params)
+    @contact.created_session_id = session.id
     respond_to do |format|
       if @contact.save
+        #format.html { redirect_to tenant_lead_path(@tenant, @contact, created_session_id: session.id), notice: 'Contact was successfully created.' }
         format.html { redirect_to tenant_lead_path(@tenant, @contact), notice: 'Contact was successfully created.' }
         format.json { render :show, status: :created, location: @contact }
       else
