@@ -10,18 +10,41 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if auth.nil?
         redirect_to root_path, alert: "No data received. Please try again"
       else
-        user = User.where(email: auth.info.email).first # check if user with such email exists
 
-        unless user
+        # we look for an identity and user that share this oauth data
+        identity = User::Identity.find_by(provider: auth.provider, uid: auth.uid)
+        user = User.find_by(email: auth.info.email)
+
+        if user.present?
+          if identity.present?
+            identity.update(
+              provider: auth.provider,
+              uid: auth.uid,
+              auth: auth.to_hash
+              )
+          else
+            user.identities.create(
+              provider: auth.provider,
+              uid: auth.uid,
+              auth: auth.to_hash
+              )
+          end
+        else
           user = User.create(
              email: auth.info.email,
              password: Devise.friendly_token[0,20]
           )
+          user.identities.create(
+            provider: auth.provider,
+            uid: auth.uid,
+            auth: auth.to_hash
+            )
         end
+
         user.skip_confirmation! #confirm account with social login
 
-        user.provider = auth.provider
-        user.uid = auth.uid
+        user.provider = auth.provider #to see from which provider the user is logged in now
+        #user.uid = auth.uid
         user.image = auth.info.image
         user.name = auth.info.name
 

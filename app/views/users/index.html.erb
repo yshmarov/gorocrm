@@ -17,6 +17,7 @@
         <th>tenants</th>
         <th>current_tenant</th>
         <th>members_count</th>
+        <th>identities</th>
         <th>confirmed</th>
         <th>superadmin</th>
       </tr>
@@ -43,6 +44,9 @@
           </td>
           <td>
             <%= user.members_count %>
+          </td>
+          <td>
+            <%= user.identities.pluck(:provider).join(", ") %>
           </td>
           <td><%= boolean_label(user.confirmed_at.present?) %></td>
           <td><%= boolean_label(user.superadmin) %></td>
