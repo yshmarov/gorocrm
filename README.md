@@ -8,8 +8,10 @@
 
 ### Connected services required
 * AWS S3 - file storage ** in production **
+* Google oauth (development & production)
+* Github oauth (development & production)
 
-### 1. Installing RoR
+### Installing RoR
 
 ```
 rvm install ruby-2.7.1
@@ -32,7 +34,7 @@ y
 exit
 ```
 
-### 2. Installation the app
+### Installation the app
 
 1. Create app
 ```
@@ -50,9 +52,21 @@ EDITOR=vim rails credentials:edit
 ```
 and inside the file:
 ```
-s3:
-  access_key_id: YOUR_CODE_FOR_S3_STORAGE
-  secret_access_key: YOUR_CODE_FOR_S3_STORAGE
+aws:
+  access_key_id: YOUR_CODE
+  secret_access_key: Br/YOUR_CODE
+
+github:
+  development:
+    id: YOUR_CODE
+    secret: YOUR_CODE
+  production:
+    id: YOUR_CODE
+    secret: YOUR_CODE
+
+google:
+  id: 12352653799-YOUR_CODE
+  secret: YOUR_CODE
 
 ```
 * i = to make the file editable
@@ -65,8 +79,14 @@ s3:
 rails db:create
 rails db:migrate
 ```
-4. Configure your development environment in config/environments/development.rb
-5. Start the server
+You can also run 
+```
+rails db:seed
+```
+That will provide some minimal sample data
+
+4. Configure your development environment in config/environments/development.rb (if needed)
+6. Start the server
 ```
 rails s
 ```
@@ -76,9 +96,19 @@ rails s
 heroku create
 heroku rename *your-app-name*
 heroku git:remote -a *your-app-name*
+heroku buildpacks:set heroku/ruby
+heroku buildpacks:add -i 1 https://github.com/heroku/heroku-buildpack-activestorage-preview
 git push heroku master
 heroku run rake db:migrate
 heroku addons:create sendgrid:starter
 heroku config:set RAILS_MASTER_KEY=`cat config/master.key`
 ```
-If you have troubles running the app or any questions don't hesitate to contact me at yashm@outlook.com 🧐 
+
+### Give a user superadmin rights (only through the console)
+```
+rails c
+User.first.update(superadmin: true)
+```
+
+
+If you have troubles running the app or any questions don't hesitate to contact me at hello@corsego.com 🧐 
