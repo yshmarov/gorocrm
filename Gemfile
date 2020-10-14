@@ -42,3 +42,6 @@ gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 
 #additional functionality for importing contacts from social accounts
 gem "omnicontacts"
+
+#i18n
+gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
