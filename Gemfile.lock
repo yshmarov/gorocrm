@@ -100,6 +100,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.9.2)
+      devise (>= 4.7.1)
     devise_invitable (2.0.2)
       actionmailer (>= 5.0)
       devise (>= 4.6)
@@ -270,6 +272,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   devise
+  devise-i18n
   devise_invitable (~> 2.0.0)
   exception_notification
   friendly_id
