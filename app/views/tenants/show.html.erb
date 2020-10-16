@@ -1,31 +1,33 @@
+<% model_class = Tenant %>
 <div class="card shadow">
   <div class="card-header">
     <h4>
-      <strong>Name:</strong>
+      <strong><%= model_class.human_attribute_name(:name).capitalize %>:</strong>
       <%= @tenant.name %>
     </h4>
   </div>
   <div class="card-body">
-    <strong>Members:</strong>
+    <strong><%= model_class.human_attribute_name(:members).capitalize %>:</strong>
     <%= @tenant.users.compact.join(', ') %>
     <br>
-    <strong>Members count:</strong>
+    <strong><%= model_class.human_attribute_name(:members_count).capitalize %>:</strong>
     <%= @tenant.members.count %>
     <br>
-    <strong>Plan:</strong>
+    <strong><%= model_class.human_attribute_name(:plan).capitalize %>:</strong>
     <span class="badge badge-secondary">
       <%= @tenant.plan %>
     </span>
     <br>
-    <strong>Logo:</strong>
+    <strong><%= model_class.human_attribute_name(:logo).capitalize %>:</strong>
+    <br>
     <% if @tenant.logo.attached? %>
       <%= image_tag @tenant.logo, size: "50x50" %>
     <% end %>
   </div>
   <div class="card-footer">
     <% if current_user.tenants.include?(@tenant) && Member.find_by(user: current_user, tenant: @tenant).admin? %>
-      <%= link_to 'Edit', edit_tenant_path(@tenant) %>
+      <%= link_to t("helpers.links.edit").capitalize, edit_tenant_path(@tenant) %>
     <% end %>
-    <%= link_to 'Back', my_tenants_path %>
+    <%= link_to t("helpers.links.back").capitalize, my_tenants_path %>
   </div>
 </div>

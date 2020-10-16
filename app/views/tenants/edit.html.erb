@@ -1,14 +1,14 @@
 <div class="card shadow">
   <div class="card-header">
     <h4>
-      Editing Tenant
+      <%= t "#{controller_name}_#{action_name}" %>
     </h4>
   </div>
   <div class="card-body">
     <%= render 'form', tenant: @tenant %>
   </div>
   <div class="card-footer">
-    <%= link_to 'Show', @tenant %> |
-    <%= link_to 'Back', my_tenants_path %>
+    <%= link_to t("helpers.links.show").capitalize, @tenant %> |
+    <%= link_to t("helpers.links.back").capitalize, my_tenants_path %>
   </div>
 </div>

@@ -1,6 +1,11 @@
 es:
+  helpers:
+    links:
+      edit: "editar"
+      destroy: "destruir"
+      back: "volver"
+      show: "ver"
   header:
-    home: "A casa"
     users: "Usuarios"
     tenants: "Empresas"
     my_tenants: "Mi Empresas"
@@ -20,3 +25,8 @@ es:
         plan: "programa"
         logo: "logotipo"
         users: "usuarios"
+        members: "members"
+        members_count: "members count"
+  tenants_my: "Mi Empresas"
+  tenants_new: "Nueva Empresa"
+  tenants_edit: "Editar Empresa"
