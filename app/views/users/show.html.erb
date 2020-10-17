@@ -52,14 +52,13 @@
           <%= @user.language %>
         </button>
         <div class="dropdown-menu" aria-labelledby="userLanguageDropdown">
-          <% if I18n.locale == :en %>
-            <%= link_to "Español", root_path(locale: "es"), class: "dropdown-item" %>
-          <% else %>
-            <%= link_to "English", root_path(locale: "en"), class: "dropdown-item" %>
+          <% I18n.available_locales.excluding(I18n.locale).each do |language| %>
+              <%= link_to language, root_path(locale: language), class: "dropdown-item" %>
           <% end %>
         </div>
       </div>
     </div>
+
   <% end %>
 
   <div class="card-footer">
