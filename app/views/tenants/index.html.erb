@@ -48,10 +48,10 @@
             <% if current_user.tenants.include?(tenant) %>
               <% if current_user.tenant == tenant %>
                 <div class="badge badge-success">
-                  current tenant
+                  <%= t(".current_tenant") %>
                 </div>
               <% else %>
-                <%= button_to 'Switch tenant', switch_tenant_path(tenant), method: :patch %>
+                <%= button_to t(".switch_tenant"), switch_tenant_path(tenant), method: :patch %>
               <% end %>
             <% end %>
           </td>

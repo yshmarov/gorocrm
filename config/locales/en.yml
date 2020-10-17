@@ -30,3 +30,10 @@ en:
   tenants_my: "My Tenants"
   tenants_new: "New Tenant"
   tenants_edit: "Edit Tenant"
+  tenants:
+    switch:
+      notice: "Switched to tenant: %{tenant}"
+      alert: "You are not authorized to access tenant: %{tenant}"
+    index:
+      current_tenant: "current tenant"
+      switch_tenant: "switch tenant"

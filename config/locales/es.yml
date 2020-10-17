@@ -30,3 +30,10 @@ es:
   tenants_my: "Mi Empresas"
   tenants_new: "Nueva Empresa"
   tenants_edit: "Editar Empresa"
+  tenants:
+    switch:
+      notice: "Empresa seleccionada: %{tenant}"
+      alert: "No tienes derechos para ver: %{tenant}"
+    index:
+      current_tenant: "empresa activada"
+      switch_tenant: "cambiar empresa"
