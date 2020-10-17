@@ -56,8 +56,8 @@
             <% end %>
           </td>
           <% if current_user.tenants.include?(tenant) && Member.find_by(user: current_user, tenant: tenant).admin? %>
-            <td><%= link_to t("helpers.links.edit").capitalize, edit_tenant_path(tenant) %></td>
-            <td><%= link_to t("helpers.links.destroy").capitalize, tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_tenant_path(tenant) %></td>
+            <td><%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% else %>
             <td></td>
             <td></td>

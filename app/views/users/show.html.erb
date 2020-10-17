@@ -1,3 +1,4 @@
+<% model_class = User %>
 <div class="card shadow">
   <div class="card-header">
     <div class="fa fa-user"></div>
@@ -10,10 +11,10 @@
       <%= image_tag @user.image, size: '40x40', alt: "#{@user.email}", class: 'rounded-circle' %>
     <% end %>
     <br>
-    <strong>Latest Social Login:</strong>
+    <strong><%= model_class.human_attribute_name(:provider).capitalize %>:</strong>
     <%= @user.provider %>
     <br>
-    <strong>Name:</strong>
+    <strong><%= model_class.human_attribute_name(:name).capitalize %>:</strong>
     <%= @user.name %>
   </div>
 
@@ -47,7 +48,7 @@
     <div class="card-footer">
       <div class="dropdown">
         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="userLanguageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Language:
+          <%= model_class.human_attribute_name(:language).capitalize %>:
           <%= @user.language %>
         </button>
         <div class="dropdown-menu" aria-labelledby="userLanguageDropdown">
@@ -62,41 +63,41 @@
   <% end %>
 
   <div class="card-footer">
-    Signed up
+    <%= model_class.human_attribute_name(:created_at).capitalize %>:
     <%= time_ago_in_words(@user.created_at) %>
     ago
   </div>
   <div class="card-footer">
     <b>
-      <%= 'sign_in_count'.humanize + ":" %>
+      <%= model_class.human_attribute_name(:sign_in_count).capitalize %>:
     </b>
     <%= @user.sign_in_count %>
     <div class="row"></div>
     <b>
-      <%= 'current_sign_in_at'.humanize + ":" %>
+      <%= model_class.human_attribute_name(:current_sign_in_at).capitalize %>:
     </b>
     <%= @user.current_sign_in_at %>
     <div class="row"></div>
     <b>
-      <%= 'last_sign_in_at'.humanize + ":" %>
+      <%= model_class.human_attribute_name(:last_sign_in_at).capitalize %>:
     </b>
     <%= @user.last_sign_in_at %>
     <div class="row"></div>
     <b>
-      <%= 'current_sign_in_ip'.humanize + ":" %>
+      <%= model_class.human_attribute_name(:current_sign_in_ip).capitalize %>:
     </b>
     <%= @user.current_sign_in_ip %>
     <div class="row"></div>
     <b>
-      <%= 'last_sign_in_ip'.humanize + ":" %>
+      <%= model_class.human_attribute_name(:last_sign_in_ip).capitalize %>:
     </b>
     <%= @user.last_sign_in_ip %>
   </div>
   <div class="card-footer">
-    Confirmed email?
-    <%= boolean_label(@user.confirmed_at.present?) %>
+    <%= model_class.human_attribute_name(:confirmed_at).capitalize %>:
+    <%= boolean_label(@user.confirmed?) %>
     <br>
-    Superadmin?
+    <%= model_class.human_attribute_name(:superadmin).capitalize %>:
     <%= boolean_label(@user.superadmin) %>
   </div>
 </div>

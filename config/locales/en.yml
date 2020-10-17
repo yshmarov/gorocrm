@@ -1,39 +1,88 @@
 en:
   helpers:
     links:
-      edit: "editar"
-      destroy: "destruir"
-      back: "volver"
-      show: "ver"
+      edit: edit
+      destroy: destroy
+      back: back
+      show: show
+
   header:
-    users: "Users"
-    tenants: "Tenants"
-    my_tenants: "My Tenants"
-    new_tenant: "New Tenant"
-    my_profile: "My Profile"
-    account_settings: "Account Settings"
-    sign_out: "Sign Out"
-    register: "Register"
-    log_in: "Login"
+    users: Users
+    tenants: Tenants
+    my_tenants: My Tenants
+    new_tenant: New Tenant
+    my_profile: My Profile
+    account_settings: Account Settings
+    sign_out: Sign Out
+    register: Register
+    log_in: Login
+    superadmin: Superadmin
+
+  sidebar:
+    dashboard: Dashboard
+    members: Members
+    contacts: Contacts
+
+  footer:
+    home: Home
+    about: About
+    pricing: Pricing
+    terms: Terms
+    privacy: Privacy
+
   activerecord:
     models:
-      tenant: "Tenant"
+      tenant: Tenant
+      user: User
+      member: Member
     attributes:
       tenant:
-        id: "id"
-        name: "name"
-        plan: "plan"
-        logo: "logo"
-        users: "users"
-        members: "miembros"
-        members_count: "cantidad de miembros"
-  tenants_my: "My Tenants"
-  tenants_new: "New Tenant"
-  tenants_edit: "Edit Tenant"
+        id: id
+        name: name
+        plan: plan
+        logo: logo
+        users: users
+        members: members
+        members_count: members count
+      user:
+        id: id
+        email: email
+        image: image
+        provider: Latest Social Login
+        tenants: tenants
+        language: language
+        tenant_id: tenant_id
+        members_count: members_count
+        identities: identities
+        superadmin: superadmin
+      member:
+        id: id
+        user: user
+        tenant: tenant
+        roles: roles
+
+  tenants_my: My Tenants
+  tenants_new: New Tenant
+  tenants_edit: Editing Tenant
+  tenants_index: All Tenants
+  users_index: All Users
+  members_edit: Editing Member
+  members_index: Members
+
   tenants:
     switch:
       notice: "Switched to tenant: %{tenant}"
       alert: "You are not authorized to access tenant: %{tenant}"
     index:
-      current_tenant: "current tenant"
-      switch_tenant: "switch tenant"
+      current_tenant: current tenant
+      switch_tenant: switch tenant
+    create:
+      notice: Tenant was successfully created
+    update:
+      notice: Tenant was successfully updated
+    destroy:
+      notice: Tenant was successfully destroyed
+    require_tenant_admin:
+      alert: You are not authorized to edit, update or destroy this tenant
+    require_tenant_member:
+      alert: You are not authorized to view this tenant

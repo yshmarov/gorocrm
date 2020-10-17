@@ -1,7 +1,6 @@
 <h3>
   <div class="text-center">
-    <%= controller_name.humanize + ":" %>
-    <%= action_name.humanize %>
+    <%= t "#{controller_name}_#{action_name}" %>
     <div class="badge badge-info">
       <%= @members.count %>
     </div>
@@ -64,8 +63,8 @@
             <%= member.active_roles.join(", ") %>
           </td>
           <% if @current_member.admin? %>
-            <td><%= link_to 'Edit', edit_member_path(member) %></td>
-            <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_member_path(member) %></td>
+            <td><%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% else %>
             <td></td>
             <td></td>

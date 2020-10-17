@@ -8,7 +8,7 @@
     <%= render 'form', tenant: @tenant %>
   </div>
   <div class="card-footer">
-    <%= link_to t("helpers.links.show").capitalize, @tenant %> |
-    <%= link_to t("helpers.links.back").capitalize, my_tenants_path %>
+    <%= link_to t(".show", default: t("helpers.links.show")).capitalize, @tenant %> |
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, my_tenants_path %>
   </div>
 </div>

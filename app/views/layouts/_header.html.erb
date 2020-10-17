@@ -13,7 +13,7 @@
           <li class="<%= 'active font-weight-bold' if current_page?(superadmin_root_path) %> nav-item">
             <%= link_to superadmin_root_path, class: 'nav-link' do %>
               <i class="fas fa-user-shield"></i>
-              Superadmin
+              <%= t 'header.superadmin' %>
             <% end %>
           </li>
         <% end %>

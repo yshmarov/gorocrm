@@ -12,13 +12,13 @@
     <li class="<%= 'active font-weight-bold bg-light shadow rounded' if current_page?(dashboard_path) %> nav-item">
       <%= link_to dashboard_path, class: 'nav-link' do %>
         <i class="fas fa-tachometer-alt"></i>
-        Dashboard
+        <%= t 'sidebar.dashboard' %>
       <% end %>
     </li>
     <li class="<%= 'active font-weight-bold bg-light shadow rounded' if current_page?(members_path) %> nav-item">
       <%= link_to members_path, class: 'nav-link' do %>
         <i class="fas fa-users"></i>
-        Members
+        <%= t 'sidebar.members' %>
         <div class="badge badge-info">
           <%= Member.count %>
         </div>
@@ -27,7 +27,7 @@
     <li class="<%= 'active font-weight-bold bg-light shadow rounded' if current_page?(contacts_path) %> nav-item">
       <%= link_to contacts_path, class: 'nav-link' do %>
         <i class="far fa-address-book"></i>
-        Contacts
+        <%= t 'sidebar.contacts' %>
         <div class="badge badge-info">
           <%= Contact.count %>
         </div>

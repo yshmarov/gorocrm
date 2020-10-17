@@ -1,24 +1,25 @@
+<% model_class = Member %>
 <div class="card shadow">
   <div class="card-header">
     <h4>
-      <strong>Member id:</strong>
+      <strong><%= model_class.human_attribute_name(:id).capitalize %>:</strong>
       <%= @member.id %>
     </h4>
   </div>
   <div class="card-body">
-    <strong>User:</strong>
+    <strong><%= model_class.human_attribute_name(:user).capitalize %>:</strong>
     <%= @member.user %>
     <br>
-    <strong>Tenant:</strong>
+    <strong><%= model_class.human_attribute_name(:tenant).capitalize %>:</strong>
     <%= @member.tenant %>
     <br>
-    <strong>Roles:</strong>
+    <strong><%= model_class.human_attribute_name(:roles).capitalize %>:</strong>
     <%= @member.active_roles.join(", ") %>
   </div>
   <div class="card-footer">
     <% if @current_member.admin? %>
-      <%= link_to 'Edit', edit_member_path(@member) %>
+      <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_member_path(@member) %>
     <% end %>
-    <%= link_to 'Back', members_path %>
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, members_path %>
   </div>
 </div>

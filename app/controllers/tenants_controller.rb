@@ -43,7 +43,7 @@ class TenantsController < ApplicationController
       if @tenant.save
         @member = Member.create!(tenant: @tenant, user: current_user, admin: true) #when a tenant is created, the creator becomes a member
         current_user.update_attribute(:tenant_id, @tenant.id) #when a tenant is created, the creator sets it as current_tenant
-        format.html { redirect_to @tenant, notice: 'Tenant was successfully created.' }
+        format.html { redirect_to @tenant, notice: t(".notice") }
         format.json { render :show, status: :created, location: @tenant }
       else
         format.html { render :new }
@@ -55,7 +55,7 @@ class TenantsController < ApplicationController
   def update
     respond_to do |format|
       if @tenant.update(tenant_params)
-        format.html { redirect_to @tenant, notice: 'Tenant was successfully updated.' }
+        format.html { redirect_to @tenant, notice: t(".notice") }
         format.json { render :show, status: :ok, location: @tenant }
       else
         format.html { render :edit }
@@ -67,7 +67,7 @@ class TenantsController < ApplicationController
   def destroy
     @tenant.destroy
     respond_to do |format|
-      format.html { redirect_to my_tenants_url, notice: 'Tenant was successfully destroyed.' }
+      format.html { redirect_to my_tenants_url, notice: t(".notice") }
       format.json { head :no_content }
     end
   end
@@ -84,13 +84,13 @@ class TenantsController < ApplicationController
     def require_tenant_admin
       unless current_user.tenants.include?(@tenant) &&
         Member.find_by(user: current_user, tenant: @tenant).admin?
-        redirect_to my_tenants_path, alert: "You are not authorized to edit, update or destroy this tenant"
+        redirect_to my_tenants_path, alert: t("tenants.require_tenant_admin.alert")
       end
     end
 
     def require_tenant_member
       unless current_user.tenants.include?(@tenant)
-        redirect_to my_tenants_path, alert: "You are not authorized to view this tenant"
+        redirect_to my_tenants_path, alert: t("tenants.require_tenant_member.alert")
       end
     end
 

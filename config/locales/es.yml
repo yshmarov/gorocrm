@@ -1,39 +1,88 @@
 es:
   helpers:
     links:
-      edit: "editar"
-      destroy: "destruir"
-      back: "volver"
-      show: "ver"
+      edit: editar
+      destroy: destruir
+      back: volver
+      show: ver
+
   header:
-    users: "Usuarios"
-    tenants: "Empresas"
-    my_tenants: "Mi Empresas"
-    new_tenant: "Nueva Empresa"
-    my_profile: "Mi Perfil"
-    account_settings: "Ajustes"
-    sign_out: "Desconectar"
-    register: "Registrarse"
-    log_in: "Login"
+    users: Usuarios
+    tenants: Empresas
+    my_tenants: Mi Empresas
+    new_tenant: Nueva Empresa
+    my_profile: Mi Perfil
+    account_settings: Ajustes
+    sign_out: Desconectar
+    register: Registrarse
+    log_in: Login
+    superadmin: Superadmin
+
+  sidebar:
+    dashboard: Dashboard
+    members: Miembros
+    contacts: Contactos
+
+  footer:
+    home: Página principal
+    about: Sobre
+    pricing: Precios
+    terms: Términos de servicio
+    privacy: Política de privacidad
+
   activerecord:
     models:
-      tenant: "Empresa"
+      tenant: Empresa
+      user: User
+      member: Member
     attributes:
       tenant:
-        id: "codigo"
-        name: "nombre"
-        plan: "programa"
-        logo: "logotipo"
-        users: "usuarios"
-        members: "members"
-        members_count: "members count"
-  tenants_my: "Mi Empresas"
-  tenants_new: "Nueva Empresa"
-  tenants_edit: "Editar Empresa"
+        id: codigo
+        name: nombre
+        plan: programa
+        logo: logotipo
+        users: usuarios
+        members: miembros
+        members_count: cantidad de miembros
+      user:
+        id: codigo
+        email: email
+        image: imagen
+        provider: Última sesión social
+        tenants: empresas
+        language: idioma
+        tenant: empresa
+        members_count: cantidad de miembros
+        identities: identidades
+        superadmin: superadmin
+      member:
+        id: codigo
+        user: usario
+        tenant: empresa
+        roles: derechos
+
+  tenants_my: Mi Empresas
+  tenants_new: Nueva Empresa
+  tenants_edit: Editar Empresa
+  tenants_index: Todas Empresas
+  users_index: Todos Usarios
+  members_edit: Actualizar Miembro
+  members_index: Miembros
+
   tenants:
     switch:
       notice: "Empresa seleccionada: %{tenant}"
       alert: "No tienes derechos para ver: %{tenant}"
     index:
-      current_tenant: "empresa activada"
-      switch_tenant: "cambiar empresa"
+      current_tenant: empresa activada
+      switch_tenant: cambiar empresa
+    create:
+      notice: Empresa creada
+    update:
+      notice: Empresa actualizada
+    destroy:
+      notice: Empresa destruida
+    require_tenant_admin:
+      alert: No tienes derechos para editar, actualizar o destruir Empresa
+    require_tenant_member:
+      alert: No tienes derechos para ver Empresa
