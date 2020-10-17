@@ -15,6 +15,7 @@
         <th>email</th>
         <th>image</th>
         <th>tenants</th>
+        <th>language</th>
         <th>current_tenant</th>
         <th>members_count</th>
         <th>identities</th>
@@ -39,6 +40,7 @@
           <td>
             <%= user.tenants.compact.join(', ') %>
           </td>
+          <td><%= user.language %></td>
           <td>
             <%= user.tenant_id %>
           </td>

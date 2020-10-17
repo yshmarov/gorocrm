@@ -13,8 +13,10 @@ module SetLocale
         session['locale'] = language
         if user_signed_in?
           current_user.update(language: language)
+          redirect_to user_path(current_user)
+        else
+          redirect_to root_path
         end
-        redirect_to root_path
       elsif session['locale'].present?
         language = session['locale']
       else

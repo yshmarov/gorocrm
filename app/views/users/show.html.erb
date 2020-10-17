@@ -17,40 +17,49 @@
     <%= @user.name %>
   </div>
 
-  <div class="card-footer">
-    <% if @user == current_user %>
-      <% unless @user.identities.pluck(:provider).include?("google_oauth2") %>
-        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-primary btn-sm' do %>
-          <div class="fab fa-google"></div>
-          Connect Google
-        <% end %>
-      <% else %>
-        <button type="button" class="btn btn-sm btn-primary" disabled>
-          <div class="fab fa-google"></div>
-          Google connected
-        </button>
-      <% end %>
-      <% unless @user.identities.pluck(:provider).include?("github") %>
-        <%= link_to user_github_omniauth_authorize_path, class: 'btn btn-outline-secondary btn-sm' do %>
-          <div class="fab fa-github"></div>
-          Connect Github
-        <% end %>
-      <% else %>
-        <button type="button" class="btn btn-sm btn-secondary" disabled>
-          <div class="fab fa-github"></div>
-          Github connected
-        </button>
-      <% end %>
-    <% end %>
-  </div>
+  <% if @user == current_user %>
 
-  <div class="card-footer">
-    <b>
-      Language:
-    </b>
-    <%= current_user.language %>
-  </div>
+    <div class="card-footer">
+        <% unless @user.identities.pluck(:provider).include?("google_oauth2") %>
+          <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-danger btn-sm' do %>
+            <div class="fab fa-google"></div>
+            Connect Google
+          <% end %>
+        <% else %>
+          <button type="button" class="btn btn-sm btn-danger" disabled>
+            <div class="fab fa-google"></div>
+            Google connected
+          </button>
+        <% end %>
+        <% unless @user.identities.pluck(:provider).include?("github") %>
+          <%= link_to user_github_omniauth_authorize_path, class: 'btn btn-outline-dark btn-sm' do %>
+            <div class="fab fa-github"></div>
+            Connect Github
+          <% end %>
+        <% else %>
+          <button type="button" class="btn btn-sm btn-dark" disabled>
+            <div class="fab fa-github"></div>
+            Github connected
+          </button>
+        <% end %>
+    </div>
 
+    <div class="card-footer">
+      <div class="dropdown">
+        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="userLanguageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Language:
+          <%= @user.language %>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="userLanguageDropdown">
+          <% if I18n.locale == :en %>
+            <%= link_to "Español", root_path(locale: "es"), class: "dropdown-item" %>
+          <% else %>
+            <%= link_to "English", root_path(locale: "en"), class: "dropdown-item" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
   <div class="card-footer">
     Signed up
