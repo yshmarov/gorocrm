@@ -45,6 +45,14 @@
   </div>
 
   <div class="card-footer">
+    <b>
+      Language:
+    </b>
+    <%= current_user.language %>
+  </div>
+
+
+  <div class="card-footer">
     Signed up
     <%= time_ago_in_words(@user.created_at) %>
     ago

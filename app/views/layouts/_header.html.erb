@@ -24,6 +24,7 @@
 
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
+        <%= current_user.language %>
         <% if current_user.superadmin? %>
           <li class="<%= 'active font-weight-bold' if current_page?(superadmin_root_path) %> nav-item">
             <%= link_to superadmin_root_path, class: 'nav-link' do %>
