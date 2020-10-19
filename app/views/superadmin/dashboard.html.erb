@@ -1,21 +1,29 @@
-Superadmin dashboard
+<div class= "text-center">
+  
+  <h3>
+    <b>
+      Superadmin dashboard
+    </b>
+  </h3>
+  
+  <hr>
+  
+  <%= link_to superadmin_users_path, class: 'btn btn-lg btn-outline-secondary' do %>
+    <i class="fas fa-users"></i>
+    <br>
+    <%= t 'header.users' %>
+    <div class="badge badge-info">
+      <%= User.count %>
+    </div>
+  <% end %>
+  
+  <%= link_to superadmin_tenants_path, class: 'btn btn-lg btn-outline-secondary' do %>
+    <i class="fas fa-building"></i>
+    <br>
+    <%= t 'header.tenants' %>
+    <div class="badge badge-info">
+      <%= Tenant.count %>
+    </div>
+  <% end %>
 
-<hr>
-
-<%= link_to superadmin_users_path, class: 'btn btn-outline-secondary' do %>
-  <i class="fas fa-users"></i>
-  <%= t 'header.users' %>
-  <div class="badge badge-info">
-    <%= User.count %>
-  </div>
-<% end %>
-
-<hr>
-
-<%= link_to superadmin_tenants_path, class: 'btn btn-outline-secondary' do %>
-  <i class="fas fa-building"></i>
-  <%= t 'header.tenants' %>
-  <div class="badge badge-info">
-    <%= Tenant.count %>
-  </div>
-<% end %>
+</div>

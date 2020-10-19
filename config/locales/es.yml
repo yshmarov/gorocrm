@@ -48,6 +48,7 @@ es:
         id: codigo
         email: email
         image: imagen
+        name: nombre
         provider: Última sesión social
         tenants: empresas
         language: idioma

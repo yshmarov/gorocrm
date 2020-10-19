@@ -48,6 +48,7 @@ en:
         id: id
         email: email
         image: image
+        name: name
         provider: Latest Social Login
         tenants: tenants
         language: language
