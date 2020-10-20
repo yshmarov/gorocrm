@@ -10,12 +10,10 @@
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
         <% if current_user.superadmin? %>
-          <li class="<%= 'active font-weight-bold' if current_page?(superadmin_root_path) %> nav-item">
-            <%= link_to superadmin_root_path, class: 'nav-link' do %>
-              <i class="fas fa-user-shield"></i>
-              <%= t 'header.superadmin' %>
-            <% end %>
-          </li>
+          <%= long_active_link_to superadmin_root_path do %>
+            <i class="fas fa-user-shield"></i>
+            <%= t 'header.superadmin' %>
+          <% end %>
         <% end %>
       </ul>
       <ul class="navbar-nav mr-right">
