@@ -87,3 +87,9 @@ en:
       alert: You are not authorized to edit, update or destroy this tenant
     require_tenant_member:
       alert: You are not authorized to view this tenant
+
+  users:
+    show:
+      connect: "Connect"
+      connecting: "Connecting"
+      connected: "Connected"

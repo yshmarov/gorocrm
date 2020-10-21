@@ -39,12 +39,13 @@
           <td><%= member.tenant %></td>
           <td>
             <% if member.user.created_by_invite? %>
-                <span class="badge badge-secondary">
-                  created by invite by
+                <span class="small">
+                  invited by
                   <%= member.user.invited_by %>
                 </span>
+              <br/>
               <% if member.user.invitation_accepted_at.present? %>
-                <span class="badge badge-secondary">
+                <span class="badge badge-success">
                   invitation accepted
                 </span>
               <% else %>

@@ -19,7 +19,7 @@ es:
     superadmin: Superadmin
 
   sidebar:
-    dashboard: Dashboard
+    dashboard: Tablero
     members: Miembros
     contacts: Contactos
 
@@ -87,3 +87,9 @@ es:
       alert: No tienes derechos para editar, actualizar o destruir Empresa
     require_tenant_member:
       alert: No tienes derechos para ver Empresa
+
+  users:
+    show:
+      connect: "Connectar"
+      connecting: "Connectando"
+      connected: "Connectado"

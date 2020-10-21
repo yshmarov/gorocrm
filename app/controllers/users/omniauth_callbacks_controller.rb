@@ -46,6 +46,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user.provider = auth.provider #to see from which provider the user is logged in now
         user.image = auth.info.image
         user.name = auth.info.name
+        user.save
 
         if user.persisted?
           flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: provider
