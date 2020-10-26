@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   get 'privacy', to: 'static_pages#privacy'
   get 'terms', to: 'static_pages#terms'
 
-  get 'dashboard', to: 'home#dashboard'
-  
   authenticated :user, lambda {|u| u.superadmin? } do
     scope :superadmin, as: "superadmin" do
       resources :users, only: [:index]
@@ -34,6 +32,8 @@ Rails.application.routes.draw do
       patch :switch
     end
   end
+
+  get 'dashboard', to: 'tenant#dashboard'
 
   resources :members, except: [:create, :new] do
     get :invite, on: :collection
