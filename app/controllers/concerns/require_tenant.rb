@@ -11,6 +11,11 @@ module RequireTenant
       if ActsAsTenant.current_tenant.nil?
         redirect_to root_path, alert: "No tenant set!"
       end
+
+      unless ActsAsTenant.current_tenant.subscription.present?
+        redirect_to plans_path, alert: "Please select a plan to access the app"
+      end
+
     end
 
   end
