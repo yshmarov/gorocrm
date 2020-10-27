@@ -34,4 +34,6 @@ class Tenant < ApplicationRecord
   validates :logo, content_type: [:png, :jpg, :jpeg], 
     size: { less_than: 100.kilobytes , message: 'Logo has to be under 100 kilobytes' }
 
+  has_one :subscription
+
 end

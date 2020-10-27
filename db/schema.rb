@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_122217) do
+ActiveRecord::Schema.define(version: 2020_10_27_191138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,26 @@ ActiveRecord::Schema.define(version: 2020_10_17_122217) do
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
     t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.integer "amount"
+    t.string "currency"
+    t.string "interval"
+    t.integer "max_members"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.bigint "tenant_id", null: false
+    t.datetime "ends_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
+    t.index ["tenant_id"], name: "index_subscriptions_on_tenant_id", unique: true
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -140,5 +160,7 @@ ActiveRecord::Schema.define(version: 2020_10_17_122217) do
   add_foreign_key "contacts", "tenants"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
+  add_foreign_key "subscriptions", "plans"
+  add_foreign_key "subscriptions", "tenants"
   add_foreign_key "user_identities", "users"
 end
