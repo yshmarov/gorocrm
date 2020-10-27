@@ -10,6 +10,16 @@ class Plan < ApplicationRecord
   validates :max_members, :numericality => {greater_than_or_equal_to: 1, less_than: 1000}
 
   has_many :subscriptions
+  
+	def interval_period
+		if interval == "forever"
+			100.years
+		elsif interval == "month"
+			1.month
+		elsif interval == "year"
+			1.year
+		end
+	end
 
 
 end

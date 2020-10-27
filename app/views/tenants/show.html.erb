@@ -63,9 +63,11 @@
       <br>
       <strong>Max members:</strong>
       <%= @tenant.subscription.plan.max_members %>
-      <br>
+      <hr>
+      <%= button_to "Pay and resume subscription", charges_path, method: :post %>
   
     </div>
   </div>
+
 
 <% end %>

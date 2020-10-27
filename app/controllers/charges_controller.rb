@@ -24,12 +24,19 @@ class ChargesController < ApplicationController
   # POST /charges
   # POST /charges.json
   def create
-    @charge = Charge.new(charge_params)
+    @charge = Charge.create(
+      tenant: current_user.tenant,
+      subscription: current_user.tenant.subscription,
+      amount: current_user.tenant.subscription.plan.amount
+      )
 
     respond_to do |format|
       if @charge.save
         format.html { redirect_to @charge, notice: 'Charge was successfully created.' }
         format.json { render :show, status: :created, location: @charge }
+        @subscription = current_user.tenant.subscription
+        #@subscription.update(ends_at: @subscription.ends_at + 1.month)
+        @subscription.update(ends_at: @subscription.ends_at + @subscription.plan.interval_period)
       else
         format.html { render :new }
         format.json { render json: @charge.errors, status: :unprocessable_entity }
