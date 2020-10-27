@@ -12,8 +12,14 @@ module RequireTenant
         redirect_to root_path, alert: "No tenant set!"
       end
 
+      #require subscription to access all tenanted info
       unless ActsAsTenant.current_tenant.subscription.present?
         redirect_to plans_path, alert: "Please select a plan to access the app"
+      end
+
+      #require ACTIVE subscription to access all tenanted info
+      unless ActsAsTenant.current_tenant.subscription.active?
+        redirect_to tenant_path(ActsAsTenant.current_tenant), alert: "Please resume your subscription"
       end
 
     end
