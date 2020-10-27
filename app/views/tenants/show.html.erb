@@ -31,3 +31,41 @@
     <%= link_to t(".back", default: t("helpers.links.back")).capitalize, my_tenants_path %>
   </div>
 </div>
+<br>
+
+<% if @tenant.subscription.present? %>
+
+  <div class="card shadow">
+    <div class="card-header">
+      <strong>
+        Your Subscription
+      </strong>
+    </div>
+    <div class="card-body">
+      <strong>Active?</strong>
+      <%= @tenant.subscription.active? %>
+      <br>
+      <strong>Ends at</strong>
+      <%= @tenant.subscription.ends_at %>
+      <br>
+      <strong>End</strong>
+      <%= distance_of_time_in_words(Time.now, @tenant.subscription.ends_at) %>
+    </div>
+    <div class="card-footer">
+      <strong>Plan:</strong>
+      <%= @tenant.subscription.plan.name %>
+      <br>
+      <strong>Price:</strong>
+      <%= number_to_currency(@tenant.subscription.plan.amount, unit: @tenant.subscription.plan.currency) %>
+      <br>
+      <strong>Interval:</strong>
+      <%= @tenant.subscription.plan.interval %>
+      <br>
+      <strong>Max members:</strong>
+      <%= @tenant.subscription.plan.max_members %>
+      <br>
+  
+    </div>
+  </div>
+
+<% end %>
