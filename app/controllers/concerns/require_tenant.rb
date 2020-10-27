@@ -18,8 +18,10 @@ module RequireTenant
       end
 
       #require ACTIVE subscription to access all tenanted info
-      unless ActsAsTenant.current_tenant.subscription.active?
-        redirect_to tenant_path(ActsAsTenant.current_tenant), alert: "Please resume your subscription"
+      if ActsAsTenant.current_tenant.subscription.present?
+        unless ActsAsTenant.current_tenant.subscription.active?
+          redirect_to tenant_path(ActsAsTenant.current_tenant), alert: "Please resume your subscription"
+        end
       end
 
     end
