@@ -18,7 +18,7 @@
   New Lead
 <% end %>
 
-<%= link_to "/contacts/gmail", class: 'btn btn-danger', data: { disable_with: "Connecting..." } do %>
+<%= link_to "/contacts/gmail", class: 'btn btn-danger', data: { disable_with: "#{t("users.show.connecting")}..." } do %>
   <i class="fab fa-google"></i>
   Import Google Contacts
 <% end %>

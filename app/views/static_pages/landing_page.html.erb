@@ -14,11 +14,11 @@
       </h5>
 
       <% unless user_signed_in? %>
-        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-danger btn-lg mr-1' do %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-danger btn-lg mr-1', data: { disable_with: "#{t("users.show.connecting")}..." } do %>
           Try with
           <div class="fab fa-google"></div>
         <% end %>
-        <%= link_to user_github_omniauth_authorize_path, class: 'btn btn-outline-dark btn-lg mr-1' do %>
+        <%= link_to user_github_omniauth_authorize_path, class: 'btn btn-outline-dark btn-lg mr-1', data: { disable_with: "#{t("users.show.connecting")}..." } do %>
           Try with
           <div class="fab fa-github"></div>
         <% end %>
