@@ -20,6 +20,7 @@
         <td><%= number_to_currency(plan.amount, unit: plan.currency) %></td>
         <td><%= plan.interval %></td>
         <td><%= plan.max_members %></td>
+        <td><%= link_to 'Subscribe', subscriptions_path(plan: plan), method: :post %></td>
         <td><%= link_to 'Show', plan %></td>
         <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
         <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>

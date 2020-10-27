@@ -24,7 +24,8 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    @subscription = Subscription.new(subscription_params)
+    plan = Plan.find(params[:plan])
+    @subscription = Subscription.create(plan: plan, tenant: current_user.tenant, ends_at: Time.now)
 
     respond_to do |format|
       if @subscription.save
