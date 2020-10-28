@@ -35,5 +35,6 @@ class Tenant < ApplicationRecord
     size: { less_than: 100.kilobytes , message: 'Logo has to be under 100 kilobytes' }
 
   has_one :subscription
+  has_many :charges
 
 end

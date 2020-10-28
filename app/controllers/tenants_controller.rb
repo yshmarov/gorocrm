@@ -27,6 +27,7 @@ class TenantsController < ApplicationController
   set_current_tenant_through_filter
   def show
     set_current_tenant(@tenant)
+    @charges = @tenant.charges
   end
 
   def new

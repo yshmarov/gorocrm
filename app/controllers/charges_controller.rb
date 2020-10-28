@@ -32,11 +32,12 @@ class ChargesController < ApplicationController
 
     respond_to do |format|
       if @charge.save
-        format.html { redirect_to @charge, notice: 'Charge was successfully created.' }
-        format.json { render :show, status: :created, location: @charge }
         @subscription = current_user.tenant.subscription
         #@subscription.update(ends_at: @subscription.ends_at + 1.month)
         @subscription.update(ends_at: @subscription.ends_at + @subscription.plan.interval_period)
+
+        format.html { redirect_to current_user.tenant, notice: 'Charged successfully. Subscription updated.' }
+        format.json { render :show, status: :created, location: @charge }
       else
         format.html { render :new }
         format.json { render json: @charge.errors, status: :unprocessable_entity }
