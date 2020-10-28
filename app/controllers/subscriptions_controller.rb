@@ -1,28 +1,11 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:show, :edit, :update, :destroy]
+  before_action :set_subscription, only: [:destroy]
 
-  # GET /subscriptions
-  # GET /subscriptions.json
+  #superadmin
   def index
     @subscriptions = Subscription.all
   end
 
-  # GET /subscriptions/1
-  # GET /subscriptions/1.json
-  def show
-  end
-
-  # GET /subscriptions/new
-  def new
-    @subscription = Subscription.new
-  end
-
-  # GET /subscriptions/1/edit
-  def edit
-  end
-
-  # POST /subscriptions
-  # POST /subscriptions.json
   def create
     plan = Plan.find(params[:plan])
     @subscription = Subscription.create(plan: plan, tenant: current_user.tenant, ends_at: Time.now)
@@ -38,22 +21,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /subscriptions/1
-  # PATCH/PUT /subscriptions/1.json
-  def update
-    respond_to do |format|
-      if @subscription.update(subscription_params)
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
-        format.json { render :show, status: :ok, location: @subscription }
-      else
-        format.html { render :edit }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /subscriptions/1
-  # DELETE /subscriptions/1.json
   def destroy
     @subscription.destroy
     respond_to do |format|
@@ -63,13 +30,8 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_subscription
       @subscription = Subscription.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def subscription_params
-      params.require(:subscription).permit(:plan_id, :tenant_id, :ends_at)
-    end
 end

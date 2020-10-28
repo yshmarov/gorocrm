@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :charges
-  resources :subscriptions
+  resources :charges, except: [:edit, :new, :destroy]
+  resources :subscriptions, except: [:show, :edit, :new]
   resources :plans
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
