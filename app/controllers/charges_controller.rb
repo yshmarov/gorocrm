@@ -11,10 +11,19 @@ class ChargesController < ApplicationController
   end
 
   def create
+    @subscription = current_user.tenant.subscription
+    @plan = @subscription.plan
+
     @charge = Charge.create(
       tenant: current_user.tenant,
-      subscription: current_user.tenant.subscription,
-      amount: current_user.tenant.subscription.plan.amount
+      subscription: @subscription,
+      period_start: @subscription.ends_at,
+      period_end: @subscription.ends_at + @subscription.plan.interval_period,
+      plan_name: @plan.name,
+      plan_amount: @plan.amount,
+      plan_currency: @plan.currency,
+      plan_interval: @plan.interval,
+      plan_conditions: @plan.max_members
       )
 
     if @charge.save

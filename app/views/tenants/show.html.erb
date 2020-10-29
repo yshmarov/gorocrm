@@ -77,16 +77,16 @@
       <thead>
         <tr>
           <th>id</th>
-          <th>amount</th>
           <th>created_at</th>
+          <th>metadata</th>
         </tr>
       </thead>
       <tbody>
         <% @charges.each do |charge| %>
           <tr>
             <td><%= charge.id %></td>
-            <td><%= number_to_currency(charge.amount) %></td>
             <td><%= charge.created_at %></td>
+            <td><%= charge.metadata %></td>
           </tr>
         <% end %>
       </tbody>
