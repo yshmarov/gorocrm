@@ -10,23 +10,18 @@ class SubscriptionsController < ApplicationController
     plan = Plan.find(params[:plan])
     @subscription = Subscription.create(plan: plan, tenant: current_user.tenant, ends_at: Time.now)
 
-    respond_to do |format|
-      if @subscription.save
-        format.html { redirect_to current_user.tenant, notice: 'Subscription was successfully created.' }
-        format.json { render :show, status: :created, location: @subscription }
-      else
-        format.html { render :new }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-      end
+    if @subscription.save
+      redirect_to current_user.tenant, notice: 'Subscription was successfully created.'
+    elsif current_user.tenant.subscription.present?
+      redirect_to plans_path, alert: "You already have a subscription."
+    else
+      redirect_to plans_path, alert: "Something went wrong."
     end
   end
 
   def destroy
     @subscription.destroy
-    respond_to do |format|
-      format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to subscriptions_url, notice: 'Subscription was successfully destroyed.'
   end
 
   private
