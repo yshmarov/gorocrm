@@ -21,7 +21,7 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.destroy
-    redirect_to subscriptions_url, notice: 'Subscription was successfully destroyed.'
+    redirect_to current_user.tenant, notice: 'Subscription was successfully destroyed.'
   end
 
   private

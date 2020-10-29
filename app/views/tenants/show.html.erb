@@ -60,6 +60,7 @@
       <%= @tenant.subscription.plan.max_members %>
       <hr>
       <%= button_to "Pay and resume subscription", charges_path, method: :post %>
+      <%= button_to "Cancel subscription", @tenant.subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
   
     </div>
   </div>
@@ -84,7 +85,7 @@
         <% @charges.each do |charge| %>
           <tr>
             <td><%= charge.id %></td>
-            <td><%= number_to_currency(charge.amount, unit: charge.subscription.plan.currency) %></td>
+            <td><%= number_to_currency(charge.amount) %></td>
             <td><%= charge.created_at %></td>
           </tr>
         <% end %>
