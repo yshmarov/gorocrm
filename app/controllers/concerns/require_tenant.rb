@@ -14,7 +14,7 @@ module RequireTenant
 
       #require subscription to access all tenanted info
       unless ActsAsTenant.current_tenant.subscription.present?
-        redirect_to plans_path, alert: "Please select a plan to access the app"
+        redirect_to pricing_path, alert: "Please select a plan to access the app"
       end
 
       #require ACTIVE subscription to access all tenanted info

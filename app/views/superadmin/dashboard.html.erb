@@ -26,6 +26,15 @@
     </div>
   <% end %>
 
+  <%= link_to plans_path, class: 'btn btn-lg btn-outline-secondary' do %>
+    <i class="fas fa-tags"></i>
+    <br>
+    <%= t 'header.plans' %>
+    <div class="badge badge-info">
+      <%= Plan.count %>
+    </div>
+  <% end %>
+
   <%= link_to superadmin_subscriptions_path, class: 'btn btn-lg btn-outline-secondary' do %>
     <i class="fas fa-business-time"></i>
     <br>

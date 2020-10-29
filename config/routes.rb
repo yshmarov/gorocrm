@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       get "subscriptions", to: "superadmin#subscriptions"
       root "superadmin#dashboard"
     end
+    scope :superadmin do
+      resources :plans
+    end
   end
 
   resources :users, only: [:show] do
@@ -34,7 +37,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :plans
   resources :subscriptions, except: [:show, :edit, :new, :index]
   resources :charges, except: [:edit, :new, :destroy, :index]
 

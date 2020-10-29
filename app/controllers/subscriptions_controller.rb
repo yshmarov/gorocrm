@@ -8,9 +8,9 @@ class SubscriptionsController < ApplicationController
     if @subscription.save
       redirect_to current_user.tenant, notice: 'Subscription was successfully created.'
     elsif current_user.tenant.subscription.present?
-      redirect_to plans_path, alert: "You already have a subscription."
+      redirect_to pricing_path, alert: "You already have a subscription."
     else
-      redirect_to plans_path, alert: "Something went wrong."
+      redirect_to pricing_path, alert: "Something went wrong."
     end
   end
 

@@ -1,6 +1,14 @@
-<h1>Editing Plan</h1>
-
-<%= render 'form', plan: @plan %>
-
-<%= link_to 'Show', @plan %> |
-<%= link_to 'Back', plans_path %>
+<div class="card shadow">
+  <div class="card-header">
+    <h4>
+      Editing Plan
+    </h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', plan: @plan %>
+  </div>
+  <div class="card-footer">
+    <%= link_to t(".show", default: t("helpers.links.show")).capitalize, @plan %> |
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, plans_path %>
+  </div>
+</div>
