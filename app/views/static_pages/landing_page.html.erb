@@ -22,6 +22,7 @@
           Try with
           <div class="fab fa-github"></div>
         <% end %>
+        <br>
       <% end %>
 
     </div>
@@ -72,7 +73,7 @@
           </div>
         </li>
         <li>
-          Connect multiple social accounts
+          Connect multiple social accounts to one user
           <div class="badge badge-success">
             Available
           </div>
@@ -91,7 +92,13 @@
       </div>
       <div class="card-body">
         <li>
-          User can create tenants (same as [:organisations, :teams, :accounts])
+          User can create multiple tenants (same as [:organisations, :teams, :accounts])
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+        <li>
+          User can switch between tenants
           <div class="badge badge-success">
             Available
           </div>
@@ -134,7 +141,7 @@
           </div>
         </li>
         <li>
-          3 default roles: [:admin, :editor, :viewer]
+          3 default roles: [:admin, :editor, :viewer]. You can change them.
           <div class="badge badge-success">
             Available
           </div>
@@ -152,7 +159,7 @@
           </div>
         </li>
         <li>
-          Editor can create, read, update, delete tenant-specific
+          Editor can create, read, update, delete tenant-specific data
           <div class="badge badge-success">
             Available
           </div>
@@ -180,19 +187,13 @@
       </div>
       <div class="card-body">
         <li>
-          Solo and Team plans
+          Create custom pricing Plans
           <div class="badge badge-success">
             Available
           </div>
         </li>
         <li>
-          Solo plan - 1 user limit
-          <div class="badge badge-success">
-            Available
-          </div>
-        </li>
-        <li>
-          Team plan - unlimited users
+          For example - restrictions based on max. members
           <div class="badge badge-success">
             Available
           </div>
@@ -207,6 +208,76 @@
     </div>
     <p></p>
   </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          <i class="fas fa-money-bill-wave"></i>
+          Billing and Subscriptions
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          Custom subscriptions engine (no gems!)
+          <div class="badge badge-success">
+            Available!
+          </div>
+        </li>
+        <li>
+          NO tenant access without an active subscription
+          <div class="badge badge-success">
+            Available!
+          </div>
+        </li>
+        <li>
+          Subscription Payments
+          <div class="badge badge-success">
+            Available!
+          </div>
+        </li>
+        <li>
+          One-time Payments
+          <div class="badge badge-success">
+            Available!
+          </div>
+        </li>
+        <li>
+          Stripe integration
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>
+          <i class="fas fa-user-shield"></i>
+          Superadmin access
+        </h3>
+      </div>
+      <div class="card-body">
+        <li>
+          Custom SIMPLE superadmin panel (no gems!)
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+        <li>
+          Manage users, tenants, plans, subscriptions, charges
+          <div class="badge badge-success">
+            Available
+          </div>
+        </li>
+      </div>
+    </div>
+    <p></p>
+  </div>
+</div>
+<br>
+<div class="row">
   <div class="col-md-4">
     <div class="card shadow">
       <div class="card-header">
@@ -242,109 +313,21 @@
     <div class="card shadow">
       <div class="card-header">
         <h3>
-          <i class="fas fa-user-shield"></i>
-          Superadmin access
+          <i class="fa fa-language"></i>
+          Internationalization (i18n)
         </h3>
       </div>
       <div class="card-body">
         <li>
-          Custom superadmin panel for managing users, tenants, plans, subscriptions
+          Users can select language
           <div class="badge badge-success">
             Available
           </div>
         </li>
         <li>
-          Financial and billing management
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          Custom Charts and Statistics to monitor all SaaS statistics
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-      </div>
-    </div>
-    <p></p>
-  </div>
-</div>
-<br>
-<div class="row">
-  <div class="col-md-4">
-    <div class="card shadow">
-      <div class="card-header">
-        <h3>
-          <i class="fas fa-money-bill-wave"></i>
-          Billing
-        </h3>
-      </div>
-      <div class="card-body">
-        <li>
-          Trial (demo) periods
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          Braintree integration
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          Stripe integration
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          One-time Payments
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          Subscriptions
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          Invoicing
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card shadow">
-      <div class="card-header">
-        <h3>
-          <i class="fas fa-hat-wizard"></i>
-          Super scaffolding
-        </h3>
-      </div>
-      <div class="card-body">
-        <li>
-          New scaffolds are automatically styled
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          Search functionality integrated into new scaffolds.
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          Sorting functionality integrated into new scaffolds.
-          <div class="badge badge-warning">
-            Coming soon!
+          Views with i18n included
+          <div class="badge badge-success">
+            Available
           </div>
         </li>
       </div>
@@ -372,18 +355,6 @@
             Available
           </div>
         </li>
-        <li>
-          SEO tags
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
-        <li>
-          Breadcrumbs
-          <div class="badge badge-warning">
-            Coming soon!
-          </div>
-        </li>
       </div>
     </div>
     <p></p>
@@ -395,21 +366,27 @@
     <div class="card shadow">
       <div class="card-header">
         <h3>
-          <i class="fa fa-language"></i>
-          Internationalization (i18n)
+          <i class="fas fa-hat-wizard"></i>
+          Super scaffolding
         </h3>
       </div>
       <div class="card-body">
         <li>
-          Users can select language
-          <div class="badge badge-success">
-            Available
+          New scaffolds are automatically styled
+          <div class="badge badge-warning">
+            Coming soon!
           </div>
         </li>
         <li>
-          Translation templates
-          <div class="badge badge-success">
-            Available
+          Search functionality integrated into new scaffolds.
+          <div class="badge badge-warning">
+            Coming soon!
+          </div>
+        </li>
+        <li>
+          Sorting functionality integrated into new scaffolds.
+          <div class="badge badge-warning">
+            Coming soon!
           </div>
         </li>
       </div>
