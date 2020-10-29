@@ -1,11 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:destroy]
 
-  #superadmin
-  def index
-    @subscriptions = Subscription.all
-  end
-
   def create
     plan = Plan.find(params[:plan])
     @subscription = Subscription.create(plan: plan, tenant: current_user.tenant, ends_at: Time.now)

@@ -26,4 +26,23 @@
     </div>
   <% end %>
 
+  <%= link_to superadmin_subscriptions_path, class: 'btn btn-lg btn-outline-secondary' do %>
+    <i class="fas fa-business-time"></i>
+    <br>
+    <%= t 'header.subscriptions' %>
+    <div class="badge badge-info">
+      <%= Subscription.count %>
+    </div>
+  <% end %>
+
+  <%= link_to superadmin_charges_path, class: 'btn btn-lg btn-outline-secondary' do %>
+    <i class="fas fa-money-bill"></i>
+    <br>
+    <%= t 'header.charges' %>
+    <div class="badge badge-info">
+      <%= Charge.count %>
+    </div>
+  <% end %>
+
+
 </div>

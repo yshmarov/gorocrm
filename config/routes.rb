@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :charges, except: [:edit, :new, :destroy]
-  resources :subscriptions, except: [:show, :edit, :new]
-  resources :plans
-
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
@@ -19,7 +15,8 @@ Rails.application.routes.draw do
     scope :superadmin, as: "superadmin" do
       resources :users, only: [:index]
       resources :tenants, only: [:index]
-      #get "", to: "superadmin#dashboard"
+      get "charges", to: "superadmin#charges"
+      get "subscriptions", to: "superadmin#subscriptions"
       root "superadmin#dashboard"
     end
   end
@@ -36,6 +33,10 @@ Rails.application.routes.draw do
       patch :switch
     end
   end
+
+  resources :plans
+  resources :subscriptions, except: [:show, :edit, :new, :index]
+  resources :charges, except: [:edit, :new, :destroy, :index]
 
   get 'dashboard', to: 'tenant#dashboard'
 

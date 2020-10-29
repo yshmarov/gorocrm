@@ -1,11 +1,6 @@
 class ChargesController < ApplicationController
   before_action :set_charge, only: [:show]
 
-  #superadmin
-  def index
-    @charges = Charge.all
-  end
-
   #invoice
   def show
   end
