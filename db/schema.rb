@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_191138) do
+ActiveRecord::Schema.define(version: 2020_10_29_085450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2020_10_27_191138) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "charges", force: :cascade do |t|
+    t.bigint "tenant_id", null: false
+    t.bigint "subscription_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_id"], name: "index_charges_on_subscription_id"
+    t.index ["tenant_id"], name: "index_charges_on_tenant_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -99,8 +109,6 @@ ActiveRecord::Schema.define(version: 2020_10_27_191138) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
-    t.string "plan", default: "solo", null: false
-    t.index ["plan"], name: "index_tenants_on_plan"
     t.index ["slug"], name: "index_tenants_on_slug", unique: true
   end
 
@@ -157,6 +165,8 @@ ActiveRecord::Schema.define(version: 2020_10_27_191138) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "charges", "subscriptions"
+  add_foreign_key "charges", "tenants"
   add_foreign_key "contacts", "tenants"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"

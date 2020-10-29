@@ -13,11 +13,6 @@
     <strong><%= model_class.human_attribute_name(:members_count).capitalize %>:</strong>
     <%= @tenant.members.count %>
     <br>
-    <strong><%= model_class.human_attribute_name(:plan).capitalize %>:</strong>
-    <span class="badge badge-secondary">
-      <%= @tenant.plan %>
-    </span>
-    <br>
     <strong><%= model_class.human_attribute_name(:logo).capitalize %>:</strong>
     <br>
     <% if @tenant.logo.attached? %>

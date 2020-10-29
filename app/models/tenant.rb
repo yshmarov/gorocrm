@@ -5,11 +5,6 @@ class Tenant < ApplicationRecord
   RESERVED_NAMES = %w(blog app pricing terms help support tenant tenants user users)
   validates :name, exclusion: { in: RESERVED_NAMES, message: "%{value} is reserved." }
 
-  validates :plan, presence: true
-  RESERVED_PLANS = %w(solo team)
-  validates :plan, inclusion: { in: RESERVED_PLANS, message: "%{value} is not available." }
-  PLANS = [:solo, :team]
-
   has_many :members, dependent: :destroy
   has_many :users, through: :members
   has_many :contacts, dependent: :destroy
@@ -25,10 +20,6 @@ class Tenant < ApplicationRecord
     #https://norman.github.io/friendly_id/FriendlyId/History.html
     name_changed?
   end
-  
-  def can_invite_members?
-    self.plan == "team"
-  end
 
   has_one_attached :logo
   validates :logo, content_type: [:png, :jpg, :jpeg], 
@@ -36,5 +27,10 @@ class Tenant < ApplicationRecord
 
   has_one :subscription
   has_many :charges
+  has_one :plan, through: :subscription
+
+  def can_invite_members?
+    members.count < plan.max_members
+  end
 
 end

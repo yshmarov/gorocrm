@@ -38,9 +38,11 @@
             <% end %>
           </td>
           <td>
-            <span class="badge badge-secondary">
-              <%= tenant.plan %></td>
-            </span>
+            <% if tenant.plan.present? %>
+              <span class="badge badge-secondary">
+                <%= tenant.plan %></td>
+              </span>
+            <% end %>
           <td>
             <%= tenant.users.compact.join(', ') %>
           </td>
