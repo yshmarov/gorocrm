@@ -22,6 +22,7 @@
         <th>Amount</th>
         <th>Interval</th>
         <th>Max members</th>
+        <th>Subscriptions</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -33,6 +34,7 @@
           <td><%= number_to_currency(plan.amount, unit: plan.currency) %></td>
           <td><%= plan.interval %></td>
           <td><%= plan.max_members %></td>
+          <td><%= plan.subscriptions.count %></td>
           <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
           <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

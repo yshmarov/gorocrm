@@ -25,8 +25,8 @@ class Tenant < ApplicationRecord
   validates :logo, content_type: [:png, :jpg, :jpeg], 
     size: { less_than: 100.kilobytes , message: 'Logo has to be under 100 kilobytes' }
 
-  has_one :subscription
-  has_many :charges
+  has_one :subscription, dependent: :destroy
+  has_many :charges, dependent: :restrict_with_error
   has_one :plan, through: :subscription
 
   def can_invite_members?

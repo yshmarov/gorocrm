@@ -31,8 +31,11 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @plan.destroy
-    redirect_to plans_url, notice: 'Plan was successfully destroyed.'
+    if @plan.destroy
+      redirect_to plans_url, notice: 'Plan was successfully destroyed.'
+    else
+      redirect_to plans_url, alert: 'Plan has subscriptions. Can not be destroyed.'
+    end
   end
 
   private
