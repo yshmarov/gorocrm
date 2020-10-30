@@ -9,15 +9,21 @@ class SubscriptionsController < ApplicationController
 
   def create
     plan = Plan.find(params[:plan])
-    @subscription = Subscription.create(plan: plan, ends_at: Time.now)
-
-    if @subscription.save
-      redirect_to current_user.tenant, notice: 'Subscription was successfully created.'
-    elsif current_user.tenant.subscription.present?
-      redirect_to pricing_path, alert: "You already have a subscription."
+    if current_tenant.members.count > plan.max_members
+      redirect_to pricing_path, alert: "You feature comsumption exceeds this plan. Please select a bigger plan."
     else
-      redirect_to pricing_path, alert: "Something went wrong."
+      @subscription = Subscription.create(plan: plan, ends_at: Time.now)
+
+      if @subscription.save
+        redirect_to current_user.tenant, notice: 'Subscription was successfully created.'
+      elsif current_user.tenant.subscription.present?
+        redirect_to pricing_path, alert: "You already have a subscription."
+      else
+        redirect_to pricing_path, alert: "Something went wrong."
+      end
+
     end
+
   end
 
   def destroy
