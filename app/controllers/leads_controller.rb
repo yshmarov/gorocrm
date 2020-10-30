@@ -24,17 +24,12 @@ class LeadsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     @contact.created_session_id = session.id
-    respond_to do |format|
-      if @contact.save
-        #format.html { redirect_to tenant_lead_path(@tenant, @contact, created_session_id: session.id), notice: 'Contact was successfully created.' }
-        format.html { redirect_to tenant_lead_path(@tenant, @contact), notice: 'Contact was successfully created.' }
-        format.json { render :show, status: :created, location: @contact }
-      else
-        format.html { render :new }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
+    if @contact.save
+      #redirect_to tenant_lead_path(@tenant, @contact, created_session_id: session.id), notice: 'Contact was successfully created.'
+      redirect_to tenant_lead_path(@tenant, @contact), notice: 'Contact was successfully created.'
+    else
+      render :new
     end
-
   end
 
   private

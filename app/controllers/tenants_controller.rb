@@ -40,28 +40,20 @@ class TenantsController < ApplicationController
   def create
     @tenant = Tenant.new(tenant_params)
 
-    respond_to do |format|
-      if @tenant.save
-        @member = Member.create!(tenant: @tenant, user: current_user, admin: true) #when a tenant is created, the creator becomes a member
-        current_user.update_attribute(:tenant_id, @tenant.id) #when a tenant is created, the creator sets it as current_tenant
-        format.html { redirect_to @tenant, notice: t(".notice") }
-        format.json { render :show, status: :created, location: @tenant }
-      else
-        format.html { render :new }
-        format.json { render json: @tenant.errors, status: :unprocessable_entity }
-      end
+    if @tenant.save
+      @member = Member.create!(tenant: @tenant, user: current_user, admin: true) #when a tenant is created, the creator becomes a member
+      current_user.update_attribute(:tenant_id, @tenant.id) #when a tenant is created, the creator sets it as current_tenant
+      redirect_to @tenant, notice: t(".notice")
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @tenant.update(tenant_params)
-        format.html { redirect_to @tenant, notice: t(".notice") }
-        format.json { render :show, status: :ok, location: @tenant }
-      else
-        format.html { render :edit }
-        format.json { render json: @tenant.errors, status: :unprocessable_entity }
-      end
+    if @tenant.update(tenant_params)
+      redirect_to @tenant, notice: t(".notice")
+    else
+      render :edit
     end
   end
 

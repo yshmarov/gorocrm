@@ -36,7 +36,7 @@ class ChargesController < ApplicationController
 
       redirect_to tenant_path(current_tenant), notice: 'Charged successfully. Subscription updated.'
     else
-      render :new
+      redirect_to tenant_path(current_tenant), alert: 'Something went wrong. Please try again.'
     end
 
   end
