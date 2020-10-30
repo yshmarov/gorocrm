@@ -2,7 +2,7 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:destroy]
 
   include SetTenant #set ActsAsTenant.current_tenant
-  #include RequireTenant #no current_tenant = no access to entire controller
+  include RequireTenant #no current_tenant = no access to entire controller
   include SetCurrentMember #for role-based authorization
 
   before_action :require_tenant_admin

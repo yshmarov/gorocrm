@@ -4,6 +4,7 @@ class ContactsController < ApplicationController
   include SetTenant #set ActsAsTenant.current_tenant
   include RequireTenant #no current_tenant = no access to entire controller
   include SetCurrentMember #for role-based authorization
+  include RequireSubscription # no access unless tenant has an active subscription
 
   before_action :require_tenant_admin_or_editor, only: [:edit, :update, :destroy]
 
