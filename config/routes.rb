@@ -13,8 +13,8 @@ Rails.application.routes.draw do
 
   authenticated :user, lambda {|u| u.superadmin? } do
     scope :superadmin, as: "superadmin" do
-      resources :users, only: [:index]
       resources :tenants, only: [:index]
+      get "users", to: "superadmin#users"
       get "charges", to: "superadmin#charges"
       get "subscriptions", to: "superadmin#subscriptions"
       root "superadmin#dashboard"

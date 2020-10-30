@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   #before_action :require_superadmin, only: [:index] #routes-based authorization is working instead
   
-  def index
-    @users = User.includes(:members, :tenants, members: [:tenant])
-  end
-  
   def resend_invitation #link in members#index
     #This logic is not in membres_controller, because it does not require any member-specific data to work.
     @user = User.find(params[:id])
