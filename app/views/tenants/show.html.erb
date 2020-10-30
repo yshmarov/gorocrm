@@ -48,16 +48,16 @@
     </div>
     <div class="card-footer">
       <strong>Plan:</strong>
-      <%= @tenant.subscription.plan.name %>
+      <%= @tenant.plan.name %>
       <br>
       <strong>Price:</strong>
-      <%= number_to_currency(@tenant.subscription.plan.amount, unit: @tenant.subscription.plan.currency) %>
+      <%= number_to_currency(@tenant.plan.amount/100, unit: @tenant.plan.currency) %>
       <br>
       <strong>Interval:</strong>
-      <%= @tenant.subscription.plan.interval %>
+      <%= @tenant.plan.interval %>
       <br>
       <strong>Max members:</strong>
-      <%= @tenant.subscription.plan.max_members %>
+      <%= @tenant.plan.max_members %>
       <hr>
       <%= button_to "Pay and resume subscription", charges_path, method: :post %>
       <%= button_to "Cancel subscription", @tenant.subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -65,7 +65,10 @@
     </div>
   </div>
 
+<% else %>
 
+<%= link_to "Select a Pricing plan", pricing_path, class: "btn btn-danger" %>
+<br>
 <% end %>
 
 <% if @charges.any? %>

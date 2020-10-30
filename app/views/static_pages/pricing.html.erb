@@ -4,19 +4,18 @@
 
 <div class="card-deck">
   <% @plans.each do |plan| %>
-    <div class="card">
+    <div class="card text-center">
       <div class="card-body">
-        <h5 class="card-title">
+        <h4 class="card-title font-weight-bold">
           <%= plan.name %>
-        </h5>
+        </h4>
         <p class="card-text">
-          <%= number_to_currency(plan.amount, unit: plan.currency) %>/
+          <%= number_to_currency(plan.amount/100, unit: plan.currency) %>/
           <%= plan.interval %>
         </p>
         <p class="card-text">
           <small class="text-muted">
-            <%= plan.max_members %>
-            users
+            <%= pluralize(plan.max_members, 'user') %>
           </small></p>
       </div>
       <div class="card-footer">
@@ -35,7 +34,7 @@
             Create a Tenant to select a plan
           <% end %>
         <% else %>
-          <div class= "text-center">
+          <div>
             <%= link_to t("header.register"), new_user_registration_path, class: 'btn btn-lg btn-success' %>
           </div>
         <% end %>

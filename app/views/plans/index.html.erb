@@ -31,7 +31,7 @@
       <% @plans.each do |plan| %>
         <tr>
           <td><%= plan.name %></td>
-          <td><%= number_to_currency(plan.amount, unit: plan.currency) %></td>
+          <td><%= number_to_currency(plan.amount/100, unit: plan.currency) %></td>
           <td><%= plan.interval %></td>
           <td><%= plan.max_members %></td>
           <td><%= plan.subscriptions.count %></td>
