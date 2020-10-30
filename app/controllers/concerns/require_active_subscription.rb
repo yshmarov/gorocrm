@@ -1,10 +1,10 @@
-module RequireSubscription
+module RequireActiveSubscription
   extend ActiveSupport::Concern
 
   included do
 
-    before_action :require_subscription
-    def require_subscription
+    before_action :require_active_subscription
+    def require_active_subscription
 
       #require subscription to access all tenanted info
       unless ActsAsTenant.current_tenant.subscription.present?

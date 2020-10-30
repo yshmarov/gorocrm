@@ -1,5 +1,5 @@
 class Charge < ApplicationRecord
-  belongs_to :tenant
+  acts_as_tenant(:tenant)
   belongs_to :subscription
   
   store :metadata, accessors: [:period_start, :period_end,

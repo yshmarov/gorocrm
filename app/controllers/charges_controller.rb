@@ -1,16 +1,25 @@
 class ChargesController < ApplicationController
   before_action :set_charge, only: [:show]
 
+  include SetTenant #set ActsAsTenant.current_tenant
+  include RequireTenant #no current_tenant = no access to entire controller
+
+  before_action :require_subscription
+  def require_subscription
+    unless current_tenant.subscription.present?
+      redirect_to pricing_path, alert: "Please select a plan to access the app"
+    end
+  end
+
   #invoice
   def show
   end
 
   def create
-    @subscription = current_user.tenant.subscription
+    @subscription = current_tenant.subscription
     @plan = @subscription.plan
 
     @charge = Charge.create(
-      tenant: current_user.tenant,
       subscription: @subscription,
       period_start: @subscription.ends_at,
       period_end: @subscription.ends_at + @subscription.plan.interval_period,
@@ -22,10 +31,10 @@ class ChargesController < ApplicationController
       )
 
     if @charge.save
-      @subscription = current_user.tenant.subscription
+      @subscription = current_tenant.subscription
       @subscription.update(ends_at: @subscription.ends_at + @subscription.plan.interval_period)
 
-      redirect_to current_user.tenant, notice: 'Charged successfully. Subscription updated.'
+      redirect_to tenant_path(current_tenant), notice: 'Charged successfully. Subscription updated.'
     else
       render :new
     end
