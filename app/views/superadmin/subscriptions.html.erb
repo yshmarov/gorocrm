@@ -14,7 +14,6 @@
         <th>Plan</th>
         <th>Tenant</th>
         <th>Ends at</th>
-        <th colspan="1"></th>
       </tr>
     </thead>
   
@@ -24,7 +23,6 @@
           <td><%= subscription.plan_id %></td>
           <td><%= subscription.tenant %></td>
           <td><%= subscription.ends_at %></td>
-          <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
