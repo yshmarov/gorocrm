@@ -27,6 +27,7 @@ class TenantsController < ApplicationController
   set_current_tenant_through_filter
   def show
     set_current_tenant(@tenant)
+    @charges = @tenant.charges
   end
 
   def new
@@ -65,10 +66,10 @@ class TenantsController < ApplicationController
   end
 
   def destroy
-    @tenant.destroy
-    respond_to do |format|
-      format.html { redirect_to my_tenants_url, notice: t(".notice") }
-      format.json { head :no_content }
+    if @tenant.destroy
+      redirect_to my_tenants_url, notice: t(".notice")
+    else
+      redirect_to my_tenants_url, alert: "Tenant has charges. Can not be destroyed."
     end
   end
 

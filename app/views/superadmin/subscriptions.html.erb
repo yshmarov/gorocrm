@@ -1,0 +1,34 @@
+<h3>
+  <div class="text-center">
+    Subscriptions
+    <div class="badge badge-info">
+      <%= @subscriptions.count %>
+    </div>
+  </div>
+</h3>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
+    <thead>
+      <tr>
+        <th>Plan</th>
+        <th>Tenant</th>
+        <th>Ends at</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @subscriptions.each do |subscription| %>
+        <tr>
+          <td><%= subscription.plan_id %></td>
+          <td><%= subscription.tenant %></td>
+          <td><%= subscription.ends_at %></td>
+          <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>

@@ -15,11 +15,10 @@
     <% end %>
   <% else %>
     <small>
-      Tenants on 
+      The max amount of members for your subscription plan is reached
       <div class="badge badge-info">
-        solo
+        <%= current_tenant.plan.max_members %>
       </div>
-      plan can not invite membes
     </small>
   <% end %>
 <% else %>

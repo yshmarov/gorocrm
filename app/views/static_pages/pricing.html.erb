@@ -1,1 +1,45 @@
-Pricing
+<h3 class= "text-center">
+  Pricing
+</h3>
+
+<div class="card-deck">
+  <% @plans.each do |plan| %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= plan.name %>
+        </h5>
+        <p class="card-text">
+          <%= number_to_currency(plan.amount, unit: plan.currency) %>/
+          <%= plan.interval %>
+        </p>
+        <p class="card-text">
+          <small class="text-muted">
+            <%= plan.max_members %>
+            users
+          </small></p>
+      </div>
+      <div class="card-footer">
+        <% if user_signed_in? %>
+          <% if current_user.tenant.present? %>
+            <% if current_user.tenant.subscription.present? %>
+              You already have an active subscription
+            <% else %>
+              <% if Member.find_by(user: current_user, tenant: current_user.tenant).admin? %>
+                <%= button_to 'Subscribe', subscriptions_path(plan: plan), method: :post %>
+              <% else %>
+                Please contact an admin at <b><%= current_user.tenant %></b> to subscribe
+              <% end %>
+            <% end %>
+          <% else %>
+            Create a Tenant to select a plan
+          <% end %>
+        <% else %>
+          <div class= "text-center">
+            <%= link_to t("header.register"), new_user_registration_path, class: 'btn btn-lg btn-success' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

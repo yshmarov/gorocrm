@@ -13,11 +13,6 @@
     <strong><%= model_class.human_attribute_name(:members_count).capitalize %>:</strong>
     <%= @tenant.members.count %>
     <br>
-    <strong><%= model_class.human_attribute_name(:plan).capitalize %>:</strong>
-    <span class="badge badge-secondary">
-      <%= @tenant.plan %>
-    </span>
-    <br>
     <strong><%= model_class.human_attribute_name(:logo).capitalize %>:</strong>
     <br>
     <% if @tenant.logo.attached? %>
@@ -31,3 +26,71 @@
     <%= link_to t(".back", default: t("helpers.links.back")).capitalize, my_tenants_path %>
   </div>
 </div>
+<br>
+
+<% if @tenant.subscription.present? %>
+
+  <div class="card shadow">
+    <div class="card-header">
+      <strong>
+        Your Subscription
+      </strong>
+    </div>
+    <div class="card-body">
+      <strong>Active?</strong>
+      <%= @tenant.subscription.active? %>
+      <br>
+      <strong>Ends at</strong>
+      <%= @tenant.subscription.ends_at %>
+      <br>
+      <strong>End</strong>
+      <%= distance_of_time_in_words(Time.now, @tenant.subscription.ends_at) %>
+    </div>
+    <div class="card-footer">
+      <strong>Plan:</strong>
+      <%= @tenant.subscription.plan.name %>
+      <br>
+      <strong>Price:</strong>
+      <%= number_to_currency(@tenant.subscription.plan.amount, unit: @tenant.subscription.plan.currency) %>
+      <br>
+      <strong>Interval:</strong>
+      <%= @tenant.subscription.plan.interval %>
+      <br>
+      <strong>Max members:</strong>
+      <%= @tenant.subscription.plan.max_members %>
+      <hr>
+      <%= button_to "Pay and resume subscription", charges_path, method: :post %>
+      <%= button_to "Cancel subscription", @tenant.subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
+  
+    </div>
+  </div>
+
+
+<% end %>
+
+<% if @charges.any? %>
+
+  <br>
+  <strong>All charges</strong>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>created_at</th>
+          <th>metadata</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @charges.each do |charge| %>
+          <tr>
+            <td><%= charge.id %></td>
+            <td><%= charge.created_at %></td>
+            <td><%= charge.metadata %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>

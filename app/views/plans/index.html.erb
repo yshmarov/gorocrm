@@ -1,0 +1,46 @@
+<h3>
+  <div class="text-center">
+    Plans
+    <div class="badge badge-info">
+      <%= @plans.count %>
+    </div>
+  </div>
+</h3>
+
+<%= link_to new_plan_path, class: 'btn btn-info' do %>
+  <i class="fas fa-plus"></i>
+  New Plan
+<% end %>
+
+<p>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Interval</th>
+        <th>Max members</th>
+        <th>Subscriptions</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @plans.each do |plan| %>
+        <tr>
+          <td><%= plan.name %></td>
+          <td><%= number_to_currency(plan.amount, unit: plan.currency) %></td>
+          <td><%= plan.interval %></td>
+          <td><%= plan.max_members %></td>
+          <td><%= plan.subscriptions.count %></td>
+          <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+          <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>

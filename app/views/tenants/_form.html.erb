@@ -6,8 +6,6 @@
   <div class="form-inputs">
     <%= f.input :name %>
 
-    <%= f.input :plan, collection: Tenant::PLANS, include_blank: false, as: :radio_buttons %>
-
     <% if @tenant.logo.attached? %>
       <%= image_tag @tenant.logo, size: "50x50" %>
       <%= @tenant.logo.filename %>

@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @charge.tenant_id %>
+</p>
+
+<p>
+  <strong>Subscription:</strong>
+  <%= @charge.subscription_id %>
+</p>
+
+<p>
+  <strong>Metadata:</strong>
+  <%= @charge.metadata %>
+</p>
+
+<%= link_to 'Back', charges_path %>

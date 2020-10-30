@@ -15,8 +15,12 @@ Rails.application.routes.draw do
     scope :superadmin, as: "superadmin" do
       resources :users, only: [:index]
       resources :tenants, only: [:index]
-      #get "", to: "superadmin#dashboard"
+      get "charges", to: "superadmin#charges"
+      get "subscriptions", to: "superadmin#subscriptions"
       root "superadmin#dashboard"
+    end
+    scope :superadmin do
+      resources :plans
     end
   end
 
@@ -32,6 +36,9 @@ Rails.application.routes.draw do
       patch :switch
     end
   end
+
+  resources :subscriptions, except: [:show, :edit, :new, :index]
+  resources :charges, except: [:edit, :new, :destroy, :index]
 
   get 'dashboard', to: 'tenant#dashboard'
 

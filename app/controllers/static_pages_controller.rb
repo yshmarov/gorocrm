@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
   end
 
   def pricing
+    @plans = Plan.all.order(created_at: :asc)
   end
 
   def privacy
