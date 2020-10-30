@@ -1,9 +1,9 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:destroy]
+  include SetTenant #include ON TOP of controller that has to be scoped
+  include RequireTenant #no current_tenant = no access to entire controller. redirect to root
+  include SetCurrentMember #for role-based authorization. @current_member.admin?
 
-  include SetTenant #set ActsAsTenant.current_tenant
-  include RequireTenant #no current_tenant = no access to entire controller
-  include SetCurrentMember #for role-based authorization
+  before_action :set_subscription, only: [:destroy]
 
   before_action :require_tenant_admin
 

@@ -1,8 +1,9 @@
 class TenantController < ApplicationController
-  #tenant-specific static pages
-  include SetTenant #set ActsAsTenant.current_tenant
-  include RequireTenant #no current_tenant = no access to entire controller
+  include SetTenant #include ON TOP of controller that has to be scoped
+  include RequireTenant #no current_tenant = no access to entire controller. redirect to root
   include RequireActiveSubscription # no access unless tenant has an active subscription
+
+  #tenant-specific static pages
 
   def dashboard
   end

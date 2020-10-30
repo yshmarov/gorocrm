@@ -1,8 +1,8 @@
 class ChargesController < ApplicationController
-  before_action :set_charge, only: [:show]
+  include SetTenant #include ON TOP of controller that has to be scoped
+  include RequireTenant #no current_tenant = no access to entire controller. redirect to root
 
-  include SetTenant #set ActsAsTenant.current_tenant
-  include RequireTenant #no current_tenant = no access to entire controller
+  before_action :set_charge, only: [:show]
 
   before_action :require_subscription
   def require_subscription

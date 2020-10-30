@@ -1,10 +1,10 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
-
-  include SetTenant #set ActsAsTenant.current_tenant
-  include RequireTenant #no current_tenant = no access to entire controller
-  include SetCurrentMember #for role-based authorization
+  include SetTenant #include ON TOP of controller that has to be scoped
+  include RequireTenant #no current_tenant = no access to entire controller. redirect to root
+  include SetCurrentMember #for role-based authorization. @current_member.admin?
   include RequireActiveSubscription # no access unless tenant has an active subscription
+
+  before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   before_action :require_tenant_admin_or_editor, only: [:edit, :update, :destroy]
 
