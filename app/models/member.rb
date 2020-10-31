@@ -40,8 +40,8 @@ class Member < ApplicationRecord
   
   def must_have_an_admin
     if persisted? &&
-       (self.tenant.members.pluck(:roles).count { |h| h["admin"] == true} == 1) && #see to it that
-       (roles_changed? && admin == false)
+       (self.tenant.members.where.not(id: self.id).pluck(:roles).count { |h| h["admin"] == true} < 1) &&
+       roles_changed? && admin == false
       errors.add(:base, 'The tenant must have at least one admin') 
     end
   end
