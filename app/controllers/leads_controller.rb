@@ -10,7 +10,7 @@ class LeadsController < ApplicationController
     @contact = Contact.new
   end
   
-  #available only during the same session as the contact was created
+  # available only during the same session as the contact was created
   def show
     #if params[:created_session_id] == session.id.to_s
     @contact = Contact.find(params[:id])
@@ -25,7 +25,6 @@ class LeadsController < ApplicationController
     @contact = Contact.new(contact_params)
     @contact.created_session_id = session.id
     if @contact.save
-      #redirect_to tenant_lead_path(@tenant, @contact, created_session_id: session.id), notice: 'Contact was successfully created.'
       redirect_to tenant_lead_path(@tenant, @contact), notice: 'Contact was successfully created.'
     else
       render :new

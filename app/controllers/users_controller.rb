@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  #before_action :require_superadmin, only: [:index] #routes-based authorization is working instead
   
   def resend_invitation #link in members#index
     #This logic is not in membres_controller, because it does not require any member-specific data to work.
@@ -20,12 +19,4 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-
-  def require_superadmin #routes-based authorization is working instead
-    unless current_user.superadmin?
-      redirect_to root_path, alert: "Only superadmins can see all users"
-    end
-  end
-  
 end

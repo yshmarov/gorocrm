@@ -3,8 +3,6 @@ class TenantsController < ApplicationController
   before_action :require_tenant_admin, only: [:edit, :update, :destroy]
   before_action :require_tenant_member, only: [:show]
 
-  #before_action :require_superadmin, only: [:index]
-
   def index
     @tenants = Tenant.includes(:members, :users, members: [:user])
   end
@@ -12,7 +10,6 @@ class TenantsController < ApplicationController
   def switch
     if current_user.tenants.include?(@tenant)
       current_user.update_attribute(:tenant_id, @tenant.id)
-      #redirect_to my_tenants_path, notice: "Switched to tenant: #{current_user.tenant.name}"
       redirect_to tenant_path(current_user.tenant), notice: t(".notice", tenant: current_user.tenant.name)
     else
       redirect_to my_tenants_path, alert: t(".alert", tenant: @tenant.name)
@@ -41,8 +38,10 @@ class TenantsController < ApplicationController
     @tenant = Tenant.new(tenant_params)
 
     if @tenant.save
-      @member = Member.create!(tenant: @tenant, user: current_user, admin: true) #when a tenant is created, the creator becomes a member
-      current_user.update_attribute(:tenant_id, @tenant.id) #when a tenant is created, the creator sets it as current_tenant
+      # when a tenant is created, the creator becomes a member
+      @member = Member.create!(tenant: @tenant, user: current_user, admin: true) 
+      # when a tenant is created, the creator sets it as current_tenant
+      current_user.update_attribute(:tenant_id, @tenant.id) 
       redirect_to @tenant, notice: t(".notice")
     else
       render :new
@@ -86,11 +85,5 @@ class TenantsController < ApplicationController
         redirect_to my_tenants_path, alert: t("tenants.require_tenant_member.alert")
       end
     end
-
-    #def require_superadmin
-    #  unless current_user.superadmin?
-    #    redirect_to root_path, alert: "Only superadmins can see all tenants"
-    #  end
-    #end
 
 end

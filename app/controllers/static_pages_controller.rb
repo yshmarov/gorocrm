@@ -1,6 +1,5 @@
 class StaticPagesController < ApplicationController
-  #no login required to see this controller
-  #skip_before_action :authenticate_user!, :only => [:index]
+  # no login required to see this controller
   skip_before_action :authenticate_user!
 
   def landing_page

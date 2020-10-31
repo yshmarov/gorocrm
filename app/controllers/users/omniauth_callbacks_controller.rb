@@ -1,10 +1,10 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   Devise.omniauth_configs.keys.each do |provider|
-    #omni callback routes us to this action
-    #this action will be automatically named as the omni provider [:github, :google_oauth2]
+    # omni callback routes us to this action
+    # this action will be automatically named as the omni provider [:github, :google_oauth2]
     define_method provider do
-      #at this point the omni callback works and we get provider data
+      # at this point the omni callback works and we get provider data
       auth = request.env['omniauth.auth']
 
       if auth.nil?
@@ -41,9 +41,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             )
         end
 
-        user.skip_confirmation! #confirm account with social login
+        # confirm account with social login
+        user.skip_confirmation! 
 
-        user.provider = auth.provider #to see from which provider the user is logged in now
+        # to see from which provider the user is logged in now
+        user.provider = auth.provider 
         user.image = auth.info.image
         user.name = auth.info.name
         user.save
@@ -62,5 +64,4 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def failure
     redirect_to root_path, alert: "Something went wrong. Please try again"
   end
-
 end

@@ -15,7 +15,7 @@ module SetLocale
           current_user.update(language: language)
           redirect_to user_path(current_user)
         else
-          #redirect to previous page OR root
+          # redirect to previous page OR root
           redirect_to(request.referrer || root_path)
         end
       elsif session['locale'].present?

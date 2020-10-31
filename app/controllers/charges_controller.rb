@@ -11,7 +11,7 @@ class ChargesController < ApplicationController
     end
   end
 
-  #invoice
+  # invoice
   def show
   end
 
