@@ -56,7 +56,23 @@
       <strong>Max members:</strong>
       <%= @tenant.plan.max_members %>
       <hr>
-      <%= button_to "Pay and resume subscription", charges_path, method: :post %>
+
+      <% if @tenant.plan.amount > 0 %>
+        <%= form_tag charges_path, method: :post do %>
+          <script class="stripe-button" 
+            data-amount="<%= @tenant.plan.amount %>" 
+            data-description="<%= current_tenant.name %>" 
+            data-email="<%= current_user.email %>" 
+            data-key="<%= Rails.application.credentials[Rails.env.to_sym][:stripe][:publishable] %>" 
+            data-locale="auto" 
+            src="https://checkout.stripe.com/checkout.js">
+          </script>
+        <% end %>
+      <% else %>
+        <%= button_to "Activate subscription", charges_path, method: :post %>
+      <% end %>
+
+      <hr>
       <%= button_to "Cancel subscription", @tenant.subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
   
     </div>
