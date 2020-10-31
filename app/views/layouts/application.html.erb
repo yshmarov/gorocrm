@@ -5,7 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= favicon_link_tag "tree favicon yellow.png" %>
-    <title>CorsegoSaaS</title>
+
+    <title>
+      <% if ActsAsTenant.current_tenant %>
+        CorsegoSaaS | <%= ActsAsTenant.current_tenant %>
+      <% else %>
+        CorsegoSaaS - RoR SaaS boilerplate
+      <% end %>
+    </title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
