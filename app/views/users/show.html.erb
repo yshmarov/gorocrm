@@ -72,7 +72,7 @@
   <div class="card-footer">
     <%= model_class.human_attribute_name(:created_at).capitalize %>:
     <%= time_ago_in_words(@user.created_at) %>
-    ago
+    <%= t(".ago") %>
   </div>
   <div class="card-footer">
     <b>
@@ -101,7 +101,7 @@
     <%= @user.last_sign_in_ip %>
   </div>
   <div class="card-footer">
-    <%= model_class.human_attribute_name(:confirmed_at).capitalize %>:
+    <%= model_class.human_attribute_name(:confirmed).capitalize %>:
     <%= boolean_label(@user.confirmed?) %>
     <br>
     <%= model_class.human_attribute_name(:superadmin).capitalize %>:

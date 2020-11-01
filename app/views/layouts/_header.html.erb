@@ -37,7 +37,7 @@
           <div aria-labelledby="tenantsDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to tenants_path, class: "dropdown-item #{'active' if current_page?(tenants_path)}" do %>
               <i class="fas fa-building"></i>
-              <%= t 'header.my_tenants' %>
+              <%= t 'header.tenants' %>
             <% end %>
             <%= link_to new_tenant_path, class: "dropdown-item #{'active' if current_page?(new_tenant_path)}" do %>
               <i class="fas fa-plus"></i>

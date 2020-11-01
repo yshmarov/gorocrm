@@ -1,7 +1,8 @@
 <div class="card shadow">
   <div class="card-header">
     <h4>
-      <%= t "#{controller_name}_#{action_name}" %>
+      <%= t("helpers.titles.edit").titleize %>
+      <%= Tenant.model_name.human.titleize %>
     </h4>
   </div>
   <div class="card-body">

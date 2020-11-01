@@ -15,14 +15,14 @@ class Member < ApplicationRecord
   extend FriendlyId
   friendly_id :to_s, use: :slugged
 
-  # List user roles
+  # List member roles
   ROLES = [:admin, :editor, :viewer]
   # Member.find(13).update_attributes!(admin: true) #add admin in console
 
   # json column to store roles
   store_accessor :roles, *ROLES
 
-  # Cast roles to/from booleans
+  # boolean roles
   ROLES.each do |role|
     scope role, -> { where("roles @> ?", {role => true}.to_json) }
     define_method(:"#{role}=") { |value| super ActiveRecord::Type::Boolean.new.cast(value) }

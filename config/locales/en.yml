@@ -5,11 +5,13 @@ en:
       destroy: destroy
       back: back
       show: show
+    titles:
+      edit: editar
+      new: crear
 
   header:
     users: Users
     tenants: Tenants
-    my_tenants: My Tenants
     new_tenant: New Tenant
     my_profile: My Profile
     account_settings: Account Settings
@@ -35,11 +37,36 @@ en:
       tenant: Tenant
       user: User
       member: Member
+      subscriptions: Subscriptions 
+      plans: Plans
+      charges: Charges
     attributes:
+      subscription:
+        subscription: subscription
+        ends_in: ends in
+        plan: plan
+        tenant: tenant
+        ends_at: ends at
+        active: active
+        cancel_subscription: cancel subscription
+      plan: 
+        plan: plan
+        name: name
+        amount: amount
+        currency: currency
+        interval: interval
+        max_members: max members
+      charge: 
+        id: id
+        metadata: metadata
+        activate_subscription: activate subscription
+        created_at: created at
       tenant:
         id: id
         name: name
         plan: plan
+        subscription: subscription
+        charges: charges
         logo: logo
         users: users
         members: members
@@ -56,40 +83,53 @@ en:
         members_count: members_count
         identities: identities
         superadmin: superadmin
+        confirmed: confirmed
       member:
         id: id
         user: user
         tenant: tenant
         roles: roles
-
-  tenants_my: My Tenants
-  tenants_new: New Tenant
-  tenants_edit: Editing Tenant
-  tenants_index: All Tenants
-  users_index: All Users
-  members_edit: Editing Member
-  members_index: Members
+        invitation: invitation
 
   tenants:
+    show:
+      select_a_plan: Select a Plan
     switch:
-      notice: "Switched to tenant: %{tenant}"
-      alert: "You are not authorized to access tenant: %{tenant}"
+      current_tenant: "Switched to tenant: %{tenant}"
+      no_rights: "You are not authorized to access tenant: %{tenant}"
     index:
       current_tenant: current tenant
       switch_tenant: switch tenant
     create:
-      notice: Tenant was successfully created
+      created: Tenant was successfully created
     update:
-      notice: Tenant was successfully updated
+      updated: Tenant was successfully updated
     destroy:
-      notice: Tenant was successfully destroyed
+      destroyed: Tenant was successfully destroyed
+      cant_be_destroyed: Tenant has charges. Can not be destroyed.
     require_tenant_admin:
       alert: You are not authorized to edit, update or destroy this tenant
     require_tenant_member:
       alert: You are not authorized to view this tenant
 
+  members:
+    index:
+     max_members_for_subscription_reached: The max amount of members for your subscription plan is reached
+     only_admin_can_invite_members: Only admin can invite members
+     invite: Invite
+
   users:
     show:
-      connect: "Connect"
-      connecting: "Connecting"
-      connected: "Connected"
+      connect: Connect
+      connecting: Connecting
+      connected: Connected
+      ago: ago
+
+  static_pages:
+    pricing:
+      title: Pricing
+      subscribe: Subscribe
+      contact_admin_to_subscribe: "Please contact an admin at %{tenant} to subscribe"
+      create_a_tenant_to_select_plan: Create a Tenant to select a plan
+      you_already_are_subscribed: You already are subscribed
+

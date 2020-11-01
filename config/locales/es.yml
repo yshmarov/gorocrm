@@ -6,13 +6,12 @@ es:
       back: volver
       show: ver
     titles:
-      edit: editar
+      edit: actualizar
       new: crear
 
   header:
     users: Usuarios
     tenants: Empresas
-    my_tenants: Mi Empresas
     new_tenant: Nueva Empresa
     my_profile: Mi Perfil
     account_settings: Ajustes
@@ -36,8 +35,8 @@ es:
   activerecord:
     models:
       tenant: Empresa
-      user: User
-      member: Member
+      user: Usario
+      member: Miembro
       subscriptions: Suscripciones 
       plans: Precios
       charges: Pagos
@@ -84,42 +83,53 @@ es:
         members_count: cantidad de miembros
         identities: identidades
         superadmin: superadmin
+        confirmed: confirmado
       member:
         id: codigo
         user: usario
         tenant: empresa
         roles: derechos
-
-  tenants_my: Mi Empresas
-  tenants_new: Nueva Empresa
-  tenants_edit: Editar Empresa
-  tenants_index: Todas Empresas
-  users_index: Todos Usarios
-  members_edit: Actualizar Miembro
-  members_index: Miembros
+        invitation: invitación
 
   tenants:
     show:
       select_a_plan: Seleccione un plan de suscripción
     switch:
-      notice: "Empresa seleccionada: %{tenant}"
-      alert: "No tienes derechos para ver: %{tenant}"
+      current_tenant: "Empresa seleccionada: %{tenant}"
+      no_rights: "No tienes derechos para ver: %{tenant}"
     index:
       current_tenant: empresa activada
       switch_tenant: cambiar empresa
     create:
-      notice: Empresa creada
+      created: Empresa creada
     update:
-      notice: Empresa actualizada
+      updated: Empresa actualizada
     destroy:
-      notice: Empresa destruida
+      destroyed: Empresa destruida
+      cant_be_destroyed: Empresa he pagado. No se puede destruirla.
     require_tenant_admin:
       alert: No tienes derechos para editar, actualizar o destruir Empresa
     require_tenant_member:
       alert: No tienes derechos para ver Empresa
 
+  members:
+    index:
+     max_members_for_subscription_reached: Se alcanza la cantidad máxima de miembros para su plan de suscripción
+     only_admin_can_invite_members: Solo el administrador puede invitar a miembros
+     invite: Invitar
+
   users:
     show:
-      connect: "Connectar"
-      connecting: "Connectando"
-      connected: "Connectado"
+      connect: Connectar
+      connecting: Connectando
+      connected: Connectado
+      ago: antes
+
+  static_pages:
+    pricing:
+      title: Precios
+      subscribe: Suscribir
+      contact_admin_to_subscribe: "Comuníquese con un administrador de %{tenant} para suscribir"
+      create_a_tenant_to_select_plan: Crea una empresa para seleccionar una suscripción
+      you_already_are_subscribed: Ya estas suscrito
+

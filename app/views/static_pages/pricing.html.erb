@@ -1,5 +1,5 @@
 <h3 class= "text-center">
-  Pricing
+  <%= t(".title") %>
 </h3>
 
 <div class="card-deck">
@@ -22,16 +22,16 @@
         <% if user_signed_in? %>
           <% if current_user.tenant.present? %>
             <% if current_user.tenant.subscription.present? %>
-              You already have an active subscription
+              <%= t(".you_already_are_subscribed") %>
             <% else %>
               <% if Member.find_by(user: current_user, tenant: current_user.tenant).admin? %>
-                <%= button_to 'Subscribe', subscriptions_path(plan: plan), method: :post %>
+                <%= button_to t(".subscribe").capitalize, subscriptions_path(plan: plan), method: :post %>
               <% else %>
-                Please contact an admin at <b><%= current_user.tenant %></b> to subscribe
+                <%= t(".contact_admin_to_subscribe", tenant: current_user.tenant) %>
               <% end %>
             <% end %>
           <% else %>
-            Create a Tenant to select a plan
+            <%= t(".create_a_tenant_to_select_plan") %>
           <% end %>
         <% else %>
           <div>
