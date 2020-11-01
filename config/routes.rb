@@ -13,11 +13,11 @@ Rails.application.routes.draw do
 
   authenticated :user, lambda {|u| u.superadmin? } do
     scope :superadmin, as: "superadmin" do
-      resources :tenants, only: [:index]
+      root "superadmin#dashboard"
+      get "tenants", to: "superadmin#tenants"
       get "users", to: "superadmin#users"
       get "charges", to: "superadmin#charges"
       get "subscriptions", to: "superadmin#subscriptions"
-      root "superadmin#dashboard"
     end
     scope :superadmin do
       resources :plans
@@ -30,17 +30,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tenants, except: [:index] do
-    get :my, on: :collection
+  resources :tenants do
     member do
       patch :switch
     end
   end
-
-  resources :subscriptions, except: [:show, :edit, :new, :index]
-  resources :charges, except: [:edit, :new, :destroy, :index]
-
   get 'dashboard', to: 'tenant#dashboard'
+
+  resources :subscriptions, only: [:create, :destroy]
+  resources :charges, only: [:create, :show]
 
   resources :members, except: [:create, :new] do
     get :invite, on: :collection
@@ -49,7 +47,6 @@ Rails.application.routes.draw do
   get "/contacts/:provider/contact_callback", to: "contacts#import"
   get "/contacts/failure", to: "contacts#failure"
   resources :contacts
-
   #get ":tenant_id", to: 'leads#new', as: :new_lead #short url option
   #get "t/:tenant_id/l/n", to: 'leads#new', as: :new_lead #short url option
   get "tenants/:tenant_id/leads/new", to: 'leads#new', as: :new_lead

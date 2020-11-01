@@ -4,7 +4,7 @@ class TenantsController < ApplicationController
   before_action :require_tenant_member, only: [:show]
 
   def index
-    @tenants = Tenant.includes(:members, :users, members: [:user])
+    @tenants = current_user.tenants
   end
 
   def switch
@@ -12,13 +12,8 @@ class TenantsController < ApplicationController
       current_user.update_attribute(:tenant_id, @tenant.id)
       redirect_to tenant_path(current_user.tenant), notice: t(".notice", tenant: current_user.tenant.name)
     else
-      redirect_to my_tenants_path, alert: t(".alert", tenant: @tenant.name)
+      redirect_to tenants_path, alert: t(".alert", tenant: @tenant.name)
     end
-  end
-
-  def my
-    @tenants = current_user.tenants
-    render 'index'
   end
 
   set_current_tenant_through_filter
@@ -60,9 +55,9 @@ class TenantsController < ApplicationController
 
   def destroy
     if @tenant.destroy
-      redirect_to my_tenants_url, notice: t(".notice")
+      redirect_to tenants_url, notice: t(".notice")
     else
-      redirect_to my_tenants_url, alert: "Tenant has charges. Can not be destroyed."
+      redirect_to tenants_url, alert: "Tenant has charges. Can not be destroyed."
     end
   end
 
@@ -78,13 +73,13 @@ class TenantsController < ApplicationController
     def require_tenant_admin
       unless current_user.tenants.include?(@tenant) &&
         Member.find_by(user: current_user, tenant: @tenant).admin?
-        redirect_to my_tenants_path, alert: t("tenants.require_tenant_admin.alert")
+        redirect_to tenants_path, alert: t("tenants.require_tenant_admin.alert")
       end
     end
 
     def require_tenant_member
       unless current_user.tenants.include?(@tenant)
-        redirect_to my_tenants_path, alert: t("tenants.require_tenant_member.alert")
+        redirect_to tenants_path, alert: t("tenants.require_tenant_member.alert")
       end
     end
 
