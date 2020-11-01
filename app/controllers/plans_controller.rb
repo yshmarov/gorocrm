@@ -16,7 +16,7 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
 
     if @plan.save
-      redirect_to plans_url, notice: 'Plan was successfully created.'
+      redirect_to plans_url, notice: "Plan was successfully created."
     else
       render :new
     end
@@ -24,7 +24,7 @@ class PlansController < ApplicationController
 
   def update
     if @plan.update(plan_params)
-      redirect_to plans_url, notice: 'Plan was successfully updated.'
+      redirect_to plans_url, notice: "Plan was successfully updated."
     else
       render :edit
     end
@@ -32,18 +32,19 @@ class PlansController < ApplicationController
 
   def destroy
     if @plan.destroy
-      redirect_to plans_url, notice: 'Plan was successfully destroyed.'
+      redirect_to plans_url, notice: "Plan was successfully destroyed."
     else
-      redirect_to plans_url, alert: 'Plan has subscriptions. Can not be destroyed.'
+      redirect_to plans_url, alert: "Plan has subscriptions. Can not be destroyed."
     end
   end
 
   private
-    def set_plan
-      @plan = Plan.find(params[:id])
-    end
 
-    def plan_params
-      params.require(:plan).permit(:name, :amount, :currency, :interval, :max_members)
-    end
+  def set_plan
+    @plan = Plan.find(params[:id])
+  end
+
+  def plan_params
+    params.require(:plan).permit(:name, :amount, :currency, :interval, :max_members)
+  end
 end

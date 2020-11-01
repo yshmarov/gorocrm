@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class ContactsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create contact" do
-    assert_difference('Contact.count') do
-      post contacts_url, params: { contact: { email: @contact.email, first_name: @contact.first_name, last_name: @contact.last_name, phone_number: @contact.phone_number, tenant_id: @contact.tenant_id } }
+    assert_difference("Contact.count") do
+      post contacts_url, params: {contact: {email: @contact.email, first_name: @contact.first_name, last_name: @contact.last_name, phone_number: @contact.phone_number, tenant_id: @contact.tenant_id}}
     end
 
     assert_redirected_to contact_url(Contact.last)
@@ -34,12 +34,12 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update contact" do
-    patch contact_url(@contact), params: { contact: { email: @contact.email, first_name: @contact.first_name, last_name: @contact.last_name, phone_number: @contact.phone_number, tenant_id: @contact.tenant_id } }
+    patch contact_url(@contact), params: {contact: {email: @contact.email, first_name: @contact.first_name, last_name: @contact.last_name, phone_number: @contact.phone_number, tenant_id: @contact.tenant_id}}
     assert_redirected_to contact_url(@contact)
   end
 
   test "should destroy contact" do
-    assert_difference('Contact.count', -1) do
+    assert_difference("Contact.count", -1) do
       delete contact_url(@contact)
     end
 

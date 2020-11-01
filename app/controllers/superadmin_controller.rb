@@ -1,11 +1,10 @@
 class SuperadminController < ApplicationController
-
   def dashboard
   end
 
   def tenants
     @tenants = Tenant.includes(:members, :users, members: [:user])
-    render 'tenants/index'
+    render "tenants/index"
   end
 
   def users
@@ -19,5 +18,4 @@ class SuperadminController < ApplicationController
   def subscriptions
     @subscriptions = Subscription.all
   end
-
 end

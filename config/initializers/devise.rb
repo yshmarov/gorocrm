@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'hello@corsego.com'
+  config.mailer_sender = "hello@corsego.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -36,7 +36,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -320,8 +320,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :github, "#{Rails.application.credentials[:github][Rails.env.to_sym][:id]}", "#{Rails.application.credentials[:github][Rails.env.to_sym][:secret]}", scope: 'user'
-  config.omniauth :google_oauth2, "#{Rails.application.credentials[:google][:id]}", "#{Rails.application.credentials[:google][:secret]}", {}
+  config.omniauth :github, (Rails.application.credentials[:github][Rails.env.to_sym][:id]).to_s, (Rails.application.credentials[:github][Rails.env.to_sym][:secret]).to_s, scope: "user"
+  config.omniauth :google_oauth2, (Rails.application.credentials[:google][:id]).to_s, (Rails.application.credentials[:google][:secret]).to_s, {}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

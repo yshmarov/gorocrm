@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
-  include SetTenant #include ON TOP of controller that has to be scoped
-  include RequireTenant #no current_tenant = no access to entire controller. redirect to root
+  include SetTenant # include ON TOP of controller that has to be scoped
+  include RequireTenant # no current_tenant = no access to entire controller. redirect to root
 
   before_action :set_charge, only: [:show]
 
@@ -41,22 +41,22 @@ class ChargesController < ApplicationController
       plan_currency: @plan.currency,
       plan_interval: @plan.interval,
       plan_conditions: @plan.max_members
-      )
+    )
 
     if @charge.save
       @subscription.update(ends_at: @subscription.ends_at + @subscription.plan.interval_period)
-      redirect_to tenant_path(current_tenant), notice: 'Charged successfully. Subscription updated.'
+      redirect_to tenant_path(current_tenant), notice: "Charged successfully. Subscription updated."
     else
-      redirect_to tenant_path(current_tenant), alert: 'Something went wrong. Please try again.'
+      redirect_to tenant_path(current_tenant), alert: "Something went wrong. Please try again."
     end
-
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to tenant_path(current_tenant), alert: "Payment went wrong. Please try again."
   end
 
   private
-    def set_charge
-      @charge = Charge.find(params[:id])
-    end
+
+  def set_charge
+    @charge = Charge.find(params[:id])
+  end
 end

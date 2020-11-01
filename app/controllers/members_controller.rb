@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
-  include SetTenant #include ON TOP of controller that has to be scoped
-  include RequireTenant #no current_tenant = no access to entire controller. redirect to root
-  include SetCurrentMember #for role-based authorization. @current_member.admin?
+  include SetTenant # include ON TOP of controller that has to be scoped
+  include RequireTenant # no current_tenant = no access to entire controller. redirect to root
+  include SetCurrentMember # for role-based authorization. @current_member.admin?
   include RequireActiveSubscription # no access unless tenant has an active subscription
 
   before_action :set_member, only: [:show, :edit, :update, :destroy]
@@ -9,7 +9,7 @@ class MembersController < ApplicationController
   before_action :require_tenant_admin, only: [:invite, :edit, :update, :destroy]
 
   def index
-    @members = Member.includes(:user, :tenant).all #"includes" for eager loading
+    @members = Member.includes(:user, :tenant).all # "includes" for eager loading
   end
 
   def invite
@@ -17,18 +17,18 @@ class MembersController < ApplicationController
       email = params[:email]
       user_from_email = User.where(email: email).first
       if email.present?
-        if user_from_email.present? #user exists in the database
-          if Member.where(user: user_from_email).any? #user is a member in current_tenant
+        if user_from_email.present? # user exists in the database
+          if Member.where(user: user_from_email).any? # user is a member in current_tenant
             redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
-          else #user is not a member of current_tenant
-            new_member = Member.create!(user: user_from_email, editor: true) #create member for existing user
+          else # user is not a member of current_tenant
+            new_member = Member.create!(user: user_from_email, editor: true) # create member for existing user
             MemberMailer.invited(new_member).deliver_later
             redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
           end
-        elsif user_from_email.nil? #invite new user to a tenant
-          new_user = User.invite!({ email: email }, current_user) #devise invitable create user and send email. invited_by current_user
+        elsif user_from_email.nil? # invite new user to a tenant
+          new_user = User.invite!({email: email}, current_user) # devise invitable create user and send email. invited_by current_user
           if new_user.persisted?
-            Member.create!(user: new_user, editor: true) #make new user part of this tenant
+            Member.create!(user: new_user, editor: true) # make new user part of this tenant
             redirect_to members_path, notice: "#{email} was invited to join the tenant #{current_tenant.name}"
           else
             redirect_to members_path, alert: "Something went wrong. Please try again"
@@ -38,7 +38,7 @@ class MembersController < ApplicationController
         redirect_to members_path, alert: "No email provided!"
       end
     else
-        redirect_to members_path, alert: "Solo plan can not invite members. Please upgrade you plan."
+      redirect_to members_path, alert: "Solo plan can not invite members. Please upgrade you plan."
     end
   end
 
@@ -50,7 +50,7 @@ class MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
-      redirect_to @member, notice: 'Member was successfully updated.'
+      redirect_to @member, notice: "Member was successfully updated."
     else
       render :edit
     end
@@ -58,17 +58,18 @@ class MembersController < ApplicationController
 
   def destroy
     @member.destroy
-    redirect_to members_url, notice: 'Member was successfully destroyed.'
+    redirect_to members_url, notice: "Member was successfully destroyed."
   end
 
   private
-    def set_member
-      @member = Member.friendly.find(params[:id])
-    end
 
-    def member_params
-      params.require(:member).permit(*Member::ROLES)
-    end
+  def set_member
+    @member = Member.friendly.find(params[:id])
+  end
+
+  def member_params
+    params.require(:member).permit(*Member::ROLES)
+  end
 
   def require_tenant_admin
     unless @current_member.admin?

@@ -9,5 +9,4 @@ class Subscription < ApplicationRecord
   def active?
     ends_at > Time.now
   end
-
 end

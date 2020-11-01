@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class TenantsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class TenantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create tenant" do
-    assert_difference('Tenant.count') do
-      post tenants_url, params: { tenant: { name: @tenant.name } }
+    assert_difference("Tenant.count") do
+      post tenants_url, params: {tenant: {name: @tenant.name}}
     end
 
     assert_redirected_to tenant_url(Tenant.last)
@@ -34,12 +34,12 @@ class TenantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tenant" do
-    patch tenant_url(@tenant), params: { tenant: { name: @tenant.name } }
+    patch tenant_url(@tenant), params: {tenant: {name: @tenant.name}}
     assert_redirected_to tenant_url(@tenant)
   end
 
   test "should destroy tenant" do
-    assert_difference('Tenant.count', -1) do
+    assert_difference("Tenant.count", -1) do
       delete tenant_url(@tenant)
     end
 

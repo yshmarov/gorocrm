@@ -1,10 +1,10 @@
 class Member < ApplicationRecord
   belongs_to :user, counter_cache: true
-  # User.find_each { |user| User.reset_counters(user.id, :members) }  
+  # User.find_each { |user| User.reset_counters(user.id, :members) }
   # belongs_to :tenant #acts_as_tenant includes this
   # counter_cache is currently not supported for acts_as_tenant. Pull request https://github.com/ErwinM/acts_as_tenant/pull/225
-  acts_as_tenant(:tenant) 
-  # validates_uniqueness_to_tenant :user_id 
+  acts_as_tenant(:tenant)
+  # validates_uniqueness_to_tenant :user_id
 
   validates :tenant_id, presence: true
   validates_uniqueness_of :user_id, scope: :tenant_id
@@ -33,24 +33,23 @@ class Member < ApplicationRecord
     ROLES.select { |role| send(:"#{role}?") }.compact
   end
 
-  #role validation
+  # role validation
   validate :must_have_a_role, on: :update
   validate :must_have_an_admin
 
   private
-  
+
   def must_have_an_admin
     if persisted? &&
-       (self.tenant.members.where.not(id: self.id).pluck(:roles).count { |h| h["admin"] == true} < 1) &&
-       roles_changed? && admin == false
-      errors.add(:base, 'The tenant must have at least one admin') 
+        (tenant.members.where.not(id: id).pluck(:roles).count { |h| h["admin"] == true } < 1) &&
+        roles_changed? && admin == false
+      errors.add(:base, "The tenant must have at least one admin")
     end
   end
 
   def must_have_a_role
-    if self.roles.values.none?
+    if roles.values.none?
       errors.add(:base, "A member must have at least one role")
     end
   end
-
 end

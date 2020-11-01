@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class MembersControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create member" do
-    assert_difference('Member.count') do
-      post members_url, params: { member: { tenant_id: @member.tenant_id, user_id: @member.user_id } }
+    assert_difference("Member.count") do
+      post members_url, params: {member: {tenant_id: @member.tenant_id, user_id: @member.user_id}}
     end
 
     assert_redirected_to member_url(Member.last)
@@ -34,12 +34,12 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update member" do
-    patch member_url(@member), params: { member: { tenant_id: @member.tenant_id, user_id: @member.user_id } }
+    patch member_url(@member), params: {member: {tenant_id: @member.tenant_id, user_id: @member.user_id}}
     assert_redirected_to member_url(@member)
   end
 
   test "should destroy member" do
-    assert_difference('Member.count', -1) do
+    assert_difference("Member.count", -1) do
       delete member_url(@member)
     end
 
