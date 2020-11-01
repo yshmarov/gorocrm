@@ -1,7 +1,7 @@
 ###### Saas - row-based multitenancy boilerplate.
 
 ### Installation Requirements 
-* ruby v 2.7.1 +
+* ruby v 2.7.2 +
 * rails 6.0.3 +
 * postgresql database
 * yarn
@@ -10,13 +10,13 @@
 * AWS S3 - file storage ** in production **
 * Google oauth (development & production)
 * Github oauth (development & production)
+* Stripe
 
 ### Installing RoR
 
 ```
-rvm install ruby-2.7.1
-rvm --default use 2.7.1
-rvm uninstall 2.6.3
+rvm install ruby-2.7.2
+rvm --default use 2.7.2
 gem install rails -v 6.0.3
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -34,11 +34,11 @@ y
 exit
 ```
 
-### Installation the app
+### Run the app in development
 
 1. Create app
 ```
-git clone https://github.com/yshmarov/saas
+git clone https://github.com/corsego/saas
 cd saas
 bundle
 yarn
@@ -54,7 +54,7 @@ and inside the file:
 ```
 aws:
   access_key_id: YOUR_CODE
-  secret_access_key: Br/YOUR_CODE
+  secret_access_key: YOUR_CODE
 
 github:
   development:
@@ -65,8 +65,18 @@ github:
     secret: YOUR_CODE
 
 google:
-  id: 12352653799-YOUR_CODE
+  id: YOUR_CODE
   secret: YOUR_CODE
+
+development:
+  stripe:
+    publishable: YOUR_CODE
+    secret: YOUR_CODE
+
+production:
+  stripe:
+    publishable: YOUR_CODE
+    secret: YOUR_CODE
 
 ```
 * i = to make the file editable
@@ -79,19 +89,24 @@ google:
 rails db:create
 rails db:migrate
 ```
-You can also run 
+To add a few default data, you can also run 
 ```
 rails db:seed
 ```
-That will provide some minimal sample data
+4. Add an admin role to the first user added via seeds:
+```
+rails c
+User.first.update(superadmin: true)
+```
+Now you can access the superadmin views!
 
-4. Configure your development environment in config/environments/development.rb (if needed)
-6. Start the server
+5. Start the server
 ```
 rails s
 ```
+6. Log in with email: `admin@example.com`, password: `admin@example.com`
 
-### For production environments
+### Run the app in production
 ```
 heroku create
 heroku rename *your-app-name*
@@ -103,12 +118,5 @@ heroku run rake db:migrate
 heroku addons:create sendgrid:starter
 heroku config:set RAILS_MASTER_KEY=`cat config/master.key`
 ```
-
-### Give a user superadmin rights (only through the console)
-```
-rails c
-User.first.update(superadmin: true)
-```
-
 
 If you have troubles running the app or any questions don't hesitate to contact me at hello@corsego.com 🧐 
