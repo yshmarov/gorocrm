@@ -25,6 +25,8 @@ class TenantsController < ApplicationController
   def show
     set_current_tenant(@tenant)
     @charges = @tenant.charges
+    @subscription = @tenant.subscription
+    @plan = @tenant.plan
   end
 
   def new

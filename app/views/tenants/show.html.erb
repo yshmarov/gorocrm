@@ -2,15 +2,21 @@
 <div class="card shadow">
   <div class="card-header">
     <h4>
-      <strong><%= model_class.human_attribute_name(:name).capitalize %>:</strong>
+      <strong>
+        <%= model_class.human_attribute_name(:name).capitalize %>:
+      </strong>
       <%= @tenant.name %>
     </h4>
   </div>
   <div class="card-body">
-    <strong><%= model_class.human_attribute_name(:members_count).capitalize %>:</strong>
+    <strong>
+      <%= model_class.human_attribute_name(:members_count).capitalize %>:
+    </strong>
     <%= @tenant.members.count %>
     <br>
-    <strong><%= model_class.human_attribute_name(:logo).capitalize %>:</strong>
+    <strong>
+      <%= model_class.human_attribute_name(:logo).capitalize %>:
+    </strong>
     <br>
     <% if @tenant.logo.attached? %>
       <%= image_tag @tenant.logo, size: "50x50" %>
@@ -25,91 +31,16 @@
 </div>
 <br>
 
-<% if @tenant.subscription.present? %>
-
-  <div class="card shadow">
-    <div class="card-header">
-      <strong>
-        Your Subscription
-      </strong>
-    </div>
-    <div class="card-body">
-      <strong>Active?</strong>
-      <%= boolean_label(@tenant.subscription.active?) %>
-      <br>
-      <strong>Ends at</strong>
-      <%= @tenant.subscription.ends_at %>
-      <br>
-      <strong>End</strong>
-      <%= distance_of_time_in_words(Time.now, @tenant.subscription.ends_at) %>
-    </div>
-    <div class="card-footer">
-      <strong>Plan:</strong>
-      <%= @tenant.plan.name %>
-      <br>
-      <strong>Price:</strong>
-      <%= number_to_currency(@tenant.plan.amount/100, unit: @tenant.plan.currency) %>
-      <br>
-      <strong>Interval:</strong>
-      <%= @tenant.plan.interval %>
-      <br>
-      <strong>Max members:</strong>
-      <%= @tenant.plan.max_members %>
-      <hr>
-
-      <% if @tenant.plan.amount > 0 %>
-        <%= form_tag charges_path, method: :post do %>
-          <script class="stripe-button" 
-            data-amount="<%= @tenant.plan.amount %>" 
-            data-description="<%= current_tenant.name %>" 
-            data-email="<%= current_user.email %>" 
-            data-key="<%= Rails.application.credentials[Rails.env.to_sym][:stripe][:publishable] %>" 
-            data-locale="auto" 
-            src="https://checkout.stripe.com/checkout.js">
-          </script>
-        <% end %>
-      <% else %>
-        <%= button_to "Activate subscription", charges_path, method: :post %>
-      <% end %>
-
-      <hr>
-      <%= button_to "Cancel subscription", @tenant.subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
-  
-    </div>
-  </div>
+<% if @subscription.present? %>
+  <%= render "tenants/subscription" %>
 
 <% else %>
-
-<%= link_to "Select a Pricing plan", pricing_path, class: "btn btn-danger" %>
-<br>
+  <%= link_to t(".select_a_plan"), pricing_path, class: "btn btn-danger" %>
+  <br>
 <% end %>
 
 <% if @charges.any? %>
-
   <br>
-  <strong>
-    All charges:
-    <%= @charges.count %>
-  </strong>
-  <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>created_at</th>
-          <th>metadata</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @charges.each do |charge| %>
-          <tr>
-            <td><%= link_to charge.id, charge_path(charge) %></td>
-            <td><%= charge.created_at %></td>
-            <td><%= charge.metadata %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <%= render "tenants/charges" %>
 
 <% end %>

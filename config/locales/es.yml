@@ -5,6 +5,9 @@ es:
       destroy: destruir
       back: volver
       show: ver
+    titles:
+      edit: editar
+      new: crear
 
   header:
     users: Usuarios
@@ -35,11 +38,36 @@ es:
       tenant: Empresa
       user: User
       member: Member
+      subscriptions: Suscripciones 
+      plans: Precios
+      charges: Pagos
     attributes:
+      subscription:
+        subscription: suscripcion
+        ends_in: terminará en
+        plan: programa
+        tenant: empresa
+        ends_at: fecha final
+        active: activado
+        cancel_subscription: cancelar suscripción
+      plan: 
+        plan: programa
+        name: nombre
+        amount: precio
+        currency: moneda
+        interval: periodo
+        max_members: miembros máximos
+      charge: 
+        id: codigo
+        metadata: metadata
+        activate_subscription: activar suscripción
+        created_at: creado
       tenant:
         id: codigo
         name: nombre
         plan: programa
+        subscription: suscripcion
+        charges: pagos
         logo: logotipo
         users: usuarios
         members: miembros
@@ -71,6 +99,8 @@ es:
   members_index: Miembros
 
   tenants:
+    show:
+      select_a_plan: Seleccione un plan de suscripción
     switch:
       notice: "Empresa seleccionada: %{tenant}"
       alert: "No tienes derechos para ver: %{tenant}"
