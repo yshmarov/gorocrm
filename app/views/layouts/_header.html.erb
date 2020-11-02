@@ -79,6 +79,8 @@
             <% end %>
           </div>
         </li>
+        <%= active_link_to t('footer.pricing'), pricing_path %>
+
       </ul>
       <ul class="navbar-nav mr-right">
         <li class="<%= 'active font-weight-bold' if current_page?(new_user_registration_path) %> nav-item">

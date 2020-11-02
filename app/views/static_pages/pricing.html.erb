@@ -6,17 +6,25 @@
   <% @plans.each do |plan| %>
     <div class="card shadow text-center">
       <div class="card-body">
-        <h4 class="card-title font-weight-bold">
+        <h5 class="card-title font-weight-bold">
+          <em>
+            
           <%= plan.name %>
-        </h4>
-        <p class="card-text">
-          <%= number_to_currency(plan.amount/100, unit: plan.currency) %>/
-          <%= plan.interval %>
-        </p>
-        <p class="card-text">
-          <small class="text-muted">
-            <%= pluralize(plan.max_members, 'user') %>
-          </small></p>
+          </em>
+        </h5>
+        <hr>
+        <%= plan.currency %>
+        <b class="mark">
+          <u>
+            <%= plan.amount/100 %>
+          </u>
+        </b>
+        /
+        <%= plan.interval %>
+        <hr>
+        <small class="text-muted">
+          <%= pluralize(plan.max_members, "user", plural: "users") %>
+        </small>
       </div>
       <div class="card-footer">
         <% if user_signed_in? %>
@@ -35,7 +43,7 @@
           <% end %>
         <% else %>
           <div>
-            <%= link_to t("header.register"), new_user_registration_path, class: 'btn btn-lg btn-success' %>
+            <%= link_to t("header.register"), new_user_registration_path, class: 'btn btn-xl btn-success' %>
           </div>
         <% end %>
       </div>
