@@ -25,6 +25,10 @@
   <% if @user == current_user %>
 
     <div class="card-footer">
+        <% @user.identities.each do |identity| %>
+          <%= image_tag identity.auth.to_hash["info"]["image"], size: '40x40', alt: "#{@user.email}", class: 'rounded-circle' %>
+        <% end %>
+
         <% unless @user.identities.pluck(:provider).include?("google_oauth2") %>
           <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-danger btn-sm', data: { disable_with: "#{t(".connecting")}..." } do %>
             <div class="fab fa-google"></div>
@@ -108,3 +112,4 @@
     <%= boolean_label(@user.superadmin) %>
   </div>
 </div>
+<br>
