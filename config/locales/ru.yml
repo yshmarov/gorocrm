@@ -1,0 +1,134 @@
+ru:
+  helpers:
+    links:
+      edit: редактировать
+      destroy: удалить
+      back: назад
+      show: показать
+    titles:
+      edit: редактировать
+      new: создать
+
+  navigation:
+    users: Пользователи
+    tenants: Организации
+    new_tenant: Новая Организация
+    my_profile: Мой Профиль
+    account_settings: Настройки
+    sign_out: Выход
+    register: Регистрация
+    log_in: Вход
+    superadmin: Админка
+    home: Главная
+    about: Про нас
+    pricing: Тарифы
+    terms: Условия Пользования
+    privacy: Политика Приватности
+
+  sidebar:
+    dashboard: Главная
+    members: Участники
+    contacts: Контакты
+
+  activerecord:
+    models:
+      tenant: Организация
+      user: Пользователь
+      member: Участник
+      subscriptions: Подписки 
+      plans: Тарифы
+      charges: Оплаты
+    attributes:
+      subscription:
+        subscription: подписка
+        ends_in: заканчивается через
+        plan: тариф
+        tenant: организация
+        ends_at: заканчивается
+        active: активный
+        cancel_subscription: аннулировать подписку
+      plan: 
+        plan: тариф
+        name: название
+        amount: сумма
+        currency: валюта
+        interval: промежуток
+        max_members: макс. кол. участников
+      charge: 
+        id: код
+        metadata: подробности
+        activate_subscription: активировать подписку
+        created_at: дата создания
+      tenant:
+        id: код
+        name: название
+        plan: тариф
+        subscription: подписка
+        charges: оплаты
+        logo: логотип
+        users: пользователи
+        members: участники
+        members_count: кол. участников
+      user:
+        id: код
+        email: email
+        image: фото
+        name: имя
+        provider: Последний заход через соц. сеть
+        tenants: организации
+        language: язык
+        tenant_id: код организации
+        members_count: кол. участников
+        identities: соц. личности
+        superadmin: админ
+        confirmed: подтверждён
+      member:
+        id: код
+        user: пользователь
+        tenant: организация
+        roles: роли
+        invitation: приглашение
+
+  tenants:
+    show:
+      select_a_plan: Выберите Тариф
+    switch:
+      current_tenant: "Выбрана организация: %{tenant}"
+      no_rights: "У Вас нет прав доступа к организации: %{tenant}"
+    index:
+      current_tenant: выбранная организация
+      switch_tenant: выбрать организацию
+    create:
+      created: Организация успешно создана
+    update:
+      updated: Организация успешно отредактирована
+    destroy:
+      destroyed: Организация успешно удалена
+      cant_be_destroyed: У организации есть оплаты. Нельзя удалить.
+    require_tenant_admin:
+      alert: У Вас нет прав редактировать или удалить эту организацию 
+    require_tenant_member:
+      alert: У Вас нет прав доступа к этой организации
+
+  members:
+    index:
+     max_members_for_subscription_reached: Достигнуто макс. кол. участников в организации для Вашего тарифа
+     only_admin_can_invite_members: Только админ может приглашать участников
+     invite: Пригласить
+     resend_invitation: Пригласить снова
+
+  users:
+    show:
+      connect: Войти
+      connecting: Вход
+      connected: Выполнен вход
+      ago: назад
+
+  static_pages:
+    pricing:
+      title: Тарифы
+      subscribe: Подписаться
+      contact_admin_to_subscribe: "Свяжитесь с админом организации %{tenant}, чтобы подписаться"
+      create_a_tenant_to_select_plan: Создайте организацию чтобы выбрать тариф для неё
+      you_already_are_subscribed: Вы уже подписаны
+

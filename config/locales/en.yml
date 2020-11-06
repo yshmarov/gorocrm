@@ -9,7 +9,7 @@ en:
       edit: editar
       new: crear
 
-  header:
+  navigation:
     users: Users
     tenants: Tenants
     new_tenant: New Tenant
@@ -19,18 +19,16 @@ en:
     register: Register
     log_in: Login
     superadmin: Superadmin
-
-  sidebar:
-    dashboard: Dashboard
-    members: Members
-    contacts: Contacts
-
-  footer:
     home: Home
     about: About
     pricing: Pricing
     terms: Terms
     privacy: Privacy
+
+  sidebar:
+    dashboard: Dashboard
+    members: Members
+    contacts: Contacts
 
   activerecord:
     models:
@@ -117,6 +115,7 @@ en:
      max_members_for_subscription_reached: The max amount of members for your subscription plan is reached
      only_admin_can_invite_members: Only admin can invite members
      invite: Invite
+     resend_invitation: Resend invitation
 
   users:
     show:

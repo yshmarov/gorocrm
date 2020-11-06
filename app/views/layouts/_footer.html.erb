@@ -1,25 +1,58 @@
-<div class="footer mh-100 bg-light">
-  <br>
+<footer class="bg-light">
   <div class="container-fluid text-center">
+    <br>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-lg-4">
         <%= link_to 'CorsegoSaaS', root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}" %>
         © 
         <%= Time.now.year %>
         <br/>
-        <%= link_to t('footer.home'), root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}" %>
-      </div>
-      <div class="col-md-4">
-        <%= link_to t('footer.about'), about_path, class: "#{'active font-weight-bold' if current_page?(about_path)}" %>
+        <%= link_to t('navigation.home'), root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}" %>
         <br/>
-        <%= link_to t('footer.pricing'), pricing_path, class: "#{'active font-weight-bold' if current_page?(pricing_path)}" %>
+        <%= mail_to 'hello@corsego.com' do %>
+          <div class="fa fa-envelope"></div>
+        <% end %>
+        <%= link_to "https://twitter.com/yaro_the_slav", target: :_blank do %>
+          <div class="fab fa-twitter"></div>
+        <% end %>
+        <%= link_to "https://instagram.com/corsego", target: :_blank do %>
+          <div class="fab fa-instagram"></div>
+        <% end %>
+        <%= link_to "https://github.com/yshmarov", target: :_blank do %>
+          <div class="fab fa-github"></div>
+        <% end %>
       </div>
-      <div class="col-md-4">
-        <%= link_to t('footer.terms'), terms_path, class: "#{'active font-weight-bold' if current_page?(terms_path)}" %>
+      <div class="col-lg-4">
+        <%= link_to t('navigation.about'), about_path, class: "#{'active font-weight-bold' if current_page?(about_path)}" %>
         <br/>
-        <%= link_to t('footer.privacy'), privacy_path, class: "#{'active font-weight-bold' if current_page?(privacy_path)}" %>
+        <%= link_to t('navigation.pricing'), pricing_path, class: "#{'active font-weight-bold' if current_page?(pricing_path)}" %>
+        <br/>
+        <%= link_to t('navigation.terms'), terms_path, class: "#{'active font-weight-bold' if current_page?(terms_path)}" %>
+        <br/>
+        <%= link_to t('navigation.privacy'), privacy_path, class: "#{'active font-weight-bold' if current_page?(privacy_path)}" %>
+      </div>
+      <div class="col-lg-4">
+        <%= link_to "https://gumroad.com/l/ror6saas", target: :_blank do %>
+          Learn to build a Multi-Tenancy SaaS
+          <div class="fa fa-external-link-alt"></div>
+        <% end %>
+        <br/>
+        <%= link_to "https://www.udemy.com/course/ruby-on-rails-6-learn-20-gems-build-an-e-learning-platform/?referralCode=4721E9D437DEE1734159", target: :_blank do %>
+          Learn to build an eLearning platform
+          <div class="fa fa-external-link-alt"></div>
+        <% end %>
+        <br/>
+        <%= link_to "https://corsego.com", target: :_blank do %>
+          Corsego eLearning platform
+          <div class="fa fa-external-link-alt"></div>
+        <% end %>
+        <br/>
+        <%= link_to "https://blog.corsego.com", target: :_blank do %>
+          Corsego Ruby on Rails Blog
+          <div class="fa fa-external-link-alt"></div>
+        <% end %>
       </div>
     </div>
   </div>
   <br>
-</div>
+</footer>

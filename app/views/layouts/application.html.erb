@@ -32,7 +32,7 @@
         <% if ActsAsTenant.current_tenant && current_user.tenants.include?(current_user.tenant) %>
           <div class="row">
             <div class="col-lg-2">
-              <%= render 'layouts/sidebar' %>
+              <%= render 'layouts/tenant_sidebar' %>
             </div>
             <div class="col-lg-10">
               <%= yield %>
@@ -42,6 +42,6 @@
           <%= yield %>
         <% end %>
     </div>
-   <%= render 'layouts/footer' %>
   </body>
+  <%= render 'layouts/footer' %>
 </html>

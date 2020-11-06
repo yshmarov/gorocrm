@@ -61,7 +61,7 @@
                   invitation accepted
                 </span>
               <% else %>
-                <%= link_to 'Resend invitation', resend_invitation_user_path(member.user), method: :patch %>
+                <%= link_to t(".resend_invitation"), resend_invitation_user_path(member.user), method: :patch %>
               <% end %>
             <% end %>
           </td>

@@ -17,7 +17,7 @@ module Saascorsego
     # the framework and any gems in your application.
 
     # Permitted locales available for the application
-    I18n.available_locales = [:en, :es]
+    I18n.available_locales = [:en, :es, :ru]
 
     # Set default locale to something other than :en
     I18n.default_locale = :en

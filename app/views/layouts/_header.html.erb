@@ -12,7 +12,7 @@
         <% if current_user.superadmin? %>
           <%= long_active_link_to superadmin_root_path do %>
             <i class="fas fa-user-shield"></i>
-            <%= t 'header.superadmin' %>
+            <%= t 'navigation.superadmin' %>
           <% end %>
         <% end %>
       </ul>
@@ -32,16 +32,16 @@
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="tenantsDropdown" role="button">
             <i class="fas fa-building"></i>
-            <%= t 'header.tenants' %>
+            <%= t 'navigation.tenants' %>
           </a>
           <div aria-labelledby="tenantsDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to tenants_path, class: "dropdown-item #{'active' if current_page?(tenants_path)}" do %>
               <i class="fas fa-building"></i>
-              <%= t 'header.tenants' %>
+              <%= t 'navigation.tenants' %>
             <% end %>
             <%= link_to new_tenant_path, class: "dropdown-item #{'active' if current_page?(new_tenant_path)}" do %>
               <i class="fas fa-plus"></i>
-              <%= t 'header.new_tenant' %>
+              <%= t 'navigation.new_tenant' %>
             <% end %>
           </div>
         </li>
@@ -56,13 +56,13 @@
           </a>
           <div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">
             <%= link_to user_path(current_user), class: "dropdown-item #{'active' if current_page?(user_path(current_user))}" do %>
-              <%= t 'header.my_profile' %>
+              <%= t 'navigation.my_profile' %>
             <% end %>
             <%= link_to edit_user_registration_path, class: "dropdown-item #{'active' if current_page?(edit_user_registration_path)}" do %>
-              <%= t 'header.account_settings' %>
+              <%= t 'navigation.account_settings' %>
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
-              <%= t 'header.sign_out' %>
+              <%= t 'navigation.sign_out' %>
             <% end %>
           </div>
         </li>
@@ -79,15 +79,14 @@
             <% end %>
           </div>
         </li>
-        <%= active_link_to t('footer.pricing'), pricing_path %>
-
+        <%= active_link_to t('navigation.pricing'), pricing_path %>
       </ul>
       <ul class="navbar-nav mr-right">
         <li class="<%= 'active font-weight-bold' if current_page?(new_user_registration_path) %> nav-item">
-          <%= link_to t("header.register"), new_user_registration_path, class: 'nav-link' %>
+          <%= link_to t("navigation.register"), new_user_registration_path, class: 'nav-link' %>
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(new_user_session_path) %> nav-item">
-          <%= link_to t("header.login"), new_user_session_path, class: 'nav-link' %>
+          <%= link_to t("navigation.login"), new_user_session_path, class: 'nav-link' %>
         </li>
         <li class="<%= 'active font-weight-bold' if current_page?(user_google_oauth2_omniauth_authorize_path) %> nav-item">
           <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'nav-link' do %>

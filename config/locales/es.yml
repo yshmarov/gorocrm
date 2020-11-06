@@ -9,7 +9,7 @@ es:
       edit: actualizar
       new: crear
 
-  header:
+  navigation:
     users: Usuarios
     tenants: Empresas
     new_tenant: Nueva Empresa
@@ -19,18 +19,16 @@ es:
     register: Registrarse
     log_in: Login
     superadmin: Superadmin
-
-  sidebar:
-    dashboard: Tablero
-    members: Miembros
-    contacts: Contactos
-
-  footer:
     home: Página principal
     about: Sobre
     pricing: Precios
     terms: Términos de servicio
     privacy: Política de privacidad
+
+  sidebar:
+    dashboard: Tablero
+    members: Miembros
+    contacts: Contactos
 
   activerecord:
     models:
@@ -117,6 +115,7 @@ es:
      max_members_for_subscription_reached: Se alcanza la cantidad máxima de miembros para su plan de suscripción
      only_admin_can_invite_members: Solo el administrador puede invitar a miembros
      invite: Invitar
+     resend_invitation: Reinvitar
 
   users:
     show:

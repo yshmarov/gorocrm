@@ -14,15 +14,17 @@
         <th>Plan</th>
         <th>Tenant</th>
         <th>Ends at</th>
+        <th>Active</th>
       </tr>
     </thead>
   
     <tbody>
       <% @subscriptions.each do |subscription| %>
         <tr>
-          <td><%= subscription.plan_id %></td>
+          <td><%= subscription.plan %></td>
           <td><%= subscription.tenant %></td>
           <td><%= subscription.ends_at %></td>
+          <td><%= boolean_label(subscription.active?) %></td>
         </tr>
       <% end %>
     </tbody>
