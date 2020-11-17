@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= favicon_link_tag "tree favicon yellow.png" %>
 
+    <link rel="manifest" href="/manifest.json">
+
     <title>
       <% if ActsAsTenant.current_tenant %>
         CorsegoSaaS | <%= ActsAsTenant.current_tenant %>
