@@ -30,6 +30,6 @@ class Tenant < ApplicationRecord
   has_one :plan, through: :subscription
 
   def can_invite_members?
-    members.count < plan.max_members
+    members_count < plan.max_members
   end
 end

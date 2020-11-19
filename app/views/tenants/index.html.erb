@@ -15,6 +15,7 @@
         <th><%= model_class.human_attribute_name(:name).capitalize %></th>
         <th><%= model_class.human_attribute_name(:logo).capitalize %></th>
         <th><%= model_class.human_attribute_name(:plan).capitalize %></th>
+        <th><%= model_class.human_attribute_name(:members_count).capitalize %></th>
         <th><%= model_class.human_attribute_name(:users).capitalize %></th>
         <th></th>
         <th></th>
@@ -43,6 +44,7 @@
                 <%= tenant.plan %></td>
               </span>
             <% end %>
+          <td><%= tenant.members_count %></td>
           <td>
             <%= tenant.users.compact.join(', ') %>
           </td>
