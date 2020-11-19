@@ -38,4 +38,14 @@ module ApplicationHelper
       end
     end
   end
+
+  # link_to root_path do "homepage"
+  def sidebar_long_active_link_to(path)
+    content_tag(:li, class: "#{"active font-weight-bold bg-light shadow rounded" if current_page?(path)} nav-item") do
+      link_to path, class: "nav-link" do
+        yield
+      end
+    end
+  end
+
 end
