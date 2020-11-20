@@ -23,5 +23,8 @@ module Saascorsego
 
     # Set default locale to something other than :en
     I18n.default_locale = :en
+
+    config.time_zone = 'UTC'
+
   end
 end

@@ -82,6 +82,7 @@ es:
         identities: identidades
         superadmin: superadmin
         confirmed: confirmado
+        time_zone: zona horaria
       member:
         id: codigo
         user: usario

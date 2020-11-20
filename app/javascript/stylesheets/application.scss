@@ -20,5 +20,12 @@ footer {
 //header navbar dropdown on top of all other content
 .dropdown {z-index: 9999;}
 
+//users/show language dropdown
+.dropdown-scrollable{
+  max-height:80vh;
+  //height:200px;
+  overflow-y:auto;
+}
+
 //header navbar dropdown hover background color (light-blue)
 .dropdown-item:hover {background-color: #9cccff !important;}

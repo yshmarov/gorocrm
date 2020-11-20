@@ -82,6 +82,7 @@ en:
         identities: identities
         superadmin: superadmin
         confirmed: confirmed
+        time_zone: time zone
       member:
         id: id
         user: user

@@ -82,6 +82,7 @@ ru:
         identities: соц. личности
         superadmin: админ
         confirmed: подтверждён
+        time_zone: часовой пояс
       member:
         id: код
         user: пользователь
