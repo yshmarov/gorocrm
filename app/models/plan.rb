@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: plans
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  amount      :integer
+#  currency    :string
+#  interval    :string
+#  max_members :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 class Plan < ApplicationRecord
   validates :name, :amount, :currency, :interval, :max_members, presence: true
 

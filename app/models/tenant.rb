@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: tenants
+#
+#  id            :bigint           not null, primary key
+#  name          :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  slug          :string
+#  members_count :integer          default(0), not null
+#
 class Tenant < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :name, length: {in: 2..20}

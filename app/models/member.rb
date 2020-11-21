@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: members
+#
+#  id         :bigint           not null, primary key
+#  user_id    :bigint           not null
+#  tenant_id  :bigint           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  roles      :jsonb            not null
+#  slug       :string
+#
 class Member < ApplicationRecord
   belongs_to :user, counter_cache: true
   # User.find_each { |x| User.reset_counters(x.id, :members) }
