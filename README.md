@@ -1,5 +1,7 @@
 ###### Saas - row-based multitenancy boilerplate.
 
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
+
 ### Installation Requirements 
 * ruby v 2.7.2 +
 * rails 6.0.3 +

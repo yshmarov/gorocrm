@@ -3,7 +3,7 @@ class Member < ApplicationRecord
   # User.find_each { |x| User.reset_counters(x.id, :members) }
   # Tenant.find_each { |x| Tenant.reset_counters(x.id, :members) }
   # belongs_to :tenant #acts_as_tenant includes this
-  #acts_as_tenant(:tenant, counter_cache: true)
+  # acts_as_tenant(:tenant, counter_cache: true)
   acts_as_tenant :tenant, counter_cache: true
   # validates_uniqueness_to_tenant :user_id
 

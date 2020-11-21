@@ -28,6 +28,6 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :email, use: :slugged
 
-  validates :time_zone, presence: true, inclusion: { in: TZInfo::Timezone.all_identifiers }
-  #validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.name }
+  validates :time_zone, presence: true, inclusion: {in: TZInfo::Timezone.all_identifiers}
+  # validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.all.map { |tz| tz.tzinfo.name }
 end

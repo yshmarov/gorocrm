@@ -16,7 +16,7 @@ module Saascorsego
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
 
     # Permitted locales available for the application
     I18n.available_locales = [:en, :es, :ru]
@@ -24,7 +24,6 @@ module Saascorsego
     # Set default locale to something other than :en
     I18n.default_locale = :en
 
-    config.time_zone = 'UTC'
-
+    config.time_zone = "UTC"
   end
 end
