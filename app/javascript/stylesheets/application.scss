@@ -1,5 +1,8 @@
-//background for whole app
-body { background: #f8f0e6; }
+.bg-light {
+  background-color: black;
+}
+
+
 
 //all purple backgrounds
 .bg-purple { background-color: #7952b3; }
@@ -29,3 +32,35 @@ footer {
 
 //header navbar dropdown hover background color (light-blue)
 .dropdown-item:hover {background-color: #9cccff !important;}
+
+//background for whole app
+:root {
+  --darkColor: #f7f7f7;
+  --darkBackground: #444;
+  --lightColor: #292b2c;
+  --lightBackground: #ccc;
+}
+
+body.light {
+  color: var(--lightColor);
+  background-color: #f8f0e6;
+}
+
+body.dark {
+  color: var(--darkColor);
+  background-color: #1f2c44;
+}
+
+body.light .card,
+body.light .jumbotron,
+footer.light {
+  color: var(--lightColor);
+  background-color: var(--lightBackground);
+}
+
+body.dark .card,
+body.dark .jumbotron,
+footer.dark {
+  color: var(--darkColor);
+  background-color: var(--darkBackground);
+}

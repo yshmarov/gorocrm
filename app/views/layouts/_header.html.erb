@@ -7,6 +7,17 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <% if cookies[:theme] == "light" %>
+      <%= link_to root_path(theme: "dark") do %>
+        <i class="fa fa-moon text-light"></i>
+      <% end %>
+    <% else %>
+      <%= link_to root_path(theme: "light") do %>
+        <i class="far fa-moon text-light"></i>
+      <% end %>
+    <% end %>
+
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
         <% if current_user.superadmin? %>
