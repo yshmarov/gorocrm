@@ -14,15 +14,13 @@
         </h5>
         <hr>
         <%= plan.currency %>
-        <b class="mark">
-          <u>
-            <%= plan.amount/100 %>
-          </u>
+        <b style="font-size: 1.9em;">
+          <%= plan.amount/100 %>
         </b>
         /
         <%= plan.interval %>
         <hr>
-        <small class="text-muted">
+        <small>
           <%= pluralize(plan.max_members, "user", plural: "users") %>
         </small>
       </div>

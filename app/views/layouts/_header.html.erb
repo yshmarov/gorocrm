@@ -20,6 +20,12 @@
 
     <% if current_user %>
       <ul class="navbar-nav mr-auto">
+
+        <%= link_to "https://gumroad.com/l/ror6saas", target: :_blank, class: "nav-link" do %>
+          <i class="fas fa-shopping-cart"></i>
+          Buy Licence
+        <% end %>
+
         <% if current_user.superadmin? %>
           <%= long_active_link_to superadmin_root_path do %>
             <i class="fas fa-user-shield"></i>
