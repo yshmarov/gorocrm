@@ -24,6 +24,9 @@ es:
     pricing: Precios
     terms: Términos de servicio
     privacy: Política de privacidad
+    plans: Programas
+    subscriptions: Suscripciónes
+    charges: Pagos
 
   sidebar:
     dashboard: Tablero

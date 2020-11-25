@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= favicon_link_tag "tree favicon yellow.png" %>
-
     <link rel="manifest" href="/manifest.json">
-
     <title>
       <% if ActsAsTenant.current_tenant %>
-        CorsegoSaaS | <%= ActsAsTenant.current_tenant %>
+        <%= ActsAsTenant.current_tenant %> | CorsegoSaaS
       <% else %>
-        CorsegoSaaS - SaaS Multi-Tenancy boilerplate for Ruby on Rails
+        CorsegoSaaS - SaaS Multitenancy boilerplate for Ruby on Rails
       <% end %>
     </title>
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="<%= cookies[:theme] %>">
-   <%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
 
-   <%= flash_messages %>
+    <%= flash_messages %>
 
     <div class="container-fluid">
       <p></p>
@@ -35,6 +30,15 @@
           <div class="row">
             <div class="col-lg-2">
               <%= render 'layouts/tenant_sidebar' %>
+            </div>
+            <div class="col-lg-10">
+              <%= yield %>
+            </div>
+          </div>
+        <% elsif request.path.starts_with?('/superadmin') %>
+          <div class="row">
+            <div class="col-lg-2">
+              <%= render 'layouts/superadmin_sidebar' %>
             </div>
             <div class="col-lg-10">
               <%= yield %>

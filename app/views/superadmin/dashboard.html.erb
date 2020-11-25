@@ -1,57 +1,15 @@
-<div class= "text-center">
+<div class= "card card-body text-center">
   
   <h3>
     <b>
       Superadmin dashboard
+
     </b>
   </h3>
   
   <hr>
-  
-  <%= link_to superadmin_users_path, class: 'btn btn-lg btn-outline-secondary' do %>
-    <i class="fas fa-users"></i>
-    <br>
-    <%= t 'header.users' %>
-    <div class="badge badge-info">
-      <%= User.count %>
-    </div>
-  <% end %>
-  
-  <%= link_to superadmin_tenants_path, class: 'btn btn-lg btn-outline-secondary' do %>
-    <i class="fas fa-building"></i>
-    <br>
-    <%= t 'header.tenants' %>
-    <div class="badge badge-info">
-      <%= Tenant.count %>
-    </div>
-  <% end %>
 
-  <%= link_to plans_path, class: 'btn btn-lg btn-outline-secondary' do %>
-    <i class="fas fa-tags"></i>
-    <br>
-    <%= t 'header.plans' %>
-    <div class="badge badge-info">
-      <%= Plan.count %>
-    </div>
-  <% end %>
-
-  <%= link_to superadmin_subscriptions_path, class: 'btn btn-lg btn-outline-secondary' do %>
-    <i class="fas fa-business-time"></i>
-    <br>
-    <%= t 'header.subscriptions' %>
-    <div class="badge badge-info">
-      <%= Subscription.count %>
-    </div>
-  <% end %>
-
-  <%= link_to superadmin_charges_path, class: 'btn btn-lg btn-outline-secondary' do %>
-    <i class="fas fa-money-bill"></i>
-    <br>
-    <%= t 'header.charges' %>
-    <div class="badge badge-info">
-      <%= Charge.count %>
-    </div>
-  <% end %>
-
+  what goes here is up to you
 
 </div>
+  

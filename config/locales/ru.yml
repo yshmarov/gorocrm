@@ -24,6 +24,9 @@ ru:
     pricing: Тарифы
     terms: Условия Пользования
     privacy: Политика Приватности
+    plans: Тарифы
+    subscriptions: Подписки
+    charges: Оплаты
 
   sidebar:
     dashboard: Главная

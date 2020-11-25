@@ -24,6 +24,9 @@ en:
     pricing: Pricing
     terms: Terms
     privacy: Privacy
+    plans: Plans
+    subscriptions: Subscriptions
+    charges: Charges
 
   sidebar:
     dashboard: Dashboard

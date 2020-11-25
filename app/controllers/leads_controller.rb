@@ -1,9 +1,9 @@
 class LeadsController < ApplicationController
   skip_before_action :authenticate_user!
-  layout "leads_layout"
+  layout "errors"
 
-  before_action :set_tenant, only: [:new, :show, :create]
   set_current_tenant_through_filter
+  before_action :set_tenant, only: [:new, :show, :create]
 
   def new
     @contact = Contact.new

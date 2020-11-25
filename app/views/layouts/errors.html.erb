@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html class="h-full antialiased">
+<html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= favicon_link_tag "tree favicon yellow.png" %>
+    <link rel="manifest" href="/manifest.json">
     <title>
-      <% if content_for?(:title) %>
-        <%= yield :title %> |
-      <% end %>
       <%= Rails.application.class.parent_name %>
     </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <%= yield :head %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <%= flash_messages %>
+    <div class="container">
+      <p></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
