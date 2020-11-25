@@ -38,9 +38,9 @@ ru:
       tenant: Организация
       user: Пользователь
       member: Участник
-      subscriptions: Подписки 
-      plans: Тарифы
-      charges: Оплаты
+      subscription: Подписка 
+      plan: Тариф
+      charge: Оплата
     attributes:
       subscription:
         subscription: подписка
@@ -62,6 +62,8 @@ ru:
         metadata: подробности
         activate_subscription: активировать подписку
         created_at: дата создания
+        tenant: организация
+        subscription: подписка
       tenant:
         id: код
         name: название
@@ -79,6 +81,7 @@ ru:
         name: имя
         provider: Последний заход через соц. сеть
         tenants: организации
+        tenant: организация
         language: язык
         tenant_id: код организации
         members_count: кол. участников

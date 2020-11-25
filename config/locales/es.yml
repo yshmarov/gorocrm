@@ -38,9 +38,9 @@ es:
       tenant: Empresa
       user: Usario
       member: Miembro
-      subscriptions: Suscripciones 
-      plans: Precios
-      charges: Pagos
+      subscription: Suscripción
+      plan: Precio
+      charge: Pago
     attributes:
       subscription:
         subscription: suscripcion
@@ -62,6 +62,8 @@ es:
         metadata: metadata
         activate_subscription: activar suscripción
         created_at: creado
+        tenant: empresa
+        subscription: suscripcion
       tenant:
         id: codigo
         name: nombre
@@ -79,6 +81,7 @@ es:
         name: nombre
         provider: Última sesión social
         tenants: empresas
+        tenant: empresa
         language: idioma
         tenant: empresa
         members_count: cantidad de miembros
