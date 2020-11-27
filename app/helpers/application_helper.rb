@@ -23,6 +23,21 @@ module ApplicationHelper
     end
   end
 
+  def social_icon(provider)
+    case provider
+      when :google_oauth2
+        content_tag(:i, nil, class: "fab fa-google")
+      when :github
+        content_tag(:i, nil, class: "fab fa-github")
+      when :twitter
+        content_tag(:i, nil, class: "fab fa-twitter")
+      when :facebook
+        content_tag(:i, nil, class: "fab fa-facebook")
+      when :gitlab
+        content_tag(:i, nil, class: "fab fa-gitlab")
+    end
+  end
+
   # link_to "homepage", root_path
   def active_link_to(name, path)
     content_tag(:li, class: "#{"active font-weight-bold" if current_page?(path)} nav-item") do

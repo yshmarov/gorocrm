@@ -19,42 +19,30 @@
       <strong><%= model_class.human_attribute_name(:name).capitalize %>:</strong>
       <%= @user.name %>
     </div>
-    
+
   <% end %>
 
   <% if @user == current_user %>
 
     <div class="card-footer">
-        <% @user.identities.each do |identity| %>
-          <%= image_tag identity.auth.to_hash["info"]["image"], size: '40x40', alt: "#{@user.email}", class: 'rounded-circle' %>
-        <% end %>
 
-        <% unless @user.identities.pluck(:provider).include?("google_oauth2") %>
-          <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-outline-danger btn-sm', data: { disable_with: "#{t(".connecting")}..." } do %>
-            <div class="fab fa-google"></div>
-            <%= t(".connect") %>
-            Google
+      <% User.omniauth_providers.each do |provider| %>
+        <% identities = @user.identities.select{ |identity| identity.provider == provider.to_s } %>
+        <% if identities.any? %>
+          <% identities.each do |identity| %>
+            <button class="btn btn-sm btn-secondary" disabled>
+              <%= social_icon(provider) %>
+              <%= t(".connected") %>
+            </button>
           <% end %>
         <% else %>
-          <button type="button" class="btn btn-sm btn-danger" disabled>
-            <div class="fab fa-google"></div>
-            <%= t(".connected") %>
-            Google
-          </button>
+            <%= link_to omniauth_authorize_path(User, provider), class: 'btn btn-sm btn-outline-primary', data: { disable_with: "#{t(".connecting")}..." } do %>
+              <%= social_icon(provider) %>
+              <%= t(".connect") %>
+            <% end %>
         <% end %>
-        <% unless @user.identities.pluck(:provider).include?("github") %>
-          <%= link_to user_github_omniauth_authorize_path, class: 'btn btn-outline-dark btn-sm', data: { disable_with: "#{t(".connecting")}..." } do %>
-            <div class="fab fa-github"></div>
-            <%= t(".connect") %>
-            Github
-          <% end %>
-        <% else %>
-          <button type="button" class="btn btn-sm btn-dark" disabled>
-            <div class="fab fa-github"></div>
-            <%= t(".connected") %>
-            Github
-          </button>
-        <% end %>
+      <% end %>
+
     </div>
 
     <div class="card-footer">

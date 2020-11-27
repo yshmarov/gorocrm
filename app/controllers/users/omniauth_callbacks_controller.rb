@@ -4,7 +4,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # this action will be automatically named as the omni provider [:github, :google_oauth2]
     define_method provider do
       # at this point the omni callback works and we get provider data
-      auth = request.env["omniauth.auth"]
+      def auth
+        @auth ||= request.env["omniauth.auth"]
+      end
 
       if auth.nil?
         redirect_to root_path, alert: "No data received. Please try again"
@@ -16,28 +18,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
         if user.present?
           if identity.present?
-            identity.update(
-              provider: auth.provider,
-              uid: auth.uid,
-              auth: auth.to_hash
-            )
+            identity.update(identity_params)
           else
-            user.identities.create(
-              provider: auth.provider,
-              uid: auth.uid,
-              auth: auth.to_hash
-            )
+            user.identities.create(identity_params)
           end
         else
           user = User.create(
             email: auth.info.email,
             password: Devise.friendly_token[0, 20]
           )
-          user.identities.create(
-            provider: auth.provider,
-            uid: auth.uid,
-            auth: auth.to_hash
-          )
+          user.identities.create(identity_params)
         end
 
         # confirm account with social login
@@ -63,4 +53,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def failure
     redirect_to root_path, alert: "Something went wrong. Please try again"
   end
+
+  def identity_params
+    {
+      provider: auth.provider,
+      uid: auth.uid,
+      auth: auth.to_hash
+    }
+  end
+
 end

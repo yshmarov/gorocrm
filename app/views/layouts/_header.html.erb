@@ -105,16 +105,11 @@
         <li class="<%= 'active font-weight-bold' if current_page?(new_user_session_path) %> nav-item">
           <%= link_to t("navigation.login"), new_user_session_path, class: 'nav-link' %>
         </li>
-        <li class="<%= 'active font-weight-bold' if current_page?(user_google_oauth2_omniauth_authorize_path) %> nav-item">
-          <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'nav-link' do %>
-            <div class="fab fa-google"></div>
-          <% end %>
-        </li>
-        <li class="<%= 'active font-weight-bold' if current_page?(user_github_omniauth_authorize_path) %> nav-item">
-          <%= link_to user_github_omniauth_authorize_path, class: 'nav-link' do %>
-            <div class="fab fa-github"></div>
-          <% end %>
-        </li>
+
+        <% User.omniauth_providers.each do |provider| %>
+          <%= link_to social_icon(provider), omniauth_authorize_path(User, provider), class: "nav-link" %>
+        <% end %>
+
       </ul>
     <% end %>
   </div>

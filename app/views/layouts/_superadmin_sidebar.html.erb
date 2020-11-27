@@ -4,9 +4,6 @@
     <%= sidebar_long_active_link_to superadmin_root_path do %>
       <i class="fas fa-user-shield"></i>
       <%= t 'navigation.superadmin' %>
-      <div class="badge badge-info">
-        <%= User.count %>
-      </div>
     <% end %>
     
     <%= sidebar_long_active_link_to superadmin_users_path do %>
