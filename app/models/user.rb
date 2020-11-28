@@ -43,7 +43,7 @@ class User < ApplicationRecord
     :invitable,
     :confirmable,
     :trackable,
-    :omniauthable, omniauth_providers: [:google_oauth2, :github]
+    :omniauthable, omniauth_providers: [:google_oauth2, :github, :twitter]
 
   has_many :identities, dependent: :destroy
   has_many :members
