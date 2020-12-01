@@ -3,12 +3,16 @@ class SuperadminController < ApplicationController
   end
 
   def tenants
-    @tenants = Tenant.includes(:members, :users, :subscription, subscription: [:plan], members: [:user]).order(created_at: :desc)
+    @q = Tenant.order(created_at: :desc).ransack(params[:q])
+    @tenants = @q.result.includes(:members, :users, :subscription, subscription: [:plan], members: [:user])
+    # @tenants = Tenant.includes(:members, :users, :subscription, subscription: [:plan], members: [:user]).order(created_at: :desc)
     render "tenants/index"
   end
 
   def users
-    @users = User.includes(:identities, :members, :tenants, members: [:tenant]).order(created_at: :desc)
+    @q = User.order(created_at: :desc).ransack(params[:q])
+    @users = @q.result.includes(:identities, :members, :tenants, members: [:tenant])
+    # @users = User.includes(:identities, :members, :tenants, members: [:tenant]).order(created_at: :desc)
   end
 
   def charges

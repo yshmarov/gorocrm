@@ -4,7 +4,9 @@ class TenantsController < ApplicationController
   before_action :require_tenant_member, only: [:show]
 
   def index
-    @tenants = current_user.tenants
+    @q = current_user.tenants.order(created_at: :desc).ransack(params[:q])
+    @tenants = @q.result.includes(:members, :users, :subscription, subscription: [:plan], members: [:user])
+    # @tenants = current_user.tenants
   end
 
   def switch

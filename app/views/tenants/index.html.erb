@@ -11,12 +11,13 @@
   <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:id).capitalize %></th>
-        <th><%= model_class.human_attribute_name(:name).capitalize %></th>
-        <th><%= model_class.human_attribute_name(:logo).capitalize %></th>
-        <th><%= model_class.human_attribute_name(:plan).capitalize %></th>
-        <th><%= model_class.human_attribute_name(:members_count).capitalize %></th>
-        <th><%= model_class.human_attribute_name(:users).capitalize %></th>
+        <th><%= sort_link(@q, :id, default_order: :desc) %></th>
+        <th><%= sort_link(@q, :name) %></th>
+        <th><%= model_class.human_attribute_name(:logo) %></th>
+        <th><%= sort_link(@q, :plan_name, model_class.human_attribute_name(:plan)) %></th>
+        <th><%= sort_link(@q, :members_count) %></th>
+        <th><%= model_class.human_attribute_name(:users) %></th>
+        <th><%= model_class.human_attribute_name(:active) %></th>
         <th></th>
         <th></th>
         <th></th>
@@ -47,6 +48,9 @@
           <td><%= tenant.members_count %></td>
           <td>
             <%= tenant.users.compact.join(', ') %>
+          </td>
+          <td>
+            <%= boolean_label(tenant.subscription.active?) if tenant.subscription.present? %>
           </td>
           <td>
             <% if current_user.tenants.include?(tenant) %>

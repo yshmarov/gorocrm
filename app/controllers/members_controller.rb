@@ -9,7 +9,9 @@ class MembersController < ApplicationController
   before_action :require_tenant_admin, only: [:invite, :edit, :update, :destroy]
 
   def index
-    @members = Member.includes(:user, :tenant).all # "includes" for eager loading
+    @q = Member.ransack(params[:q])
+    @members = @q.result.includes(:user, :tenant)
+    # @members = Member.includes(:user, :tenant).all # "includes" for eager loading
   end
 
   def invite
