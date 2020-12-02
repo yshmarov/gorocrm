@@ -1,7 +1,7 @@
-//all purple backgrounds
+// all purple backgrounds
 .bg-purple { background-color: #7952b3; }
 
-//footer on bottom
+// footer on bottom
 html {
     margin: 0;
 }
@@ -14,20 +14,27 @@ footer {
     margin-top: auto;
 }
 
-//header navbar dropdown on top of all other content
+// header navbar dropdown on top of all other content
 .dropdown {z-index: 9999;}
 
-//users/show language dropdown
+// users/show language dropdown
 .dropdown-scrollable{
   max-height:80vh;
   //height:200px;
   overflow-y:auto;
 }
 
-//header navbar dropdown hover background color (light-blue)
+// header navbar dropdown hover background color (light-blue)
 .dropdown-item:hover {background-color: #9cccff !important;}
 
-//background for whole app
+// color of active sidebar link text
+li.active.rounded > a.nav-link {
+  color: var(--lightColor) !important;
+}
+
+// DARK MODE
+
+// background for whole app
 :root {
   --darkColor: #f7f7f7;
   --darkBackground: #444;
@@ -45,6 +52,7 @@ body.dark {
   background-color: #1f2c44;
 }
 
+// cards and jumbotrons
 body.light .card,
 body.light .jumbotron,
 footer.light {
@@ -57,4 +65,28 @@ body.dark .jumbotron,
 footer.dark {
   color: var(--darkColor);
   background-color: var(--darkBackground);
+}
+
+// link colors
+body.dark a, body.dark a:visited,
+footer.dark a, footer.dark a:visited,
+{
+  color: #e3e9ff !important;
+}
+
+body.dark a:hover, body.dark a:active,
+footer.dark a:hover, footer.dark a:active {
+  color: #ffffff !important;
+}
+
+li.active.rounded > a.nav-link,
+footer.dark a.active,
+body.dark a.active {
+  color: var(--lightColor) !important;
+}
+
+body.dark table a:visited,
+body.dark table a.sort_link,
+body.dark table a {
+  color: blue !important;
 }
