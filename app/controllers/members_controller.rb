@@ -17,7 +17,7 @@ class MembersController < ApplicationController
   def invite
     if current_tenant.can_invite_members?
       email = params[:email]
-      user_from_email = User.where(email: email).first
+      user_from_email = User.find_by(email: email)
       if email.present?
         if user_from_email.present? # user exists in the database
           if Member.where(user: user_from_email).any? # user is a member in current_tenant
@@ -40,7 +40,7 @@ class MembersController < ApplicationController
         redirect_to members_path, alert: "No email provided!"
       end
     else
-      redirect_to members_path, alert: "Solo plan can not invite members. Please upgrade you plan."
+      redirect_to members_path, alert: "You have reached the limit. Please upgrade you plan."
     end
   end
 
