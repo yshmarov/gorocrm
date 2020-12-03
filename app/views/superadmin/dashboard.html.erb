@@ -1,15 +1,34 @@
-<div class= "card card-body text-center">
-  
-  <h3>
-    <b>
-      Superadmin dashboard
+<h3 class= "text-center">
+  <b>
+    Superadmin dashboard
+  </b>
+</h3>
 
-    </b>
-  </h3>
-  
-  <hr>
+<p/>
 
-  what goes here is up to you
-
+<div class= "card-deck">
+  <div class= "card card-body text-center">
+    Total revenue
+    <h2>
+      <%= integer_to_currency(@total_earnings) %>
+    </h2>
+  </div>
+  <div class= "card card-body text-center">
+    Revenue L12M
+    <h2>
+      <%= integer_to_currency(@l12m_earnings) %>
+    </h2>
+  </div>
+  <div class= "card card-body text-center">
+    Last month revenue
+    <h2>
+      <%= integer_to_currency(@last_month_earnings) %>
+    </h2>
+  </div>
+  <div class= "card card-body text-center">
+    This month revenue to date
+    <h2>
+      <%= integer_to_currency(@current_month_earnings) %>
+    </h2>
+  </div>
 </div>
-  

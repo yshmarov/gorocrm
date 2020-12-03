@@ -62,4 +62,9 @@ module ApplicationHelper
       end
     end
   end
+
+  def integer_to_currency(amount) # temporary solution while not using a gem like money. for superadmin dashboard
+    "%.2f" % Rational(amount.to_i,100)
+  end
+
 end
