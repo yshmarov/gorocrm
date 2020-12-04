@@ -16,5 +16,7 @@ class UsersController < ApplicationController
     else
       current_user
     end
+    # see your invitations
+    @invited_users = User.where(invited_by_id: @user.id)
   end
 end

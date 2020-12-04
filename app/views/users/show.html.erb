@@ -118,4 +118,24 @@
     <%= boolean_label(@user.superadmin) %>
   </div>
 </div>
+
+<% if @invited_users.any? %>
+  <br>
+  
+  <div class="card shadow">
+    <div class="card-header">
+      <%= t(".invitations").capitalize %>:
+      <%= @invited_users.count %>
+    </div>
+    <div class="card-body">
+      <% @invited_users.each do |user| %>
+        <b><%= user.email %></b>
+        <%= model_class.human_attribute_name(:confirmed).capitalize %>:
+        <%= boolean_label(user.confirmed_at.present?) %>
+        <br/>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <br>

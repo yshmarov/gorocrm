@@ -130,6 +130,7 @@ es:
       connecting: Connectando
       connected: Connectado
       ago: antes
+      invitations: invitaciones
 
   static_pages:
     pricing:
