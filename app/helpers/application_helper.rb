@@ -1,4 +1,6 @@
 module ApplicationHelper
+  
+  # all flash messages
   def bootstrap_class_for flash_type
     {success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info"}.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
@@ -13,6 +15,7 @@ module ApplicationHelper
     nil
   end
 
+  # boolean green or red
   def boolean_label(value)
     case value
       when true
@@ -23,6 +26,7 @@ module ApplicationHelper
     end
   end
 
+  # icons for omniauth
   def social_icon(provider)
     case provider
       when :google_oauth2
@@ -63,8 +67,30 @@ module ApplicationHelper
     end
   end
 
-  def integer_to_currency(amount) # temporary solution while not using a gem like money. for superadmin dashboard
+  # temporary solution while not using a gem like money. for superadmin dashboard
+  def integer_to_currency(amount) 
     "%.2f" % Rational(amount.to_i,100)
+  end
+
+  # logic to subscribe to a specific plan
+  def subscribe_to(plan)
+    if user_signed_in?
+      if current_user.tenant.present?
+        if current_user.tenant.subscription.present?
+          t(".you_already_are_subscribed")
+        else
+          if Member.find_by(user: current_user, tenant: current_user.tenant).admin?
+            button_to "#{t(".subscribe").capitalize}: #{plan.name}", subscriptions_path(plan: plan), method: :post
+          else
+            t(".contact_admin_to_subscribe", tenant: current_user.tenant)
+          end
+        end
+      else
+        t(".create_a_tenant_to_select_plan")
+      end
+    else
+      link_to t("header.register"), new_user_registration_path, class: 'btn btn-xl btn-success'
+    end
   end
 
 end
