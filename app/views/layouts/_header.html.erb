@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-purple">
   <a class="navbar-brand" href="/">
-    <%= image_tag "tree yellow.png", height: '30', alt: "logo", class: "d-inline-block align-top" %>
+    <%= image_tag "tree yellow.png", height: '30', alt: "logo", class: "d-inline-block align-top lazyload" %>
     CorsegoSaaS
   </a>
   <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
@@ -38,7 +38,7 @@
           <li class="<%= 'active font-weight-bold' if ActsAsTenant.current_tenant %> nav-item">
             <%= link_to tenant_path(current_user.tenant), class: 'nav-link' do %>
               <% if current_user.tenant.logo.attached? %>
-                <%= image_tag current_user.tenant.logo, size: "30x30" %>
+                <%= image_tag current_user.tenant.logo, height: '30', alt: "logo", class: "d-inline-block align-top lazyload" %>
               <% else %>
                 <i class="fas fa-briefcase"></i>
               <% end %>
@@ -65,7 +65,7 @@
         <li class="nav-item dropdown">
           <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="userDropdown" role="button">
             <% if current_user.image? %>
-              <%= image_tag current_user.image, size: '30x30', alt: "#{current_user.username}", class: 'rounded-circle' %>
+              <%= image_tag current_user.image, height: '30', alt: "logo", class: "d-inline-block align-top rounded-circle lazyload" %>
             <% else %>
               <div class="fa fa-user"></div>
             <% end %>
