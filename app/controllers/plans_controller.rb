@@ -2,7 +2,8 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :update, :destroy]
 
   def index
-    @plans = Plan.all
+    @q = Plan.ransack(params[:q])
+    @plans = @q.result(distinct: true)
   end
 
   def new

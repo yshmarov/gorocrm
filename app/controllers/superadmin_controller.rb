@@ -20,10 +20,12 @@ class SuperadminController < ApplicationController
   end
 
   def charges
-    @charges = Charge.includes(:tenant).order(created_at: :desc)
+    @q = Charge.order(created_at: :desc).ransack(params[:q])
+    @charges = @q.result.includes(:tenant)
   end
 
   def subscriptions
-    @subscriptions = Subscription.includes(:tenant, :plan).order(created_at: :desc)
+    @q = Subscription.order(created_at: :desc).ransack(params[:q])
+    @subscriptions = @q.result.includes(:tenant, :plan)
   end
 end
