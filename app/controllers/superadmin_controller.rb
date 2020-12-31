@@ -3,7 +3,7 @@ class SuperadminController < ApplicationController
     @total_earnings = Charge.all.pluck(:metadata).inject(0) { |sum, h| sum + h[:plan_amount] }
     @l12m_earnings = Charge.where(created_at: Time.now - 12.months..Time.now).pluck(:metadata).inject(0) { |sum, h| sum + h[:plan_amount] }
     @current_month_earnings = Charge.where(created_at: Time.now.beginning_of_month..Time.now.end_of_month).pluck(:metadata).inject(0) { |sum, h| sum + h[:plan_amount] }
-    @last_month_earnings = Charge.where(created_at: Time.now.last_month.beginning_of_month..Time.now.last_month.end_of_month ).pluck(:metadata).inject(0) { |sum, h| sum + h[:plan_amount] }
+    @last_month_earnings = Charge.where(created_at: Time.now.last_month.beginning_of_month..Time.now.last_month.end_of_month).pluck(:metadata).inject(0) { |sum, h| sum + h[:plan_amount] }
   end
 
   def tenants

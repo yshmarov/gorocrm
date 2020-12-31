@@ -19,7 +19,7 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "standard" # automatically format code to be inline with guidelines
-  gem 'annotate'
+  gem "annotate"
 end
 
 # multitenancy
@@ -41,7 +41,7 @@ gem "invisible_captcha"
 
 gem "omniauth-google-oauth2"
 gem "omniauth-github", github: "omniauth/omniauth-github", branch: "master"
-gem 'omniauth-twitter'
+gem "omniauth-twitter"
 
 # additional functionality for importing contacts from social accounts
 gem "omnicontacts"
@@ -52,4 +52,4 @@ gem "devise-i18n"
 
 gem "stripe"
 
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem "ransack", github: "activerecord-hackery/ransack"

@@ -1,5 +1,4 @@
 module ApplicationHelper
-  
   # all flash messages
   def bootstrap_class_for flash_type
     {success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info"}.stringify_keys[flash_type.to_s] || flash_type.to_s
@@ -68,8 +67,8 @@ module ApplicationHelper
   end
 
   # temporary solution while not using a gem like money. for superadmin dashboard
-  def integer_to_currency(amount) 
-    "%.2f" % Rational(amount.to_i,100)
+  def integer_to_currency(amount)
+    "%.2f" % Rational(amount.to_i, 100)
   end
 
   # logic to subscribe to a specific plan
@@ -78,19 +77,16 @@ module ApplicationHelper
       if current_user.tenant.present?
         if current_user.tenant.subscription.present?
           t(".you_already_are_subscribed")
+        elsif Member.find_by(user: current_user, tenant: current_user.tenant).admin?
+          button_to "#{t(".subscribe").capitalize}: #{plan.name}", subscriptions_path(plan: plan), method: :post
         else
-          if Member.find_by(user: current_user, tenant: current_user.tenant).admin?
-            button_to "#{t(".subscribe").capitalize}: #{plan.name}", subscriptions_path(plan: plan), method: :post
-          else
-            t(".contact_admin_to_subscribe", tenant: current_user.tenant)
-          end
+          t(".contact_admin_to_subscribe", tenant: current_user.tenant)
         end
       else
         t(".create_a_tenant_to_select_plan")
       end
     else
-      link_to t("header.register"), new_user_registration_path, class: 'btn btn-xl btn-success'
+      link_to t("header.register"), new_user_registration_path, class: "btn btn-xl btn-success"
     end
   end
-
 end

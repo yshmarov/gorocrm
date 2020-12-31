@@ -61,5 +61,4 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       auth: auth.to_hash
     }
   end
-
 end
