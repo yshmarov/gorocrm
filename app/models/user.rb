@@ -43,10 +43,10 @@ class User < ApplicationRecord
     :invitable,
     :confirmable,
     :trackable,
-    :omniauthable, omniauth_providers: [:google_oauth2, :github, :twitter]
+    :omniauthable, omniauth_providers: [:google_oauth2, :github, :twitter, :facebook]
 
   has_many :identities, dependent: :destroy
-  has_many :members
+  has_many :members, dependent: :restrict_with_error
   has_many :tenants, through: :members
 
   # tenant_id = to get current_tenant; false = can exist without any tenants

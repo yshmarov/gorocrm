@@ -42,6 +42,7 @@ gem "invisible_captcha"
 gem "omniauth-google-oauth2"
 gem "omniauth-github"
 gem "omniauth-twitter"
+gem 'omniauth-facebook'
 
 # additional functionality for importing contacts from social accounts
 gem "omnicontacts"
