@@ -7,8 +7,8 @@ en:
       show: show
       confirm: Are you sure?
     titles:
-      edit: editar
-      new: crear
+      edit: edit
+      new: create
 
   navigation:
     users: Users

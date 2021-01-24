@@ -1,3 +1,4 @@
+<%% model_class = <%= singular_table_name.capitalize %> %>
 <div class="card shadow">
   <div class="card-header">
     <h4>
@@ -6,14 +7,14 @@
   </div>
   <div class="card-body">
     <% attributes.each do |attribute| %>
-        <strong><%= attribute.human_name %>:</strong>
-        <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+      <strong><%= attribute.human_name %>:</strong>
+      <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
     <% end %>
   </div>
   <div class="card-footer">
     <%%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> |
-    <%%= link_to t(".back", default: t("helpers.links.back")).capitalize, <%= index_helper %>_path %>
-    <%%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, @<%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+    <%%= link_to t(".back", default: t("helpers.links.back")).capitalize, <%= index_helper %>_path %> |
+    <%%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, @<%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %>
 
   </div>
 </div>
