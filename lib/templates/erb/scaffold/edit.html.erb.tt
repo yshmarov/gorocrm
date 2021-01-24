@@ -1,7 +1,9 @@
+<%%- model_class = <%= resource_name.classify %> -%>
 <div class="card shadow">
   <div class="card-header">
     <h4>
-      Edit
+      <%%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %>
+      <%= I18n.t("helpers.titles.edit").titleize %>
       <%= singular_table_name.capitalize %>
     </h4>
   </div>
@@ -9,7 +11,7 @@
     <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
   </div>
   <div class="card-footer">
-    <%%= link_to 'Show', @<%= singular_table_name %> %> |
-    <%%= link_to 'Back', <%= index_helper %>_path %>
+    <%%= link_to t(".show", default: t("helpers.links.show")).capitalize, @<%= singular_table_name %> %> |
+    <%%= link_to t(".back", default: t("helpers.links.back")).capitalize, <%= index_helper %>_path %>
   </div>
 </div>

@@ -5,6 +5,7 @@ en:
       destroy: destroy
       back: back
       show: show
+      confirm: Are you sure?
     titles:
       edit: editar
       new: crear

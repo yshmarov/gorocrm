@@ -5,6 +5,7 @@ ru:
       destroy: удалить
       back: назад
       show: показать
+      confirm: вы уверены?
     titles:
       edit: редактировать
       new: создать

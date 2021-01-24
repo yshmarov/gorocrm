@@ -1,7 +1,7 @@
 <div class="card shadow">
   <div class="card-header">
     <h4>
-      New
+      <%= I18n.t("helpers.titles.new").titleize %>
       <%= singular_table_name.capitalize %>
     </h4>
   </div>
@@ -9,6 +9,6 @@
     <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
   </div>
   <div class="card-footer">
-    <%%= link_to 'Back', <%= index_helper %>_path %>
+    <%%= link_to t(".back", default: t("helpers.links.back")).capitalize, <%= index_helper %>_path %>
   </div>
 </div>

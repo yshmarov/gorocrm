@@ -5,6 +5,7 @@ es:
       destroy: destruir
       back: volver
       show: ver
+      confirm: eres seguro?
     titles:
       edit: actualizar
       new: crear
