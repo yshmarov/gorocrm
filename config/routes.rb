@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  root "static_pages#landing_page"
-  get "about", to: "static_pages#about"
-  get "pricing", to: "static_pages#pricing"
-  get "privacy", to: "static_pages#privacy"
-  get "terms", to: "static_pages#terms"
+  root "static_public#landing_page"
+  get "about", to: "static_public#about"
+  get "pricing", to: "static_public#pricing"
+  get "privacy", to: "static_public#privacy"
+  get "terms", to: "static_public#terms"
 
   authenticated :user, lambda { |u| u.superadmin? } do
     scope :superadmin, as: "superadmin" do

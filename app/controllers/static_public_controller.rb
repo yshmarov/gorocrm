@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class StaticPublicController < ApplicationController
   # no login required to see this controller
   skip_before_action :authenticate_user!
 
