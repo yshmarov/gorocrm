@@ -43,7 +43,9 @@ class User < ApplicationRecord
     :invitable,
     :confirmable,
     :trackable,
-    :omniauthable, omniauth_providers: [:google_oauth2, :github, :twitter, :facebook]
+    :omniauthable
+    # :omniauthable, omniauth_providers: [:google_oauth2, :github, :twitter, :facebook]
+    # if omniauth providers are not listed, gets them from devise.rb
 
   has_many :identities, dependent: :destroy
   has_many :members, dependent: :restrict_with_error
