@@ -27,6 +27,21 @@ module ApplicationHelper
     end
   end
 
+  def social_color(provider)
+    case provider
+      when :google_oauth2
+        "danger"
+      when :github
+        "dark"
+      when :twitter
+        "info"
+      when :facebook
+        "primary"
+      when :gitlab
+        "warning"
+    end
+  end
+
   # link_to "homepage", root_path
   def active_link_to(name, path)
     content_tag(:li, class: "#{"active font-weight-bold" if current_page?(path)} nav-item") do
