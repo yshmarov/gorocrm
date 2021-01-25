@@ -6,7 +6,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
-  if Rails.application.credentials[:smtp][:address].present?
+  if Rails.application.credentials[:smtp].present?
     config.action_mailer.smtp_settings = {
       port: 587,
       address: Rails.application.credentials[:smtp][:address],
