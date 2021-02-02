@@ -9,7 +9,6 @@
     <%= render 'form', member: @member %>
   </div>
   <div class="card-footer">
-    <%= link_to t(".show", default: t("helpers.links.show")).capitalize, @member %> |
-    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, members_path %>
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, @member, class: "btn btn-sm btn-secondary" %>
   </div>
 </div>

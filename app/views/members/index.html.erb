@@ -76,8 +76,8 @@
             <%= member.active_roles.join(", ") %>
           </td>
           <% if @current_member.admin? %>
-            <td><%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_member_path(member) %></td>
-            <td><%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_member_path(member), class: "btn btn-sm btn-warning" %></td>
+            <td><%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
           <% else %>
             <td></td>
             <td></td>

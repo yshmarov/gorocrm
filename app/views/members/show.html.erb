@@ -18,8 +18,8 @@
   </div>
   <div class="card-footer">
     <% if @current_member.admin? %>
-      <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_member_path(@member) %> |
+      <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_member_path(@member), class: "btn btn-sm btn-warning" %>
     <% end %>
-    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, members_path %>
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, members_path, class: "btn btn-sm btn-secondary" %>
   </div>
 </div>

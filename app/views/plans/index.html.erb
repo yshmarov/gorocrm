@@ -37,8 +37,8 @@
           <td><%= plan.interval %></td>
           <td><%= plan.max_members %></td>
           <td><%= plan.subscriptions.count %></td>
-          <td><%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_plan_path(plan) %></td>
-          <td><%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_plan_path(plan), class: "btn btn-sm btn-warning" %></td>
+          <td><%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, plan, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
