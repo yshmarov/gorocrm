@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
-  belongs_to :tenant
+  acts_as_tenant(:tenant)
   belongs_to :client
+  validates :client, :name, presence: true
+
 end

@@ -21,7 +21,15 @@
 
     <%= sidebar_long_active_link_to clients_path do %>
       <i class="far fa-address-book"></i>
-      <%= t 'sidebar.contacts' %>
+      <%= t 'sidebar.clients' %>
+      <div class="badge badge-info">
+        <%= Client.count %>
+      </div>
+    <% end %>
+
+    <%= sidebar_long_active_link_to projects_path do %>
+      <i class="fa fa-tasks"></i>
+      <%= t 'sidebar.projects' %>
       <div class="badge badge-info">
         <%= Client.count %>
       </div>

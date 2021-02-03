@@ -13,8 +13,6 @@
       <tr>
         <th>Id</th>
     	  
-        <th>Tenant</th>
-        
         <th>Name</th>
         
         <th>Description</th>
@@ -32,8 +30,6 @@
       <% @projects.each do |project| %>
         <%= content_tag :tr, id: dom_id(project), class: dom_class(project) do %>
           <td><%= link_to project.id, project %></td>
-          
-            <td><%= project.tenant %></td>
           
             <td><%= project.name %></td>
           
