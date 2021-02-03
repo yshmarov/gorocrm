@@ -1,0 +1,50 @@
+<h3>
+  <div class="text-center">
+    Clients
+    <div class="badge badge-info">
+      <%= @clients.count %>
+    </div>
+    <%= link_to t('.new', default: t("helpers.links.new")), new_client_path, class: 'btn btn-primary' %>
+  </div>
+</h3>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
+    <thead>
+      <tr>
+        <th>Id</th>
+    	  
+        <th>Name</th>
+        
+        <th>Email</th>
+        
+        <th>Address</th>
+        
+        <th>Phone</th>
+        
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+        <%= content_tag :tr, id: dom_id(client), class: dom_class(client) do %>
+          <td><%= link_to client.id, client %></td>
+          
+            <td><%= client.name %></td>
+          
+            <td><%= client.email %></td>
+          
+            <td><%= client.address %></td>
+          
+            <td><%= client.phone %></td>
+          
+          <td>
+            <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_client_path(client), class: 'btn btn-sm btn-warning' %>
+            <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, client, method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

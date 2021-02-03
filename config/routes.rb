@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     get :invite, on: :collection
   end
 
+  resources :clients
   get "/contacts/:provider/contact_callback", to: "contacts#import"
   get "/contacts/failure", to: "contacts#failure"
   resources :contacts
