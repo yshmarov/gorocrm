@@ -1,0 +1,28 @@
+<% model_class = Payment %>
+<div class="card shadow">
+  <div class="card-header">
+    <h4>
+      Payment
+    </h4>
+  </div>
+  <div class="card-body">
+  
+    <b>Payable:</b>
+    <%= @payment.payable %>
+    <br>
+  
+    <b>Amount:</b>
+    <%= @payment.amount %>
+    <br>
+  
+    <b>Description:</b>
+    <%= @payment.description %>
+    <br>
+  
+  </div>
+  <div class="card-footer">
+    <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_payment_path(@payment), class: "btn btn-sm btn-warning" %>
+    <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, @payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, payments_path, class: "btn btn-sm btn-secondary" %>
+  </div>
+</div>

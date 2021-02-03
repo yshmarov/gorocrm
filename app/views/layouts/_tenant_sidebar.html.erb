@@ -43,6 +43,14 @@
       </div>
     <% end %>
 
+    <%= sidebar_long_active_link_to payments_path do %>
+      <i class="fa fa-money-bill"></i>
+      <%= t 'sidebar.payments' %>
+      <div class="badge badge-info">
+        <%= Payment.count %>
+      </div>
+    <% end %>
+
   </ul>
 </div>
 <br>

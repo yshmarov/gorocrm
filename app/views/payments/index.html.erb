@@ -1,0 +1,46 @@
+<h3>
+  <div class="text-center">
+    Payments
+    <div class="badge badge-info">
+      <%= @payments.count %>
+    </div>
+    <%= link_to t('.new', default: t("helpers.links.new")), new_payment_path, class: 'btn btn-primary' %>
+  </div>
+</h3>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
+    <thead>
+      <tr>
+        <th>Id</th>
+    	  
+        <th>Payable</th>
+        
+        <th>Amount</th>
+        
+        <th>Description</th>
+        
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payments.each do |payment| %>
+        <%= content_tag :tr, id: dom_id(payment), class: dom_class(payment) do %>
+          <td><%= link_to payment.id, payment %></td>
+          
+            <td><%= payment.payable %></td>
+          
+            <td><%= payment.amount %></td>
+          
+            <td><%= payment.description %></td>
+          
+          <td>
+            <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_payment_path(payment), class: 'btn btn-sm btn-warning' %>
+            <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, payment, method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

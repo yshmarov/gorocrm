@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_153506) do
+ActiveRecord::Schema.define(version: 2021_02_03_154601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,18 @@ ActiveRecord::Schema.define(version: 2021_02_03_153506) do
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
     t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "tenant_id", null: false
+    t.string "payable_type", null: false
+    t.bigint "payable_id", null: false
+    t.integer "amount"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["payable_type", "payable_id"], name: "index_payments_on_payable"
+    t.index ["tenant_id"], name: "index_payments_on_tenant_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -205,6 +217,7 @@ ActiveRecord::Schema.define(version: 2021_02_03_153506) do
   add_foreign_key "clients", "tenants"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
+  add_foreign_key "payments", "tenants"
   add_foreign_key "projects", "clients"
   add_foreign_key "projects", "tenants"
   add_foreign_key "subscriptions", "plans"
