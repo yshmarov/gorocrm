@@ -1,0 +1,58 @@
+<h3>
+  <div class="text-center">
+    Projects
+    <div class="badge badge-info">
+      <%= @projects.count %>
+    </div>
+    <%= link_to t('.new', default: t("helpers.links.new")), new_project_path, class: 'btn btn-primary' %>
+  </div>
+</h3>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
+    <thead>
+      <tr>
+        <th>Id</th>
+    	  
+        <th>Tenant</th>
+        
+        <th>Name</th>
+        
+        <th>Description</th>
+        
+        <th>Client</th>
+        
+        <th>Payment type</th>
+        
+        <th>Price</th>
+        
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <%= content_tag :tr, id: dom_id(project), class: dom_class(project) do %>
+          <td><%= link_to project.id, project %></td>
+          
+            <td><%= project.tenant %></td>
+          
+            <td><%= project.name %></td>
+          
+            <td><%= project.description %></td>
+          
+            <td><%= project.client %></td>
+          
+            <td><%= project.payment_type %></td>
+          
+            <td><%= project.price %></td>
+          
+          <td>
+            <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_project_path(project), class: 'btn btn-sm btn-warning' %>
+            <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, project, method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

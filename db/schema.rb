@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_150119) do
+ActiveRecord::Schema.define(version: 2021_02_03_150718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,19 @@ ActiveRecord::Schema.define(version: 2021_02_03_150119) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.bigint "tenant_id", null: false
+    t.string "name"
+    t.text "description"
+    t.bigint "client_id", null: false
+    t.string "payment_type"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_projects_on_client_id"
+    t.index ["tenant_id"], name: "index_projects_on_tenant_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "plan_id", null: false
     t.bigint "tenant_id", null: false
@@ -177,6 +190,8 @@ ActiveRecord::Schema.define(version: 2021_02_03_150119) do
   add_foreign_key "clients", "tenants"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
+  add_foreign_key "projects", "clients"
+  add_foreign_key "projects", "tenants"
   add_foreign_key "subscriptions", "plans"
   add_foreign_key "subscriptions", "tenants"
   add_foreign_key "user_identities", "users"

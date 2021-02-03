@@ -1,0 +1,40 @@
+<% model_class = Project %>
+<div class="card shadow">
+  <div class="card-header">
+    <h4>
+      Project
+    </h4>
+  </div>
+  <div class="card-body">
+  
+    <b>Tenant:</b>
+    <%= @project.tenant %>
+    <br>
+  
+    <b>Name:</b>
+    <%= @project.name %>
+    <br>
+  
+    <b>Description:</b>
+    <%= @project.description %>
+    <br>
+  
+    <b>Client:</b>
+    <%= @project.client %>
+    <br>
+  
+    <b>Payment type:</b>
+    <%= @project.payment_type %>
+    <br>
+  
+    <b>Price:</b>
+    <%= @project.price %>
+    <br>
+  
+  </div>
+  <div class="card-footer">
+    <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_project_path(@project), class: "btn btn-sm btn-warning" %>
+    <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, projects_path, class: "btn btn-sm btn-secondary" %>
+  </div>
+</div>
