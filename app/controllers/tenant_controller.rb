@@ -9,6 +9,7 @@ class TenantController < ApplicationController
   end
 
   def calendar
+    @tasks = Task.all
   end
 
   # example pages that can be here:

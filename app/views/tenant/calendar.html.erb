@@ -4,6 +4,21 @@
   </div>
 </h3>
 
-<%= month_calendar do |date| %>
-  <%= date %>
-<% end %>
+<br>
+
+<div class="card shadow">
+  <div class="card-body">
+    <div class="table-responsive">
+      <%= month_calendar(events: @tasks, attribute: :created_at) do |date, tasks| %>
+        <%= date %>
+      
+        <% tasks.each do |task| %>
+          <br/>
+          <%= link_to task_path(task) do %>
+            <%= task.name %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
