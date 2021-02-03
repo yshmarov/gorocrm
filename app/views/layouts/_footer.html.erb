@@ -7,6 +7,11 @@
         © 
         <%= Time.now.year %>
         <br/>
+        <%= link_to "https://gumroad.com/l/ror6saas", target: :_blank do %>
+          <i class="fas fa-shopping-cart"></i>
+          Buy Licence
+        <% end %>
+        <br/>
         <%= link_to t('navigation.home'), root_path, class: "#{'active font-weight-bold' if current_page?(root_path)}" %>
         <br/>
         <%= mail_to 'hello@corsego.com' do %>
