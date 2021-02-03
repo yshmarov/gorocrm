@@ -3,4 +3,8 @@ class Project < ApplicationRecord
   belongs_to :client
   validates :client, :name, presence: true
 
+  def to_s
+    name
+  end
+
 end

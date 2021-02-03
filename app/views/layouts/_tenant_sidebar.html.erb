@@ -31,7 +31,15 @@
       <i class="fa fa-tasks"></i>
       <%= t 'sidebar.projects' %>
       <div class="badge badge-info">
-        <%= Client.count %>
+        <%= Project.count %>
+      </div>
+    <% end %>
+
+    <%= sidebar_long_active_link_to tasks_path do %>
+      <i class="fa fa-check-square"></i>
+      <%= t 'sidebar.tasks' %>
+      <div class="badge badge-info">
+        <%= Task.count %>
       </div>
     <% end %>
 
