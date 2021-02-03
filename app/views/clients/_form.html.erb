@@ -8,6 +8,8 @@
     <%= f.input :email %>
     <%= f.input :address %>
     <%= f.input :phone %>
+    <%= f.label :tags %>
+    <%= f.select :tag_ids, Tag.where(category: "client").pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" } %>
   </div>
 
   <div class="form-actions">

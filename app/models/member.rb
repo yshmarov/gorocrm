@@ -23,7 +23,7 @@ class Member < ApplicationRecord
   validates_uniqueness_of :user_id, scope: :tenant_id
 
   def to_s
-    user.email.to_s + tenant.name.to_s
+    user.email.to_s
   end
   extend FriendlyId
   friendly_id :to_s, use: :slugged

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_170659) do
+ActiveRecord::Schema.define(version: 2021_02_03_172000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,18 @@ ActiveRecord::Schema.define(version: 2021_02_03_170659) do
     t.index ["tenant_id"], name: "index_subscriptions_on_tenant_id", unique: true
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "tenant_id", null: false
+    t.bigint "tag_id", null: false
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable"
+    t.index ["tenant_id"], name: "index_taggings_on_tenant_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.bigint "tenant_id", null: false
     t.string "name"
@@ -235,6 +247,8 @@ ActiveRecord::Schema.define(version: 2021_02_03_170659) do
   add_foreign_key "projects", "tenants"
   add_foreign_key "subscriptions", "plans"
   add_foreign_key "subscriptions", "tenants"
+  add_foreign_key "taggings", "tags"
+  add_foreign_key "taggings", "tenants"
   add_foreign_key "tags", "tenants"
   add_foreign_key "tasks", "members"
   add_foreign_key "tasks", "projects"
