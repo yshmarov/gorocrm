@@ -29,7 +29,7 @@ class Member < ApplicationRecord
   friendly_id :to_s, use: :slugged
 
   # List member roles
-  ROLES = [:admin, :editor, :viewer]
+  ROLES = [:admin, :partner, :employee]
   # Member.find(13).update_attributes!(admin: true) #add admin in console
 
   # json column to store roles
