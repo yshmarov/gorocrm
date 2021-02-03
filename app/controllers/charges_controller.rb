@@ -2,18 +2,7 @@ class ChargesController < ApplicationController
   include SetTenant # include ON TOP of controller that has to be scoped
   include RequireTenant # no current_tenant = no access to entire controller. redirect to root
 
-  before_action :set_charge, only: [:show]
-
-  before_action :require_subscription
-  def require_subscription
-    unless current_tenant.subscription.present?
-      redirect_to pricing_path, alert: "Please select a plan to access the app"
-    end
-  end
-
-  # invoice
-  def show
-  end
+  before_action :require_subscription, only: [:create]
 
   def create
     @subscription = current_tenant.subscription
@@ -56,7 +45,10 @@ class ChargesController < ApplicationController
 
   private
 
-  def set_charge
-    @charge = Charge.find(params[:id])
+  def require_subscription
+    unless current_tenant.subscription.present?
+      redirect_to pricing_path, alert: "Please select a plan to access the app"
+    end
   end
+
 end

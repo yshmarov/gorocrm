@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   get "dashboard", to: "tenant#dashboard"
 
   resources :subscriptions, only: [:create, :destroy]
-  resources :charges, only: [:create, :show]
+  resources :charges, only: [:create]
 
   resources :members, except: [:create, :new] do
     get :invite, on: :collection

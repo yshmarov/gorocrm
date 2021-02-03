@@ -20,7 +20,7 @@
     <tbody>
       <% @charges.each do |charge| %>
         <tr>
-          <td><%= link_to charge.id, charge_path(charge) %></td>
+          <td><%= charge.id %></td>
           <td><%= charge.created_at %></td>
           <td><%= charge.metadata %></td>
         </tr>

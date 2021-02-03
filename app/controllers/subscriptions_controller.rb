@@ -3,8 +3,6 @@ class SubscriptionsController < ApplicationController
   include RequireTenant # no current_tenant = no access to entire controller. redirect to root
   include SetCurrentMember # for role-based authorization. @current_member.admin?
 
-  before_action :set_subscription, only: [:destroy]
-
   before_action :require_tenant_admin
 
   def create
@@ -15,7 +13,7 @@ class SubscriptionsController < ApplicationController
       @subscription = Subscription.create(plan: plan, ends_at: Time.now)
 
       if @subscription.save
-        redirect_to current_user.tenant, notice: "Subscription was successfully created."
+        redirect_to current_user.tenant, notice: "Subscription selected."
       elsif current_user.tenant.subscription.present?
         redirect_to pricing_path, alert: "You already have a subscription."
       else
@@ -26,15 +24,12 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+    @subscription = Subscription.find(params[:id])
     @subscription.destroy
-    redirect_to current_user.tenant, notice: "Subscription was successfully destroyed."
+    redirect_to current_user.tenant, notice: "Successfully unsubscribed."
   end
 
   private
-
-  def set_subscription
-    @subscription = Subscription.find(params[:id])
-  end
 
   def require_tenant_admin
     unless @current_member.admin?

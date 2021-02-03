@@ -3,7 +3,7 @@ class TenantController < ApplicationController
   include RequireTenant # no current_tenant = no access to entire controller. redirect to root
   include RequireActiveSubscription # no access unless tenant has an active subscription
 
-  # tenant-specific static pages
+  # tenant-scoped static pages
 
   def dashboard
   end
