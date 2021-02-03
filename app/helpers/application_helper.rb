@@ -40,6 +40,17 @@ module ApplicationHelper
     end
   end
 
+  def status_label(status)
+    case status
+    when "planned"
+      content_tag(:span, status.titleize, class: "badge badge-danger")
+    when "progress"
+      content_tag(:span, status.titleize, class: "badge badge-warning")
+    when "done"
+      content_tag(:span, status.titleize, class: "badge badge-success")
+    end
+  end
+
   def social_color(provider)
     case provider
       when :google_oauth2

@@ -50,7 +50,11 @@ Rails.application.routes.draw do
   get "monthly_tasks_report", to: "tenant#monthly_tasks_report"
   resources :clients
   resources :payments
-  resources :tasks
+  resources :tasks do
+    member do
+      patch :change_status
+    end
+  end
   resources :projects
   resources :tags
 

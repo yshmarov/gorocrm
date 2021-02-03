@@ -49,7 +49,7 @@
           
             <td><%= task.urgent %></td>
           
-            <td><%= task.status %></td>
+            <td><%= status_label(task.status) %></td>
             <td><%= task.done_at %></td>
             <td><%= task.tags.pluck(:name).join(", ") %></td>
           

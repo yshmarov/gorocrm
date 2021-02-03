@@ -4,10 +4,25 @@ class TasksController < ApplicationController
   include SetCurrentMember # for role-based authorization. @current_member.admin?
   include RequireActiveSubscription # no access unless tenant has an active subscription
 
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :change_status]
 
   def index
     @tasks = Task.all
+  end
+
+  def change_status
+    if @task.status == "planned"
+      @task.update(status: "progress")
+    elsif @task.status == "progress"
+      @task.update(status: "done")
+    elsif @task.status == "done"
+      @task.update(status: "planned")
+    end
+    if @task.status == "done"
+      @task.update(done_at: Time.now)
+    end
+    # @task.update(status: params[:status])
+    redirect_to @task, notice: "Status updated to #{@task.status}"
   end
 
   def show
