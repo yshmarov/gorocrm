@@ -1,14 +1,14 @@
 <div class="sticky-top">
   <ul class="nav flex-column bg-dark shadow rounded">
 
-    <%= sidebar_long_active_link_to tenant_path(current_tenant) do %>
-      <i class="fas fa-briefcase"></i>
-      <%= current_tenant %>
-    <% end %>
-
     <%= sidebar_long_active_link_to dashboard_path do %>
       <i class="fas fa-tachometer-alt"></i>
       <%= t 'sidebar.dashboard' %>
+    <% end %>
+
+    <%= sidebar_long_active_link_to calendar_path do %>
+      <i class="fas fa-calendar"></i>
+      <%= t 'sidebar.calendar' %>
     <% end %>
 
     <%= sidebar_long_active_link_to members_path do %>
@@ -49,6 +49,11 @@
       <div class="badge badge-info">
         <%= Payment.count %>
       </div>
+    <% end %>
+
+    <%= sidebar_long_active_link_to tenant_path(current_tenant) do %>
+      <i class="fas fa-briefcase"></i>
+      <%= current_tenant %>
     <% end %>
 
   </ul>

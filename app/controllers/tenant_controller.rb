@@ -8,6 +8,9 @@ class TenantController < ApplicationController
   def dashboard
   end
 
+  def calendar
+  end
+
   # example pages that can be here:
   # activity
   # charts and analytics

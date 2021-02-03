@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :payments
-  resources :tasks
-  resources :projects
   match "/404", via: :all, to: "errors#not_found"
   match "/500", via: :all, to: "errors#internal_server_error"
 
@@ -40,7 +37,6 @@ Rails.application.routes.draw do
       patch :switch
     end
   end
-  get "dashboard", to: "tenant#dashboard"
 
   resources :subscriptions, only: [:create, :destroy]
   resources :charges, only: [:create]
@@ -49,5 +45,11 @@ Rails.application.routes.draw do
     get :invite, on: :collection
   end
 
+  get "dashboard", to: "tenant#dashboard"
+  get "calendar", to: "tenant#calendar"
   resources :clients
+  resources :payments
+  resources :tasks
+  resources :projects
+
 end

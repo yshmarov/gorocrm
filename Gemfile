@@ -54,3 +54,5 @@ gem "devise-i18n"
 gem "stripe"
 
 gem "ransack", github: "activerecord-hackery/ransack"
+
+gem "simple_calendar", "~> 2.4"
