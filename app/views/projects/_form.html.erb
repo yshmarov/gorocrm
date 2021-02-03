@@ -7,7 +7,7 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.association :client %>
-    <%= f.input :payment_type %>
+    <%= f.input :payment_type, collection: Project.payment_types %>
     <%= f.input :price %>
   </div>
 

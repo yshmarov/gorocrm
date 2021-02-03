@@ -9,12 +9,12 @@
 <div class="card shadow">
   <div class="card-body">
     <div class="table-responsive">
-      <%= month_calendar(events: @tasks, attribute: :created_at) do |date, tasks| %>
+      <%= month_calendar(events: @tasks, attribute: :calendar_date) do |date, tasks| %>
         <%= date %>
       
         <% tasks.each do |task| %>
           <br/>
-          <%= link_to task_path(task) do %>
+          <%= link_to task_path(task), class: "badge badge-#{task.status_color}" do %>
             <%= task.name %>
           <% end %>
         <% end %>
