@@ -1,8 +1,15 @@
-<h3>
-  <div class="text-center">
-    Calendar
-  </div>
-</h3>
+<div class="text-center">
+  <h3>Calendar</h3>
+  
+  <%= form_tag calendar_path, method: :get do %>
+    <% unless params.has_key?(:member_id) %>
+      <%= select_tag :member_id, options_for_select(@members.map{|x| [x.to_s, x.id]}), {prompt: "User", onchange: "this.form.submit()"} %>
+    <% else %>  
+      <%= select_tag :member_id, options_for_select(@members.map{|x| [x.to_s, x.id]}, params[:member_id]), {prompt: "User", onchange: "this.form.submit()"} %>
+      <%= link_to "refresh", calendar_path, class: "btn btn-sm btn-secondary" %>
+    <% end %>
+  <% end %>
+</div>
 
 <br>
 
@@ -16,6 +23,8 @@
           <br/>
           <%= link_to task_path(task), class: "badge badge-#{task.status_color}" do %>
             <%= task.name %>
+            <br>
+            <%= task.member %>
           <% end %>
         <% end %>
       <% end %>
