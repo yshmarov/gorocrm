@@ -6,19 +6,23 @@
     </h4>
   </div>
   <div class="card-body">
-    
-      <strong>Name:</strong>
-      <%= @client.name %>
-    
-      <strong>Email:</strong>
-      <%= @client.email %>
-    
-      <strong>Address:</strong>
-      <%= @client.address %>
-    
-      <strong>Phone:</strong>
-      <%= @client.phone %>
-    
+  
+    <b>Name:</b>
+    <%= @client.name %>
+    <br>
+  
+    <b>Email:</b>
+    <%= @client.email %>
+    <br>
+  
+    <b>Address:</b>
+    <%= @client.address %>
+    <br>
+  
+    <b>Phone:</b>
+    <%= @client.phone %>
+    <br>
+  
   </div>
   <div class="card-footer">
     <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_client_path(@client), class: "btn btn-sm btn-warning" %>

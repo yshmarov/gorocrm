@@ -1,4 +1,9 @@
 class ClientsController < ApplicationController
+  include SetTenant # include ON TOP of controller that has to be scoped
+  include RequireTenant # no current_tenant = no access to entire controller. redirect to root
+  include SetCurrentMember # for role-based authorization. @current_member.admin?
+  include RequireActiveSubscription # no access unless tenant has an active subscription
+
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
