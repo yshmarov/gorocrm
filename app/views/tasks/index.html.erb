@@ -27,6 +27,7 @@
         
         <th>Status</th>
         <th>Done At</th>
+        <th>Tags</th>
         
         <th>Actions</th>
       </tr>
@@ -50,6 +51,7 @@
           
             <td><%= task.status %></td>
             <td><%= task.done_at %></td>
+            <td><%= task.tags.pluck(:name).join(", ") %></td>
           
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_task_path(task), class: 'btn btn-sm btn-warning' %>

@@ -38,8 +38,13 @@
     <b>Status:</b>
     <%= @task.status %>
     <br>
+
     <b>Done At:</b>
     <%= @task.done_at %>
+    <br>
+
+    <b>Tags:</b>
+    <%= @task.tags.pluck(:name).join(", ") %>
     <br>
   
   </div>

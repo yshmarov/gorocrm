@@ -22,6 +22,10 @@
     <b>Phone:</b>
     <%= @client.phone %>
     <br>
+
+    <b>Tags:</b>
+    <%= @client.tags.pluck(:name).join(", ") %>
+    <br>
   
   </div>
   <div class="card-footer">

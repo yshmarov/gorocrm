@@ -20,6 +20,7 @@
         <th>Address</th>
         
         <th>Phone</th>
+        <th>Tags</th>
         
         <th>Actions</th>
       </tr>
@@ -36,6 +37,7 @@
             <td><%= client.address %></td>
           
             <td><%= client.phone %></td>
+            <td><%= client.tags.pluck(:name).join(", ") %></td>
           
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_client_path(client), class: 'btn btn-sm btn-warning' %>

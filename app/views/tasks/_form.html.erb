@@ -12,6 +12,8 @@
     <%= f.input :urgent %>
     <%= f.input :status, collection: Task.statuses %>
     <%= f.input :done_at %>
+    <%= f.label :tags %>
+    <%= f.select :tag_ids, Tag.where(category: "task").pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" } %>
   </div>
 
   <div class="form-actions">

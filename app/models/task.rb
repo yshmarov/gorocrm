@@ -3,6 +3,9 @@ class Task < ApplicationRecord
   belongs_to :project
   belongs_to :member
   belongs_to :creator, class_name: "Member", foreign_key: :creator_id
+  has_many :taggings, as: :taggable, dependent: :destroy
+  has_many :tags, through: :taggings
+
   validates :name, :status, presence: true
   
   def to_s
