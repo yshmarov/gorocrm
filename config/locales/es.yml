@@ -133,7 +133,7 @@ es:
       ago: antes
       invitations: invitaciones
 
-  static_pages:
+  static_public:
     pricing:
       title: Precios
       subscribe: Suscribir

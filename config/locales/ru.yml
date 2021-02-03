@@ -133,7 +133,7 @@ ru:
       ago: назад
       invitations: приглашения
 
-  static_pages:
+  static_public:
     pricing:
       title: Тарифы
       subscribe: Подписаться

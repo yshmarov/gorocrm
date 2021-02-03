@@ -133,7 +133,7 @@ en:
       ago: ago
       invitations: invitations
 
-  static_pages:
+  static_public:
     pricing:
       title: Pricing
       subscribe: Subscribe
