@@ -7,4 +7,6 @@ class Payment < ApplicationRecord
     [payable_type, payable_id].join(" ")
   end
 
+  monetize :amount, as: :amount_cents
+
 end

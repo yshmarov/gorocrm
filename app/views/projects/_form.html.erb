@@ -8,7 +8,7 @@
     <%= f.input :description %>
     <%= f.association :client %>
     <%= f.input :payment_type, collection: Project.payment_types %>
-    <%= f.input :price %>
+    <%= f.input :price_cents %>
   </div>
 
   <div class="form-actions">
