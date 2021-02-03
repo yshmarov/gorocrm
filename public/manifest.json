@@ -1,12 +1,12 @@
 {
-  "name": "My Progressive Web App",
-  "short_name": "My PWA",
+  "name": "Goro CRM",
+  "short_name": "Goro CRM",
   "start_url": "/",
   "scope": "/",
   "display": "fullscreen",
   "background_color": "#fff",
   "theme_color": "#3367D6",
-  "description": "This is a sample description. Change it.",
+  "description": "Goro Legal CRM.",
   "lang": "en",
   "orientation": "portrait",
   "icons": [

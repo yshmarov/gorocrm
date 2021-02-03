@@ -5,9 +5,6 @@ class StaticPublicController < ApplicationController
   def landing_page
   end
 
-  def about
-  end
-
   def pricing
     @plans = Plan.all.order(amount: :asc)
   end

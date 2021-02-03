@@ -1,26 +1,6 @@
-# Ruby on Rails SaaS boilerplate
-
-[Gumroad course: Learn to build this app](https://gumroad.com/l/ror6saas)
-
-### Core features:
-
-1. Multitenancy - complete implementation of row-based multitenancy with acts_as_tenant
-2. Devise invitable - invite users via email
-3. Advanced oAuth - connect multiple social accounts for one user
-4. Internationalization (i18n) - whole translation guide
-5. Authorization (role-based access) without any gems
-6. ActiveStorage and AWS S3 - upload files to cloud storage
-7. Omnicontacts - feature to import google contacts
-8. Plan-based restrictions - limit access to different features
-9. Admin dashboard - build an admin interface without any gems
-10. Subscriptions engine - fully integrate the SaaS business model
-11. Stripe integration - receive subscription payments from users
-
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
-
 ### Installation Requirements 
 * ruby v 2.7.2 +
-* rails 6.0.3 +
+* rails 6.1.0 +
 * postgresql database
 * yarn
 
@@ -140,5 +120,3 @@ heroku config:set RAILS_MASTER_KEY=`cat config/master.key`
 git push heroku master
 heroku run rails db:migrate
 ```
-
-If you have troubles running the app or any questions don't hesitate to contact me at hello@corsego.com 🧐 

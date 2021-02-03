@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-purple">
+<nav class="navbar navbar-expand-lg navbar-light bg-purple">
   <% if current_user %>
     <% if current_user.tenants.include?(current_user.tenant) %>
-      <%= link_to tenant_path(current_user.tenant), class: "#{"active font-weight-bold" if ActsAsTenant.current_tenant} navbar-brand" do %>
+      <%= link_to dashboard_path, class: "#{"active font-weight-bold" if ActsAsTenant.current_tenant} navbar-brand" do %>
         <% if current_user.tenant.logo.attached? %>
           <%= image_tag current_user.tenant.logo, height: '30', alt: "logo", class: "d-inline-block align-top lazyload" %>
         <% else %>
@@ -12,8 +12,8 @@
     <% end %>
   <% else %>
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "tree yellow.png", height: '30', alt: "logo", class: "d-inline-block align-top lazyload" %>
-      CorsegoSaaS
+      <%= image_tag "favicon.png", height: '30', alt: "logo", class: "d-inline-block align-top lazyload" %>
+      GoroCRM
     <% end %>
   <% end %>
   <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">

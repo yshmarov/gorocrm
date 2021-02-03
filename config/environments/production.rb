@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = {host: "saas.corsego.com", protocol: "https"}
+  config.action_mailer.default_url_options = {host: "gorocrm.corsego.com", protocol: "https"}
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
@@ -22,7 +22,7 @@ Rails.application.configure do
     email: {
       deliver_with: :deliver,
       email_prefix: "[PREFIX] ",
-      sender_address: %("CorsegoSaaS error" <hello@corsego.com>),
+      sender_address: %("GoroCRM error" <hello@corsego.com>),
       exception_recipients: %w[yshmarov@gmail.com]
     }
 
