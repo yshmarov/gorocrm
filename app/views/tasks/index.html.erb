@@ -13,7 +13,9 @@
       <tr>
         <th>Id</th>
     	  
+        <th>Creator</th>
         <th>Project</th>
+        <th>Member</th>
         
         <th>Name</th>
         
@@ -34,7 +36,9 @@
         <%= content_tag :tr, id: dom_id(task), class: dom_class(task) do %>
           <td><%= link_to task.id, task %></td>
           
+            <td><%= task.creator %></td>
             <td><%= task.project %></td>
+            <td><%= task.member %></td>
           
             <td><%= task.name %></td>
           

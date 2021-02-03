@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   acts_as_tenant(:tenant)
   belongs_to :project
+  belongs_to :member
+  belongs_to :creator, class_name: "Member", foreign_key: :creator_id
   validates :name, :status, presence: true
   
   def to_s
