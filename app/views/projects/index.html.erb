@@ -22,6 +22,7 @@
         <th>Payment type</th>
         
         <th>Price</th>
+        <th>Tags</th>
         
         <th>Actions</th>
       </tr>
@@ -40,6 +41,7 @@
             <td><%= project.payment_type %></td>
           
             <td><%= project.price_cents %></td>
+            <td><%= project.tags.pluck(:name).join(", ") %></td>
           
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_project_path(project), class: 'btn btn-sm btn-warning' %>

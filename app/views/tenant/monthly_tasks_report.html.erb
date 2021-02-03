@@ -1,0 +1,32 @@
+<div class="text-center">
+  <h4>
+    monthly tasks report
+  </h4>
+</div>
+<hr/>
+<%= form_tag monthly_tasks_report_path, method: :get do %>
+  <% unless params[:member].present? %>
+    <div class="form-inline">
+      <%= select_tag :member, options_for_select(@members.map{|c| [c.to_s, c.id]}), { prompt: t('sidebar.members'), onchange: 'this.form.submit()' } %>
+      <%= select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'}) %>
+      <%= select_year(Date.today, {:start_year => DateTime.now.year,:end_year => 2016, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'}) %>
+    </div>
+  <% else %>
+    <div class="form-inline">
+      <%= select_tag :member, options_for_select(@members.map{|c| [c.to_s, c.id]}, params[:member]), { prompt: t('sidebar.members'), onchange: 'this.form.submit()' } %>
+      <%= select_month(@start_date, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'}) %>
+      <%= select_year(@start_date, {:start_year => DateTime.now.year,:end_year => 2016, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'}) %>
+      <%= link_to 'refresh', monthly_tasks_report_path, class: "btn btn-sm btn-secondary" %>
+    </div>
+    <hr/>
+    <b>Member:</b>
+    <%= @member %>
+    <div class="row"></div>
+    <b>Total Tasks:</b>
+    <%= @tasks.count %>
+    <div class="row"></div>
+    <b>Tasks Done:</b>
+    <%= @tasks.done.count %>
+    <div class="row"></div>
+  <% end %>
+<% end %>

@@ -7,6 +7,10 @@ class Task < ApplicationRecord
   has_many :tags, through: :taggings
 
   validates :name, :status, presence: true
+
+  scope :planned, -> { where(status: "planned") }
+  scope :progress, -> { where(status: "progress") }
+  scope :done, -> { where(status: "done") }
   
   def to_s
     name

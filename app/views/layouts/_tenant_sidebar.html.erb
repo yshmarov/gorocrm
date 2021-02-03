@@ -11,14 +11,6 @@
       <%= t 'sidebar.calendar' %>
     <% end %>
 
-    <%= sidebar_long_active_link_to members_path do %>
-      <i class="fas fa-users"></i>
-      <%= t 'sidebar.members' %>
-      <div class="badge badge-info">
-        <%= Member.count %>
-      </div>
-    <% end %>
-
     <%= sidebar_long_active_link_to clients_path do %>
       <i class="far fa-address-book"></i>
       <%= t 'sidebar.clients' %>
@@ -48,6 +40,14 @@
       <%= t 'sidebar.payments' %>
       <div class="badge badge-info">
         <%= Payment.count %>
+      </div>
+    <% end %>
+
+    <%= sidebar_long_active_link_to members_path do %>
+      <i class="fas fa-users"></i>
+      <%= t 'sidebar.members' %>
+      <div class="badge badge-info">
+        <%= Member.count %>
       </div>
     <% end %>
 

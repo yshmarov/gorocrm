@@ -50,6 +50,6 @@ class ProjectsController < ApplicationController
 
     def project_params
       params.require(:project).permit(:name, :description, :client_id, 
-        :payment_type, :price, :price_cents)
+        :payment_type, :price, :price_cents, tag_ids: [])
     end
 end

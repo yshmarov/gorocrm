@@ -1,14 +1,14 @@
-<div class= "card card-body text-center">
+<div class= "card shadow">
+  <div class= "card-body">
+    <h3 class= "text-center">
+      <b>
+        <%= current_tenant %>
+        dashboard
+      </b>
+    </h3>
+    
+    <hr>
   
-  <h3>
-    <b>
-      <%= current_tenant %>
-      dashboard
-    </b>
-  </h3>
-  
-  <hr>
-
-  what goes here is up to you
-
+    <%= link_to "Monthly Tasks Report", monthly_tasks_report_path, class: "btn btn-sm btn-info" %>
+  </div>
 </div>

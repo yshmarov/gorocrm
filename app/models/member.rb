@@ -1,23 +1,7 @@
-# == Schema Information
-#
-# Table name: members
-#
-#  id         :bigint           not null, primary key
-#  user_id    :bigint           not null
-#  tenant_id  :bigint           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  roles      :jsonb            not null
-#  slug       :string
-#
 class Member < ApplicationRecord
   belongs_to :user, counter_cache: true
-  # User.find_each { |x| User.reset_counters(x.id, :members) }
-  # Tenant.find_each { |x| Tenant.reset_counters(x.id, :members) }
-  # belongs_to :tenant #acts_as_tenant includes this
-  # acts_as_tenant(:tenant, counter_cache: true)
   acts_as_tenant :tenant, counter_cache: true
-  # validates_uniqueness_to_tenant :user_id
+  has_many :tasks
 
   validates :tenant_id, presence: true
   validates_uniqueness_of :user_id, scope: :tenant_id
@@ -30,12 +14,8 @@ class Member < ApplicationRecord
 
   # List member roles
   ROLES = [:admin, :partner, :employee]
-  # Member.find(13).update_attributes!(admin: true) #add admin in console
-
-  # json column to store roles
   store_accessor :roles, *ROLES
 
-  # boolean roles
   ROLES.each do |role|
     scope role, -> { where("roles @> ?", {role => true}.to_json) }
     define_method(:"#{role}=") { |value| super ActiveRecord::Type::Boolean.new.cast(value) }
@@ -46,7 +26,6 @@ class Member < ApplicationRecord
     ROLES.select { |role| send(:"#{role}?") }.compact
   end
 
-  # role validation
   validate :must_have_a_role, on: :update
   validate :must_have_an_admin
 
