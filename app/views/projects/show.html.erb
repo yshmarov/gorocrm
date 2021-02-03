@@ -28,7 +28,7 @@
     <br>
 
     <b>Tags:</b>
-    <%= @project.tags.pluck(:name).join(", ") %>
+    <%= render 'tags/tags', model: @project %>
     <br>
   
   </div>

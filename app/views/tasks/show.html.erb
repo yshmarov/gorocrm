@@ -44,12 +44,7 @@
     <br>
 
     <b>Tags:</b>
-    <%= @task.tags.pluck(:name).join(", ") %>
-    <% @task.tags.each do |tag| %>
-      <div class="badge badge-info">
-        <%= tag.name %>
-      </div>
-    <% end %>
+    <%= render 'tags/tags', model: @task %>
     <br>
   
   </div>

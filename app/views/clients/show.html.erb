@@ -24,7 +24,7 @@
     <br>
 
     <b>Tags:</b>
-    <%= @client.tags.pluck(:name).join(", ") %>
+    <%= render 'tags/tags', model: @client %>
     <br>
   
   </div>

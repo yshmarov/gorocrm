@@ -11,7 +11,9 @@ class Task < ApplicationRecord
   scope :planned, -> { where(status: "planned") }
   scope :progress, -> { where(status: "progress") }
   scope :done, -> { where(status: "done") }
-  
+  # scope :mine, -> { where(member: current_user.member) }
+  # scope :overdue, -> { where(status: "done").where("deadline < ?", Time.zone.now) }  
+
   def to_s
     name
   end

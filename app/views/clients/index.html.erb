@@ -37,7 +37,7 @@
             <td><%= client.address %></td>
           
             <td><%= client.phone %></td>
-            <td><%= client.tags.pluck(:name).join(", ") %></td>
+            <td><%= render 'tags/tags', model: client %></td>
           
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_client_path(client), class: 'btn btn-sm btn-warning' %>
