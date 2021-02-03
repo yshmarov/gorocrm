@@ -1,0 +1,24 @@
+<% model_class = Tag %>
+<div class="card shadow">
+  <div class="card-header">
+    <h4>
+      Tag
+    </h4>
+  </div>
+  <div class="card-body">
+  
+    <b>Name:</b>
+    <%= @tag.name %>
+    <br>
+  
+    <b>category:</b>
+    <%= @tag.category %>
+    <br>
+  
+  </div>
+  <div class="card-footer">
+    <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_tag_path(@tag), class: "btn btn-sm btn-warning" %>
+    <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, @tag, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, tags_path, class: "btn btn-sm btn-secondary" %>
+  </div>
+</div>

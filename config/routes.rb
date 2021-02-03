@@ -51,5 +51,6 @@ Rails.application.routes.draw do
   resources :payments
   resources :tasks
   resources :projects
+  resources :tags
 
 end

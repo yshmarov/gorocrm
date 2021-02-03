@@ -51,6 +51,14 @@
       </div>
     <% end %>
 
+    <%= sidebar_long_active_link_to tags_path do %>
+      <i class="fa fa-tags"></i>
+      <%= t 'sidebar.tags' %>
+      <div class="badge badge-info">
+        <%= Tag.count %>
+      </div>
+    <% end %>
+
     <%= sidebar_long_active_link_to tenant_path(current_tenant) do %>
       <i class="fas fa-briefcase"></i>
       <%= current_tenant %>

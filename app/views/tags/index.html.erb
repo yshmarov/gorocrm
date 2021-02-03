@@ -1,0 +1,42 @@
+<h3>
+  <div class="text-center">
+    Tags
+    <div class="badge badge-info">
+      <%= @tags.count %>
+    </div>
+    <%= link_to t('.new', default: t("helpers.links.new")), new_tag_path, class: 'btn btn-primary' %>
+  </div>
+</h3>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
+    <thead>
+      <tr>
+        <th>Id</th>
+    	  
+        <th>Name</th>
+        
+        <th>category</th>
+        
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tags.each do |tag| %>
+        <%= content_tag :tr, id: dom_id(tag), class: dom_class(tag) do %>
+          <td><%= link_to tag.id, tag %></td>
+          
+            <td><%= tag.name %></td>
+          
+            <td><%= tag.category %></td>
+          
+          <td>
+            <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_tag_path(tag), class: 'btn btn-sm btn-warning' %>
+            <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, tag, method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
