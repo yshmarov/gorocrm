@@ -27,6 +27,7 @@
         
         <th>Status</th>
         <th>Done At</th>
+        <th>Duration Minutes</th>
         <th>Tags</th>
         
         <th>Actions</th>
@@ -51,6 +52,7 @@
           
             <td><%= status_label(task.status) %></td>
             <td><%= task.done_at %></td>
+            <td><%= task.duration_minutes %></td>
             <td><%= render 'tags/tags', model: task %></td>
           
           <td>

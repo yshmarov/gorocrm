@@ -139,6 +139,7 @@ ru:
         deadline: дедлайн
         urgent: срочность
         status: статус
+        duration_minutes: длительность (минут)
         done_at: дата выполнения
       payment: 
         id: код
