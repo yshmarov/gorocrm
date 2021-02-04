@@ -18,6 +18,7 @@
         <th>Amount</th>
         
         <th>Description</th>
+        <th>Tags</th>
         
         <th>Actions</th>
       </tr>
@@ -32,6 +33,7 @@
             <td><%= payment.amount_cents %></td>
           
             <td><%= payment.description %></td>
+            <td><%= render 'tags/tags', model: client %></td>
           
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_payment_path(payment), class: 'btn btn-sm btn-warning' %>

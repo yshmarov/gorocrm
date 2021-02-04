@@ -50,6 +50,6 @@ class PaymentsController < ApplicationController
 
     def payment_params
       params.require(:payment).permit(:payable_id, :payable_type, :amount,
-        :description, :amount_cents)
+        :description, :amount_cents, tag_ids: [])
     end
 end

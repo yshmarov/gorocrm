@@ -18,6 +18,10 @@
     <b>Description:</b>
     <%= @payment.description %>
     <br>
+
+    <b>Tags:</b>
+    <%= render 'tags/tags', model: @payment %>
+    <br>
   
   </div>
   <div class="card-footer">
