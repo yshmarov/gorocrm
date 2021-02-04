@@ -11,5 +11,15 @@
   
     <%= link_to "Monthly Tasks Report", monthly_tasks_report_path, class: "btn btn-sm btn-info" %>
     <%= link_to "Feed", feed_path, class: "btn btn-sm btn-info" %>
+    <%= link_to "Charts", charts_path, class: "btn btn-sm btn-info" %>
+
+    <%= link_to tags_path, class: "btn btn-sm btn-info" do %>
+      <i class="fa fa-tags"></i>
+      <%= t 'sidebar.tags' %>
+      <div class="badge badge-primary">
+        <%= Tag.count %>
+      </div>
+    <% end %>
+
   </div>
 </div>

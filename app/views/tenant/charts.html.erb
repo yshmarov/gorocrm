@@ -1,0 +1,25 @@
+<div class= "card shadow">
+  <div class= "card-body">
+    <h3 class= "text-center">
+      <b>
+        Payments/day quantity
+      </b>
+    </h3>
+    
+    <%= line_chart Payment.group_by_day(:created_at).count %>
+  </div>
+</div>
+
+<br>
+
+<div class= "card shadow">
+  <div class= "card-body">
+    <h3 class= "text-center">
+      <b>
+        Payments/day sum
+      </b>
+    </h3>
+    
+    <%= line_chart Payment.group_by_day(:created_at).sum("amount/100") %>
+  </div>
+</div>

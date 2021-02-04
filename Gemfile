@@ -59,3 +59,5 @@ gem "simple_calendar", "~> 2.4"
 gem 'money-rails', '~>1.12'
 gem 'public_activity'
 gem 'pagy', '~> 3.5'
+gem "chartkick"
+gem 'groupdate'
