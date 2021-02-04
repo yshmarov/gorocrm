@@ -206,6 +206,11 @@ GEM
     parser (3.0.0.0)
       ast (~> 2.4.1)
     pg (1.2.3)
+    public_activity (1.6.4)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
     puma (4.3.7)
       nio4r (~> 2.0)
     racc (1.5.2)
@@ -350,6 +355,7 @@ DEPENDENCIES
   omniauth-twitter
   omnicontacts
   pg (>= 0.18, < 2.0)
+  public_activity
   puma (~> 4.1)
   rails (~> 6.1.0)
   rails-i18n (~> 6.0.0)

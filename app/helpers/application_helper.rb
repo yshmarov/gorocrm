@@ -114,4 +114,31 @@ module ApplicationHelper
       link_to t("header.register"), new_user_registration_path, class: "btn btn-xl btn-success"
     end
   end
+
+  # activity feed
+  def crud_label(key)
+    case key
+      when "create"
+        "<i class='fa fa-plus'></i>".html_safe
+      when "update"
+        "<i class='fa fa-pen'></i>".html_safe
+      when "destroy"
+        "<i class='fa fa-trash'></i>".html_safe
+    end
+  end
+
+  # activity feed
+  def model_label(model)
+    case model
+      when "Client"
+        "<i class='fa fa-address-book'></i>".html_safe
+      when "Project"
+        "<i class='fa fa-tasks'></i>".html_safe
+      when "Task"
+        "<i class='fa fa-check-square'></i>".html_safe
+      when "Payment"
+        "<i class='fa fa-money-bill'></i>".html_safe
+    end
+  end
+
 end

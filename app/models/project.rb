@@ -17,4 +17,8 @@ class Project < ApplicationRecord
     name
   end
 
+  include PublicActivity::Model
+  tracked owner: proc { |controller, model| controller.current_user }
+  tracked tenant_id: proc { ActsAsTenant.current_tenant.id }
+
 end

@@ -9,4 +9,8 @@ class Payment < ApplicationRecord
 
   monetize :amount, as: :amount_cents
 
+  include PublicActivity::Model
+  tracked owner: proc { |controller, model| controller.current_user }
+  tracked tenant_id: proc { ActsAsTenant.current_tenant.id }
+
 end

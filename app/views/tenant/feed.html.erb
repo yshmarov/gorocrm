@@ -1,0 +1,45 @@
+<div class="text-center">
+    <h3>
+      Activity
+      <div class="badge badge-info">
+        <%= @activities.count %>
+      </div>
+    </h3>
+</div>
+
+<ul class="list-group shadow">
+  <% @activities.each do |activity| %>
+    <li class="list-group-item">
+      <%= activity.created_at.strftime('%d/%b/%Y, %H:%M') %>
+      (<%=time_ago_in_words(activity.created_at)%> <%= t("users.show.ago") %>)
+
+      <% if activity.trackable_type == "Client" %>
+      <% elsif activity.trackable_type == "Project" %>
+      <% elsif activity.trackable_type == "Task" %>
+      <% elsif activity.trackable_type == "Payment" %>
+      <% end %>
+
+
+      <% if activity.trackable.present? %>
+        <%= link_to activity.trackable do %>
+          <%= model_label(activity.trackable_type) %>
+          <%= activity.trackable_type %>
+          <%= activity.trackable %>
+        <% end %>
+      <% else %>
+        that was deleted
+      <% end %>
+      <%= crud_label(activity.key.match(/\.(.*)/)[1]) %>
+
+      by
+      <% if activity.owner.present? %>
+        <%= link_to activity.owner, user_path(activity.owner) %>
+      <% else %>
+        a deleted user
+      <% end %>
+      <% if activity.parameters.any? %>
+        <%= activity.parameters %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
