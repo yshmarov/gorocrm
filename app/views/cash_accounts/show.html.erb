@@ -1,0 +1,24 @@
+<% model_class = CashAccount %>
+<div class="card shadow">
+  <div class="card-header">
+    <h4>
+      Cash_account
+    </h4>
+  </div>
+  <div class="card-body">
+  
+    <b>Name:</b>
+    <%= @cash_account.name %>
+    <br>
+  
+    <b>Balance:</b>
+    <%= @cash_account.balance_cents %>
+    <br>
+  
+  </div>
+  <div class="card-footer">
+    <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_cash_account_path(@cash_account), class: "btn btn-sm btn-warning" %>
+    <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, @cash_account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, cash_accounts_path, class: "btn btn-sm btn-secondary" %>
+  </div>
+</div>

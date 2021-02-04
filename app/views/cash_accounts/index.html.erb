@@ -1,0 +1,42 @@
+<h3>
+  <div class="text-center">
+    Cash_accounts
+    <div class="badge badge-info">
+      <%= @cash_accounts.count %>
+    </div>
+    <%= link_to t('.new', default: t("helpers.links.new")), new_cash_account_path, class: 'btn btn-primary' %>
+  </div>
+</h3>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
+    <thead>
+      <tr>
+        <th>Id</th>
+    	  
+        <th>Name</th>
+        
+        <th>Balance</th>
+        
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cash_accounts.each do |cash_account| %>
+        <%= content_tag :tr, id: dom_id(cash_account), class: dom_class(cash_account) do %>
+          <td><%= link_to cash_account.id, cash_account %></td>
+          
+            <td><%= cash_account.name %></td>
+          
+            <td><%= cash_account.balance_cents %></td>
+          
+          <td>
+            <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_cash_account_path(cash_account), class: 'btn btn-sm btn-warning' %>
+            <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, cash_account, method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

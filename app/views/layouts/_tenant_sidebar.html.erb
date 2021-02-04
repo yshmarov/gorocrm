@@ -51,6 +51,14 @@
       </div>
     <% end %>
 
+    <%= sidebar_long_active_link_to cash_accounts_path do %>
+      <i class="fa fa-piggy-bank"></i>
+      <%= t 'sidebar.cash_accounts' %>
+      <div class="badge badge-info">
+        <%= Tag.count %>
+      </div>
+    <% end %>
+
     <%= sidebar_long_active_link_to tags_path do %>
       <i class="fa fa-tags"></i>
       <%= t 'sidebar.tags' %>

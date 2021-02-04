@@ -1,0 +1,16 @@
+<% model_class = CashAccount %>
+<div class="card shadow">
+  <div class="card-header">
+    <h4>
+      <%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %>
+      Cash_account
+    </h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', cash_account: @cash_account %>
+  </div>
+  <div class="card-footer">
+    <%= link_to t(".back", default: t("helpers.links.back")).capitalize, @cash_account, class: "btn btn-sm btn-secondary" %>
+  </div>
+</div>
+
