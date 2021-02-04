@@ -12,15 +12,13 @@
     <thead>
       <tr>
         <th>Id</th>
-    	  
         <th>Name</th>
-        
         <th>Email</th>
-        
         <th>Address</th>
-        
         <th>Phone</th>
+
         <th>Balance</th>
+
         <th>Tags</th>
         
         <th>Actions</th>
@@ -32,13 +30,12 @@
           <td><%= link_to client.id, client %></td>
           
             <td><%= client.name %></td>
-          
             <td><%= client.email %></td>
-          
             <td><%= client.address %></td>
-          
             <td><%= client.phone %></td>
+
             <td><%= client.balance_cents %></td>
+
             <td><%= render 'tags/tags', model: client %></td>
           
           <td>

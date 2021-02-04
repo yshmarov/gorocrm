@@ -22,6 +22,7 @@
         <th>Payment type</th>
         
         <th>Price</th>
+        <th>Tasks Count</th>
         <th>Tags</th>
         
         <th>Actions</th>
@@ -41,6 +42,7 @@
             <td><%= project.payment_type %></td>
           
             <td><%= project.price_cents %></td>
+            <td><%= project.tasks_count %></td>
             <td><%= render 'tags/tags', model: project %></td>
           
           <td>

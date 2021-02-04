@@ -12,6 +12,7 @@ class CashAccount < ApplicationRecord
 
   def to_s
     name
+    # name.to_s + " (" + balance_cents.to_s + ")"
   end
 
   after_touch do

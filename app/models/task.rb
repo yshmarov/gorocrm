@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   acts_as_tenant(:tenant)
-  belongs_to :project
-  belongs_to :member
+  belongs_to :project, counter_cache: true
+  belongs_to :member, counter_cache: true
   belongs_to :creator, class_name: "Member", foreign_key: :creator_id
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings

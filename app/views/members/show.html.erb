@@ -16,6 +16,12 @@
     <strong><%= model_class.human_attribute_name(:roles).capitalize %>:</strong>
     <%= @member.active_roles.join(", ") %>
     <br>
+    <strong><%= model_class.human_attribute_name(:tasks_count).capitalize %>:</strong>
+    <%= @member.tasks_count %>
+    <br>
+    <strong><%= model_class.human_attribute_name(:payments_count).capitalize %>:</strong>
+    <%= @member.payments_count %>
+    <br>
     <strong><%= model_class.human_attribute_name(:balance).capitalize %>:</strong>
     <%= @member.balance_cents %>
   </div>
