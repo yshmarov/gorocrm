@@ -8,15 +8,15 @@
   <div class="card-body">
   
     <b>Creator:</b>
-    <%= @task.creator %>
+    <%= link_to @task.creator, @task.creator %>
     <br>
 
     <b>Project:</b>
-    <%= @task.project %>
+    <%= link_to @task.project, @task.project %>
     <br>
 
     <b>Member:</b>
-    <%= @task.member %>
+    <%= link_to @task.member, @task.member %>
     <br>
   
     <b>Name:</b>
