@@ -31,17 +31,27 @@ ru:
 
   sidebar:
     dashboard: Главная
-    members: Участники
-    contacts: Контакты
+    members: Сотрудники
+    clients: Клиенты
+    tags: Теги
+    projects: Проекты
+    tasks: Задачи
+    payments: Оплаты
 
   activerecord:
     models:
       tenant: Организация
       user: Пользователь
-      member: Участник
+      member: Сотрудник
       subscription: Подписка 
       plan: Тариф
       charge: Оплата
+      client: Клиент
+      tag: Тег
+      project: Проект
+      task: Задача
+      payment: Оплата
+
     attributes:
       subscription:
         subscription: подписка
@@ -57,7 +67,7 @@ ru:
         amount: сумма
         currency: валюта
         interval: промежуток
-        max_members: макс. кол. участников
+        max_members: макс. кол. сотрудников
       charge: 
         id: код
         metadata: подробности
@@ -73,8 +83,8 @@ ru:
         charges: оплаты
         logo: логотип
         users: пользователи
-        members: участники
-        members_count: кол. участников
+        members: сотрудники
+        members_count: кол. сотрудников
       user:
         id: код
         email: email
@@ -85,7 +95,7 @@ ru:
         tenant: организация
         language: язык
         tenant_id: код организации
-        members_count: кол. участников
+        members_count: кол. сотрудников
         identities: соц. личности
         superadmin: админ
         confirmed: подтверждён
@@ -96,6 +106,49 @@ ru:
         tenant: организация
         roles: роли
         invitation: приглашение
+      client: 
+        id: код
+        tags: теги
+        actions: действия
+        name: имя
+        email: email
+        address: адрес
+        phone: тел
+      tag: 
+        id: код
+        actions: действия
+      project: 
+        id: код
+        tags: теги
+        actions: действия
+        name: название
+        description: описание
+        client: клиент
+        payment_type: тип оплаты
+        price: тариф
+        price_cents: тариф
+      task: 
+        id: код
+        tags: теги
+        actions: действия
+        creator: создатель
+        project: проект
+        member: сотрудник
+        name: название
+        description: описание
+        deadline: дедлайн
+        urgent: срочность
+        status: статус
+        done_at: дата выполнения
+      payment: 
+        id: код
+        tags: теги
+        actions: действия
+        payable_type: тип плательщика
+        payable_id: плательщик
+        amount: сумма
+        amount_cents: сумма
+        description: описание
 
   tenants:
     show:
@@ -120,8 +173,8 @@ ru:
 
   members:
     index:
-     max_members_for_subscription_reached: Достигнуто макс. кол. участников в организации для Вашего тарифа
-     only_admin_can_invite_members: Только админ может приглашать участников
+     max_members_for_subscription_reached: Достигнуто макс. кол. сотрудников в организации для Вашего тарифа
+     only_admin_can_invite_members: Только админ может приглашать сотрудников
      invite: Пригласить
      resend_invitation: Пригласить снова
 
