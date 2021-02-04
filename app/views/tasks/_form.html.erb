@@ -10,7 +10,7 @@
     <%= f.input :description %>
     <%= f.input :deadline, as: :date, html5: true %>
     <%= f.input :urgent %>
-    <%= f.input :status, collection: Task.statuses %>
+    <%= f.input :status, collection: Task.statuses, include_blank: false %>
     <%= f.input :done_at, as: :date, html5: true %>
     <%= f.input :duration_minutes %>
     <%= f.label :tags %>

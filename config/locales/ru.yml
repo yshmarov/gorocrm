@@ -37,6 +37,7 @@ ru:
     projects: Проекты
     tasks: Задачи
     payments: Оплаты
+    cash_accounts: Счета
 
   activerecord:
     models:
@@ -51,6 +52,7 @@ ru:
       project: Проект
       task: Задача
       payment: Оплата
+      cash_account: Счёт
 
     attributes:
       subscription:
@@ -106,6 +108,7 @@ ru:
         tenant: организация
         roles: роли
         invitation: приглашение
+        balance: баланс
       client: 
         id: код
         tags: теги
@@ -114,6 +117,7 @@ ru:
         email: email
         address: адрес
         phone: тел
+        balance: баланс
       tag: 
         id: код
         actions: действия
@@ -150,6 +154,11 @@ ru:
         amount: сумма
         amount_cents: сумма
         description: описание
+      cash_account:
+        id: код
+        actions: действия
+        balance: баланс
+        name: название
 
   tenants:
     show:
