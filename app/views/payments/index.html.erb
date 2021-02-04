@@ -4,7 +4,8 @@
     <div class="badge badge-info">
       <%= @payments.count %>
     </div>
-    <%= link_to t('.new', default: t("helpers.links.new")), new_payment_path, class: 'btn btn-primary' %>
+    <%= link_to "Client Payment", new_payment_path(payable_type: "Client"), class: 'btn btn-primary' %>
+    <%= link_to "Member Payment", new_payment_path(payable_type: "Member"), class: 'btn btn-primary' %>
   </div>
 </h3>
 <div class="table-responsive">
@@ -28,12 +29,12 @@
         <%= content_tag :tr, id: dom_id(payment), class: dom_class(payment) do %>
           <td><%= link_to payment.id, payment %></td>
           
-            <td><%= payment.payable %></td>
+            <td><%= link_to payment.payable, payment.payable %></td>
           
             <td><%= payment.amount_cents %></td>
           
             <td><%= payment.description %></td>
-            <td><%= render 'tags/tags', model: client %></td>
+            <td><%= render 'tags/tags', model: payment %></td>
           
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_payment_path(payment), class: 'btn btn-sm btn-warning' %>
