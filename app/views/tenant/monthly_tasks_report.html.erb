@@ -27,12 +27,20 @@
     <hr/>
     <b>Member:</b>
     <%= @member %>
-    <div class="row"></div>
+    <br>
+    <b>Project:</b>
+    <%= @project %>
+    <br>
+    <b>Client:</b>
+    <%= @client %>
+    <br>
     <b>Total Tasks:</b>
     <%= @tasks.count %>
-    <div class="row"></div>
+    <br>
     <b>Tasks Done:</b>
     <%= @tasks.done.count %>
-    <div class="row"></div>
+    <br>
+    <b>Hours Spent:</b>
+    <%= time_conversion(@minutes_spent) %>
   <% end %>
 <% end %>

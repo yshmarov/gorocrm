@@ -142,4 +142,10 @@ module ApplicationHelper
     end
   end
 
+  def time_conversion(minutes)
+    hours = minutes / 60
+    rest = minutes % 60
+    "#{hours}h #{rest}min"
+  end
+
 end

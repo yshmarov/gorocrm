@@ -47,6 +47,7 @@ class TenantController < ApplicationController
       end
 
       @tasks = tasks.all
+      @minutes_spent = @tasks.map(&:duration_minutes).sum
     end
   end
 
