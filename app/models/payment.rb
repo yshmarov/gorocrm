@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   acts_as_tenant(:tenant)
   belongs_to :payable, polymorphic: true
-  belongs_to :cash_account
+  belongs_to :cash_account, touch: true
   validates :amount, presence: true
 
   def to_s

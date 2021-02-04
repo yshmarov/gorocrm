@@ -14,4 +14,9 @@ class CashAccount < ApplicationRecord
     name
   end
 
+  after_touch do
+    # update balance
+    update_column :balance, payments.map(&:amount).sum
+  end
+
 end
