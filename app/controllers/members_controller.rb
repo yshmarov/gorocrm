@@ -59,8 +59,11 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    @member.destroy
-    redirect_to members_url, notice: "Member was successfully destroyed."
+    if @member.destroy
+      redirect_to members_url, notice: "Member was successfully destroyed."
+    else
+      redirect_to members_url, alert: "Member has associations. Can not be destroyed."
+    end
   end
 
   private

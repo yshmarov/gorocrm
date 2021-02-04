@@ -39,8 +39,11 @@ class ClientsController < ApplicationController
   end
 
   def destroy
-    @client.destroy
-    redirect_to clients_url, notice: 'Client was successfully destroyed.'
+    if @client.destroy
+      redirect_to clients_url, notice: 'Client was successfully destroyed.'
+    else
+      redirect_to clients_url, alert: 'Client has associations. Can not be destroyed.'
+    end
   end
 
   private

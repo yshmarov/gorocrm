@@ -1,7 +1,8 @@
 class Member < ApplicationRecord
   belongs_to :user, counter_cache: true
   acts_as_tenant :tenant, counter_cache: true
-  has_many :tasks
+  has_many :tasks, dependent: :restrict_with_error
+  has_many :payments, as: :payable, dependent: :restrict_with_error
 
   validates :tenant_id, presence: true
   validates_uniqueness_of :user_id, scope: :tenant_id

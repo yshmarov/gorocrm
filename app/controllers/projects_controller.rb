@@ -39,8 +39,11 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.destroy
-    redirect_to projects_url, notice: 'Project was successfully destroyed.'
+    if @project.destroy
+      redirect_to projects_url, notice: 'Project was successfully destroyed.'
+    else
+      redirect_to projects_url, alert: 'Project has associations. Can not be destroyed.'
+    end
   end
 
   private

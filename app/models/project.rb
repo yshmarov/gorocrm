@@ -3,6 +3,7 @@ class Project < ApplicationRecord
   belongs_to :client
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :tasks, dependent: :restrict_with_error
 
   validates :client, :payment_type, :name, presence: true
 
