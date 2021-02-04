@@ -14,10 +14,10 @@
       <tr>
         <th>Id</th>
     	  
+        <th>CashAccount</th>
         <th>Payable</th>
         
         <th>Amount</th>
-        <th>CashAccount</th>
         
         <th>Description</th>
         <th>Tags</th>
@@ -30,10 +30,10 @@
         <%= content_tag :tr, id: dom_id(payment), class: dom_class(payment) do %>
           <td><%= link_to payment.id, payment %></td>
           
+            <td><%= link_to payment.cash_account, payment.cash_account %></td>
             <td><%= link_to payment.payable, payment.payable %></td>
           
             <td><%= payment.amount_cents %></td>
-            <td><%= link_to payment.cash_account, payment.cash_account %></td>
           
             <td><%= payment.description %></td>
             <td><%= render 'tags/tags', model: payment %></td>
