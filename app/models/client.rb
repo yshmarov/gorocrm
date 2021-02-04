@@ -8,6 +8,8 @@ class Client < ApplicationRecord
 
   validates :name, :email, presence: true
 
+  monetize :balance, as: :balance_cents
+
   def to_s
     name
   end
@@ -15,5 +17,10 @@ class Client < ApplicationRecord
   include PublicActivity::Model
   tracked owner: proc { |controller, model| controller.current_user }
   tracked tenant_id: proc { ActsAsTenant.current_tenant.id }
+
+  after_touch do
+    # update balance
+    update_column :balance, payments.map(&:amount).sum
+  end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_191144) do
+ActiveRecord::Schema.define(version: 2021_02_04_193612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_191144) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "tenant_id", null: false
+    t.integer "balance", default: 0, null: false
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end
 
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_191144) do
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "roles", default: {}, null: false
     t.string "slug"
+    t.integer "balance", default: 0, null: false
     t.index ["roles"], name: "index_members_on_roles", using: :gin
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"

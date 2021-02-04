@@ -7,11 +7,19 @@ class Member < ApplicationRecord
   validates :tenant_id, presence: true
   validates_uniqueness_of :user_id, scope: :tenant_id
 
+  monetize :balance, as: :balance_cents
+
   def to_s
     user.email.to_s
   end
+
   extend FriendlyId
   friendly_id :to_s, use: :slugged
+
+  after_touch do
+    # update balance
+    update_column :balance, payments.map(&:amount).sum
+  end
 
   # List member roles
   ROLES = [:admin, :partner, :employee]
