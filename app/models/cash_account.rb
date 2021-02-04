@@ -1,6 +1,6 @@
 class CashAccount < ApplicationRecord
   acts_as_tenant(:tenant)
-  has_many :payments
+  has_many :payments, dependent: :restrict_with_error
 
   validates :name, presence: true, uniqueness: true
 

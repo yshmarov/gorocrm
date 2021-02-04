@@ -39,8 +39,11 @@ class CashAccountsController < ApplicationController
   end
 
   def destroy
-    @cash_account.destroy
-    redirect_to cash_accounts_url, notice: 'Cash account was successfully destroyed.'
+    if @cash_account.destroy
+      redirect_to cash_accounts_url, notice: 'Cash account was successfully destroyed.'
+    else
+      redirect_to cash_accounts_url, alert: 'Cash account payments. Can not be destroyed.'
+    end
   end
 
   private
