@@ -27,6 +27,8 @@
           <%= activity.trackable %>
         <% end %>
       <% else %>
+        <%= model_label(activity.trackable_type) %>
+        <%= activity.trackable_type %>
         that was deleted
       <% end %>
       <%= crud_label(activity.key.match(/\.(.*)/)[1]) %>
@@ -43,3 +45,4 @@
     </li>
   <% end %>
 </ul>
+<%== pagy_bootstrap_nav(@pagy) %>

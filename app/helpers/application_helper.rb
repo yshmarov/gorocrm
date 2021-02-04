@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
 
   def dark_mode_helper
     if cookies[:theme] == "light"
