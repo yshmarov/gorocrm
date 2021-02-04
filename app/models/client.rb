@@ -4,6 +4,7 @@ class Client < ApplicationRecord
   has_many :tags, through: :taggings
   has_many :projects, dependent: :restrict_with_error
   has_many :payments, as: :payable, dependent: :restrict_with_error
+  # has_many :tasks, through: :projects
 
   validates :name, :email, presence: true
 
