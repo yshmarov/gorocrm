@@ -4,6 +4,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <%= f.association :cash_account %>
     <%= f.input :payable_type, input_html: {value: @payment.payable_type || params[:payable_type]}, as: :hidden %>
     <% if @payment.payable_type.present? %>
     <%= f.input :payable_id, collection: @payment.payable_type.classify.constantize.all %>

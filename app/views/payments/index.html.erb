@@ -17,6 +17,7 @@
         <th>Payable</th>
         
         <th>Amount</th>
+        <th>CashAccount</th>
         
         <th>Description</th>
         <th>Tags</th>
@@ -32,6 +33,7 @@
             <td><%= link_to payment.payable, payment.payable %></td>
           
             <td><%= payment.amount_cents %></td>
+            <td><%= link_to payment.cash_account, payment.cash_account %></td>
           
             <td><%= payment.description %></td>
             <td><%= render 'tags/tags', model: payment %></td>
