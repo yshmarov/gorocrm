@@ -20,7 +20,8 @@ class Client < ApplicationRecord
 
   after_touch do
     # update balance
-    update_column :balance, payments.map(&:amount).sum
+    update_column :payments_sum, payments.map(&:amount).sum
+    update_column :balance, payments_sum
   end
 
 end
