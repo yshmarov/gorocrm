@@ -4,7 +4,7 @@ module Roleable
   included do
 
     # List member roles
-    ROLES = [:admin, :editor, :viewer]
+    ROLES = [:admin, :employee, :partner]
     # Member.find(13).update_attributes!(admin: true) #add admin in console
   
     # json column to store roles
