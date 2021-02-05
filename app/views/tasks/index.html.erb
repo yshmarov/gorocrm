@@ -1,3 +1,4 @@
+<% model_class = Task %>
 <h3>
   <div class="text-center">
     Tasks
@@ -7,23 +8,47 @@
     <%= link_to t('.new', default: t("helpers.links.new")), new_task_path, class: 'btn btn-primary' %>
   </div>
 </h3>
+<%= search_form_for @q, url: tasks_path do |f| %>
+  <%= model_class.human_attribute_name(:client) %>
+  <%= f.select :project_client_name_cont, Client.all.map{|c| [c.name, c.name]}, {include_blank: Client.all.length > 1}, class: 'selectize' %>
+
+  <%= model_class.human_attribute_name(:creator) %>
+  <%= f.select :creator_user_email_cont, Member.all.map{|c| [c.user.email, c.user.email]}, {include_blank: Member.all.length > 1}, class: 'selectize' %>
+  <%= model_class.human_attribute_name(:project) %>
+  <%= f.select :project_name_cont, Project.all.map{|c| [c.name, c.name]}, {include_blank: Project.all.length > 1}, class: 'selectize' %>
+  <%= model_class.human_attribute_name(:member) %>
+  <%= f.select :member_user_email_cont, Member.all.map{|c| [c.user.email, c.user.email]}, {include_blank: Member.all.length > 1}, class: 'selectize' %>
+  <%= model_class.human_attribute_name(:name) %>
+  <%= f.search_field :name_cont, class: "form-control" %>
+
+  <%= model_class.human_attribute_name(:status) %>
+  <%= f.select :status_eq, Task.statuses, {:include_blank => true}, :class => "form-control" %>
+
+  <%= f.submit %>
+
+  <% if params.has_key?(:q) %>
+    <%= link_to "Refresh", tasks_path %>
+  <% end %>
+<% end %>
+
+<hr>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Creator</th>
-        <th>Project</th>
-        <th>Member</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Deadline</th>
-        <th>Urgent</th>
-        <th>Status</th>
-        <th>Done At</th>
-        <th>Duration Minutes</th>
-        <th>Tags</th>
-        <th>Actions</th>
+        <th><%= sort_link(@q, :id) %></th>
+        <th><%= sort_link(@q, :creator_user_email) %></th>
+        <th><%= sort_link(@q, :project_name) %></th>
+        <th><%= sort_link(@q, :member_user_email) %></th>
+        <th><%= sort_link(@q, :name) %></th>
+        <th><%= sort_link(@q, :description) %></th>
+        <th><%= sort_link(@q, :deadline) %></th>
+        <th><%= sort_link(@q, :urgent) %></th>
+        <th><%= sort_link(@q, :status) %></th>
+        <th><%= sort_link(@q, :done_at) %></th>
+        <th><%= sort_link(@q, :duration_minutes) %></th>
+        <th><%= model_class.human_attribute_name(:tags) %></th>
+        <th><%= model_class.human_attribute_name(:actions) %></th>
       </tr>
     </thead>
     <tbody>
@@ -39,7 +64,7 @@
           <td><%= boolean_label(task.urgent) %></td>
           <td><%= status_label(task.status) %></td>
           <td><%= task.done_at %></td>
-          <td><%= task.duration_minutes %></td>
+          <td><%= time_conversion(task.duration_minutes) %></td>
           <td><%= render 'tags/tags', model: task %></td>
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_task_path(task), class: 'btn btn-sm btn-warning' %>
@@ -50,5 +75,4 @@
     </tbody>
   </table>
 </div>
-
-
+<%== pagy_bootstrap_nav(@pagy) %>

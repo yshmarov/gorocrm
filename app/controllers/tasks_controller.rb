@@ -7,7 +7,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy, :change_status]
 
   def index
-    @tasks = Task.all
+    @q = Task.ransack(params[:q])
+    @pagy, @tasks = pagy(@q.result.includes(:member, :project).order("tasks.created_at DESC"))
   end
 
   def change_status

@@ -43,8 +43,8 @@
     <%= @task.done_at %>
     <br>
 
-    <b>Duration Minutes:</b>
-    <%= @task.duration_minutes %>
+    <b>Duration:</b>
+    <%= time_conversion(@task.duration_minutes) %>
     <br>
 
     <b>Tags:</b>
