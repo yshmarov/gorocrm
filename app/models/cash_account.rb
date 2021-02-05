@@ -11,8 +11,11 @@ class CashAccount < ApplicationRecord
   monetize :balance, as: :balance_cents
 
   def to_s
-    name
-    # name.to_s + " (" + balance_cents.to_s + ")"
+    name.to_s + " (" + balance_cents.to_s + ")"
+  end
+
+  def to_label
+    to_s
   end
 
   after_touch do
