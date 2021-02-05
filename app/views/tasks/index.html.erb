@@ -12,24 +12,17 @@
     <thead>
       <tr>
         <th>Id</th>
-    	  
         <th>Creator</th>
         <th>Project</th>
         <th>Member</th>
-        
         <th>Name</th>
-        
         <th>Description</th>
-        
         <th>Deadline</th>
-        
         <th>Urgent</th>
-        
         <th>Status</th>
         <th>Done At</th>
         <th>Duration Minutes</th>
         <th>Tags</th>
-        
         <th>Actions</th>
       </tr>
     </thead>
@@ -37,24 +30,17 @@
       <% @tasks.each do |task| %>
         <%= content_tag :tr, id: dom_id(task), class: dom_class(task) do %>
           <td><%= link_to task.id, task %></td>
-          
-            <td><%= link_to task.creator, task.creator %></td>
-            <td><%= link_to task.project, task.project %></td>
-            <td><%= link_to task.member, task.member %></td>
-          
-            <td><%= task.name %></td>
-          
-            <td><%= task.description %></td>
-          
-            <td><%= task.deadline %></td>
-          
-            <td><%= boolean_label(task.urgent) %></td>
-          
-            <td><%= status_label(task.status) %></td>
-            <td><%= task.done_at %></td>
-            <td><%= task.duration_minutes %></td>
-            <td><%= render 'tags/tags', model: task %></td>
-          
+          <td><%= link_to task.creator, task.creator %></td>
+          <td><%= link_to task.project, task.project %></td>
+          <td><%= link_to task.member, task.member %></td>
+          <td><%= task.name %></td>
+          <td><%= task.description %></td>
+          <td><%= task.deadline %></td>
+          <td><%= boolean_label(task.urgent) %></td>
+          <td><%= status_label(task.status) %></td>
+          <td><%= task.done_at %></td>
+          <td><%= task.duration_minutes %></td>
+          <td><%= render 'tags/tags', model: task %></td>
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_task_path(task), class: 'btn btn-sm btn-warning' %>
             <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, task, method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-sm btn-danger' %>
