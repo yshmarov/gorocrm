@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_222834) do
+ActiveRecord::Schema.define(version: 2021_02_06_153133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,19 @@ ActiveRecord::Schema.define(version: 2021_02_04_222834) do
     t.integer "projects_count", default: 0, null: false
     t.integer "payments_sum", default: 0, null: false
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "tenant_id", null: false
+    t.text "content", null: false
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.bigint "member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["member_id"], name: "index_comments_on_member_id"
+    t.index ["tenant_id"], name: "index_comments_on_tenant_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -285,6 +298,8 @@ ActiveRecord::Schema.define(version: 2021_02_04_222834) do
   add_foreign_key "charges", "subscriptions"
   add_foreign_key "charges", "tenants"
   add_foreign_key "clients", "tenants"
+  add_foreign_key "comments", "members"
+  add_foreign_key "comments", "tenants"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
   add_foreign_key "payments", "cash_accounts"

@@ -5,6 +5,7 @@ class Client < ApplicationRecord
   has_many :projects, dependent: :restrict_with_error
   has_many :payments, as: :payable, dependent: :restrict_with_error
   has_many :tasks, through: :projects
+  has_many :comments, as: :commentable, dependent: :destroy
 
   validates :name, :email, presence: true
 

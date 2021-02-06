@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   belongs_to :creator, class_name: "Member", foreign_key: :creator_id
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :comments, as: :commentable, dependent: :destroy
 
   validates :name, :status, presence: true
 

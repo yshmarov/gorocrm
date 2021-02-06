@@ -1,0 +1,11 @@
+<div class="card shadow">
+  <div class="card-header">
+    <h4>
+      New Comment:
+      <%= link_to @commentable, @commentable %>
+    </h4>
+  </div>
+  <div class="card-body">
+    <%= render 'comments/form' %>
+  </div>
+</div>

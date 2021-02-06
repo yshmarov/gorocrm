@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :cash_accounts
   match "/404", via: :all, to: "errors#not_found"
   match "/500", via: :all, to: "errors#internal_server_error"
 
@@ -51,14 +50,18 @@ Rails.application.routes.draw do
   get "feed", to: "tenant#feed"
   get "charts", to: "tenant#charts"
   get "monthly_tasks_report", to: "tenant#monthly_tasks_report"
-  resources :clients
+  resources :clients do
+    resources :comments
+  end
   resources :payments
   resources :tasks do
     member do
       patch :change_status
     end
+    resources :comments
   end
   resources :projects
   resources :tags
-
+  resources :cash_accounts
+  
 end
