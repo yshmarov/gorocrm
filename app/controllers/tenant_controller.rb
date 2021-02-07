@@ -25,14 +25,16 @@ class TenantController < ApplicationController
     end
   end
 
-  def monthly_tasks_report
+  def tasks_report
     @members = Member.joins(:tasks).distinct # for select
     @projects = Project.joins(:tasks).distinct # for select
     @clients = Client.joins(:tasks).distinct # for select
     if params.has_key?(:member)
-      @start_date = (01.to_s + "-" + params[:select][:month] + "-" + params[:select][:year]).to_date
-
-      tasks = Task.includes(:member, :project).where(done_at: @start_date.all_month)
+      tasks = Task.includes(:member, :project)
+      if params[:select][:month].present? && params[:select][:year].present?
+        @start_date = (01.to_s + "-" + params[:select][:month] + "-" + params[:select][:year]).to_date
+        tasks = tasks.where(done_at: @start_date.all_month)
+      end
       if params[:member].present?
         @member = Member.find(params[:member])
         tasks = tasks.where(member: @member)

@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get "calendar", to: "tenant#calendar"
   get "feed", to: "tenant#feed"
   get "charts", to: "tenant#charts"
-  get "monthly_tasks_report", to: "tenant#monthly_tasks_report"
+  get "tasks_report", to: "tenant#tasks_report"
   resources :clients do
     resources :comments
   end

@@ -6,30 +6,49 @@
       <%= @tasks.count %>
     </div>
     <%= link_to t('.new', default: t("helpers.links.new")), new_task_path, class: 'btn btn-primary' %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchModal">
+      <i class="fa fa-search"></i>
+      Search
+    </button>
+    <% if params.has_key?(:q) %>
+      <%= link_to "Unfilter", tasks_path, class: "btn btn-secondary" %>
+    <% end %>
+
   </div>
 </h3>
-<%= search_form_for @q, url: tasks_path do |f| %>
-  <%= model_class.human_attribute_name(:client) %>
-  <%= f.select :project_client_name_cont, Client.all.map{|c| [c.name, c.name]}, {include_blank: Client.all.length > 1}, class: 'selectize' %>
 
-  <%= model_class.human_attribute_name(:creator) %>
-  <%= f.select :creator_user_email_cont, Member.all.map{|c| [c.user.email, c.user.email]}, {include_blank: Member.all.length > 1}, class: 'selectize' %>
-  <%= model_class.human_attribute_name(:project) %>
-  <%= f.select :project_name_cont, Project.all.map{|c| [c.name, c.name]}, {include_blank: Project.all.length > 1}, class: 'selectize' %>
-  <%= model_class.human_attribute_name(:member) %>
-  <%= f.select :member_user_email_cont, Member.all.map{|c| [c.user.email, c.user.email]}, {include_blank: Member.all.length > 1}, class: 'selectize' %>
-  <%= model_class.human_attribute_name(:name) %>
-  <%= f.search_field :name_cont, class: "form-control" %>
-
-  <%= model_class.human_attribute_name(:status) %>
-  <%= f.select :status_eq, Task.statuses, {:include_blank => true}, :class => "form-control" %>
-
-  <%= f.submit %>
-
-  <% if params.has_key?(:q) %>
-    <%= link_to "Refresh", tasks_path %>
-  <% end %>
-<% end %>
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">Search</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= search_form_for @q, url: tasks_path do |f| %>
+          <%= model_class.human_attribute_name(:client) %>
+          <%= f.select :project_client_name_cont, Client.all.map{|c| [c.name, c.name]}, {include_blank: Client.all.length > 1}, class: 'selectize' %>
+          <%= model_class.human_attribute_name(:creator) %>
+          <%= f.select :creator_user_email_cont, Member.all.map{|c| [c.user.email, c.user.email]}, {include_blank: Member.all.length > 1}, class: 'selectize' %>
+          <%= model_class.human_attribute_name(:project) %>
+          <%= f.select :project_name_cont, Project.all.map{|c| [c.name, c.name]}, {include_blank: Project.all.length > 1}, class: 'selectize' %>
+          <%= model_class.human_attribute_name(:member) %>
+          <%= f.select :member_user_email_cont, Member.all.map{|c| [c.user.email, c.user.email]}, {include_blank: Member.all.length > 1}, class: 'selectize' %>
+          <%= model_class.human_attribute_name(:name) %>
+          <%= f.search_field :name_cont, class: "form-control" %>
+          <%= model_class.human_attribute_name(:status) %>
+          <%= f.select :status_eq, Task.statuses, {:include_blank => true}, :class => "form-control" %>
+          <br>
+          <%= f.button :submit, class: "btn btn-primary btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <hr>
 <div class="table-responsive">
