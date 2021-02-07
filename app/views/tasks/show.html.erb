@@ -6,29 +6,21 @@
     </h4>
   </div>
   <div class="card-body">
-  
-    <b>Creator:</b>
-    <%= link_to @task.creator, @task.creator %>
-    <br>
 
     <b>Project:</b>
     <%= link_to @task.project, @task.project %>
+    <br>
+  
+    <b>Name:</b>
+    <%= @task.name %>
     <br>
 
     <b>Member:</b>
     <%= link_to @task.member, @task.member %>
     <br>
   
-    <b>Name:</b>
-    <%= @task.name %>
-    <br>
-  
-    <b>Description:</b>
-    <%= @task.description %>
-    <br>
-  
-    <b>Deadline:</b>
-    <%= @task.deadline %>
+    <b>Creator:</b>
+    <%= link_to @task.creator, @task.creator %>
     <br>
   
     <b>Urgent:</b>
@@ -37,6 +29,10 @@
   
     <b>Status:</b>
     <%= status_label(@task.status) %>
+    <br>
+  
+    <b>Deadline:</b>
+    <%= @task.deadline %>
     <br>
 
     <b>Done At:</b>
@@ -50,16 +46,30 @@
     <b>Tags:</b>
     <%= render 'tags/tags', model: @task %>
     <br>
+
+    <b>Description:</b>
+    <%= simple_format(@task.description) %>
   
   </div>
   <div class="card-footer">
-    <%= link_to change_status_task_path(@task), method: :patch, class: "btn btn-sm btn-info" do %>
-      Update status
+    <div class="btn-group">
+    <%= link_to change_status_task_path(@task, status: :planned), method: :patch, class: "btn btn-sm btn-danger #{'disabled' if @task.status == "planned"}" do %>
+      Planned
     <% end %>
-
+    <%= link_to change_status_task_path(@task, status: :progress), method: :patch, class: "btn btn-sm btn-warning #{'disabled' if @task.status == "progress"}" do %>
+      Progress
+    <% end %>
+    <%= link_to change_status_task_path(@task, status: :done), method: :patch, class: "btn btn-sm btn-success #{'disabled' if @task.status == "done"}" do %>
+      Done
+    <% end %>
+    </div>
+  </div>
+  <div class="card-footer">
     <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_task_path(@task), class: "btn btn-sm btn-warning" %>
     <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
     <%= link_to t(".back", default: t("helpers.links.back")).capitalize, tasks_path, class: "btn btn-sm btn-secondary" %>
+  </div>
+  <div class="card-footer">
     <%= link_to "New Comment", new_task_comment_path(@task, @comment), class: "btn btn-sm btn-primary" %>
   </div>
 </div>

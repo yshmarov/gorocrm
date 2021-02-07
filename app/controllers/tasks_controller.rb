@@ -12,17 +12,12 @@ class TasksController < ApplicationController
   end
 
   def change_status
-    if @task.status == "planned"
-      @task.update(status: "progress")
-    elsif @task.status == "progress"
-      @task.update(status: "done")
-    elsif @task.status == "done"
-      @task.update(status: "planned")
+    if params[:status].present? && Task::STATUSES.include?(params[:status].to_sym)
+      @task.update(status: params[:status])
     end
     if @task.status == "done"
       @task.update(done_at: Time.now)
     end
-    # @task.update(status: params[:status])
     redirect_to @task, notice: "Status updated to #{@task.status}"
   end
 

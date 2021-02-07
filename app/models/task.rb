@@ -28,6 +28,8 @@ class Task < ApplicationRecord
   def calendar_date
     if done_at.present?
       done_at
+    elsif deadline.present?
+      deadline
     else
       created_at
     end
