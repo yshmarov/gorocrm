@@ -70,9 +70,9 @@
     <%= link_to t(".back", default: t("helpers.links.back")).capitalize, tasks_path, class: "btn btn-sm btn-secondary" %>
   </div>
   <div class="card-footer">
-    <%= link_to "New Comment", new_task_comment_path(@task, @comment), class: "btn btn-sm btn-primary" %>
+    <%= link_to "New Comment", new_task_comment_path(@commentable, @comment), class: "btn btn-sm btn-primary" %>
   </div>
 </div>
 
 <br>
-<%= render partial: "comments/index", locals: {commentable: @task} %>
+<%= render partial: "comments/index", locals: {commentable: @commentable} %>

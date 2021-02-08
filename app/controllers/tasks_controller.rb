@@ -8,7 +8,7 @@ class TasksController < ApplicationController
 
   def index
     @q = Task.ransack(params[:q])
-    @pagy, @tasks = pagy(@q.result.includes(:member, :project).order("tasks.created_at DESC"))
+    @pagy, @tasks = pagy(@q.result.includes(:member, :project, :creator, :tags).order("tasks.created_at DESC"))
   end
 
   def change_status

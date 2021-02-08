@@ -44,9 +44,9 @@
     <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_client_path(@client), class: "btn btn-sm btn-warning" %>
     <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, @client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
     <%= link_to t(".back", default: t("helpers.links.back")).capitalize, clients_path, class: "btn btn-sm btn-secondary" %>
-    <%= link_to "New Comment", new_client_comment_path(@client, @comment), class: "btn btn-sm btn-primary" %>
+    <%= link_to "New Comment", new_client_comment_path(@commentable, @comment), class: "btn btn-sm btn-primary" %>
   </div>
 </div>
 
 <br>
-<%= render partial: "comments/index", locals: {commentable: @client} %>
+<%= render partial: "comments/index", locals: {commentable: @commentable} %>
