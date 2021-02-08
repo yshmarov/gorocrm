@@ -1,7 +1,8 @@
 class Tag < ApplicationRecord
   acts_as_tenant(:tenant)
   validates :name, :category, presence: true
-	validates :name, length: {minimum: 1, maximum: 25}, uniqueness: true
+	validates :name, length: {minimum: 1, maximum: 25}, uniqueness: { scope: :category,
+    message: "uniquene per category" }
   
   def to_s
     name
