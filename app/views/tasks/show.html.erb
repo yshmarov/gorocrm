@@ -53,15 +53,11 @@
   </div>
   <div class="card-footer">
     <div class="btn-group">
-    <%= link_to change_status_task_path(@task, status: :planned), method: :patch, class: "btn btn-sm btn-danger #{'disabled' if @task.status == "planned"}" do %>
-      Planned
-    <% end %>
-    <%= link_to change_status_task_path(@task, status: :progress), method: :patch, class: "btn btn-sm btn-warning #{'disabled' if @task.status == "progress"}" do %>
-      Progress
-    <% end %>
-    <%= link_to change_status_task_path(@task, status: :done), method: :patch, class: "btn btn-sm btn-success #{'disabled' if @task.status == "done"}" do %>
-      Done
-    <% end %>
+      <% Task::STATUSES.each do |status| %>
+        <%= link_to change_status_task_path(@task, status: status), method: :patch, class: "btn btn-sm btn-info #{'disabled' if @task.status.to_sym == status}" do %>
+          <%= status %>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div class="card-footer">
