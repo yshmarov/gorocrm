@@ -50,6 +50,9 @@ Rails.application.routes.draw do
   get "feed", to: "tenant#feed"
   get "charts", to: "tenant#charts"
   get "tasks_report", to: "tenant#tasks_report"
+
+  post "bots/say_hello", to: "bots#say_hello", as: :say_hello
+
   resources :clients do
     resources :comments
   end
