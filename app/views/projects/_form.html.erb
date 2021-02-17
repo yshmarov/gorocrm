@@ -7,7 +7,9 @@
 
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.association :client %>
+    <%= f.label :client %>
+    <%= f.select :client_id, @clients.map{|c| [c.name, c.id]}, {include_blank: true}, class: 'selectize' %>
+    <%= f.error :client, class: "text-danger" %>
     <%= f.input :payment_type, collection: Project.payment_types %>
     <%= f.input :price_cents %>
     <%= f.label :tags %>

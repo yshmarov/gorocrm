@@ -15,9 +15,11 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @clients = Client.all
   end
 
   def edit
+    @clients = Client.all
   end
 
   def create
@@ -26,6 +28,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to @project, notice: 'Project was successfully created.'
     else
+      @clients = Client.all
       render :new
     end
   end
@@ -34,6 +37,7 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to @project, notice: 'Project was successfully updated.'
     else
+      @clients = Client.all
       render :edit
     end
   end
