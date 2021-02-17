@@ -21,7 +21,6 @@
       <i class="fa fa-chart-line"></i>
       <%= t 'sidebar.charts' %>
     <% end %>
-
     <%= link_to tags_path, class: "btn btn-lg btn-info" do %>
       <i class="fa fa-tags"></i>
       <%= t 'sidebar.tags' %>
@@ -29,8 +28,6 @@
         <%= Tag.count %>
       </div>
     <% end %>
-
-    <%= link_to "Send Controller", say_hello_path, method: :post, class: "btn btn-lg btn-danger" %>
 
   </div>
 </div>

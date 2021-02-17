@@ -19,6 +19,9 @@ class TasksController < ApplicationController
       @task.update(done_at: Time.now)
     end
     @task.create_activity :update, parameters: {status: @task.status}
+
+    text = "#{url_for controller: "tasks", action: "show"} status: #{@task.status}"
+    TelegramMailer.group_message(text).deliver_now
     redirect_to @task, notice: "Status updated to #{@task.status}"
   end
 
