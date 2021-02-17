@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "tenant#dashboard"
   get "calendar", to: "tenant#calendar"
-  get "feed", to: "tenant#feed"
+  get "activity", to: "tenant#activity"
   get "charts", to: "tenant#charts"
   get "tasks_report", to: "tenant#tasks_report"
 

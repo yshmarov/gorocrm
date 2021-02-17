@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   def show
     @commentable = @task
     @comment = Comment.new
+    @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Task", trackable_id: @task).all
   end
 
   def new

@@ -53,14 +53,11 @@ class TenantController < ApplicationController
     end
   end
 
-  def feed
+  def activity
     @pagy, @activities = pagy(PublicActivity::Activity.order("created_at DESC").where(tenant_id: ActsAsTenant.current_tenant.id))
   end
 
   def charts
   end
 
-  # example pages that can be here:
-  # activity
-  # charts and analytics
 end
