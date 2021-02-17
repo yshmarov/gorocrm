@@ -62,3 +62,4 @@ gem 'pagy', '~> 3.5'
 gem "chartkick"
 gem 'groupdate'
 gem "httparty", "~> 0.18" # send messages to telegram
+gem 'telegram-bot-ruby'
