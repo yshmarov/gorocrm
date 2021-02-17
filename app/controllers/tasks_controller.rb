@@ -18,13 +18,17 @@ class TasksController < ApplicationController
     if @task.status == "done"
       @task.update(done_at: Time.now)
     end
+    @task.create_activity :update, parameters: {status: @task.status}
     redirect_to @task, notice: "Status updated to #{@task.status}"
   end
 
   def show
     @commentable = @task
     @comment = Comment.new
-    @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Task", trackable_id: @task).all
+    #@activities = PublicActivity::Activity.includes(:trackable).order("created_at DESC").where(trackable_type: "Task", trackable_id: @task).all
+    #@activities = PublicActivity::Activity.order("created_at DESC").where(trackable: @task)
+    #@activities = PublicActivity::Activity.includes(:trackable).order("created_at DESC").where(trackable: @task)
+    @activities = @task.activities.order("created_at DESC")
   end
 
   def new
@@ -45,7 +49,22 @@ class TasksController < ApplicationController
   end
 
   def update
+    Task.public_activity_off
     if @task.update(task_params)
+      Task.public_activity_on
+      @task.create_activity :update, parameters: {
+        project: @task.project.to_s,
+        name: @task.name,
+        member: @task.member.to_s,
+        creator: @task.creator.to_s,
+        urgent: @task.urgent,
+        status: @task.status,
+        deadline: @task.deadline,
+        done_at: @task.done_at,
+        duration: @task.duration_minutes,
+        description: @task.description
+        }
+      #@task.create_activity :update, parameters: {duration: @task.duration_minutes}
       redirect_to @task, notice: 'Task was successfully updated.'
     else
       render :edit

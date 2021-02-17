@@ -47,9 +47,11 @@ class Task < ApplicationRecord
       "danger"
     end
   end
-
+  
   include PublicActivity::Model
   tracked owner: proc { |controller, model| controller.current_user }
   tracked tenant_id: proc { ActsAsTenant.current_tenant.id }
+  # has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity'
 
 end
