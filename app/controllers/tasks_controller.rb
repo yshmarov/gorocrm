@@ -22,6 +22,7 @@ class TasksController < ApplicationController
 
     text = "#{url_for controller: "tasks", action: "show"} status: #{@task.status}"
     TelegramMailer.group_message(text).deliver_now
+    TelegramMailer.private_message(text, current_user).deliver_now
     redirect_to @task, notice: "Status updated to #{@task.status}"
   end
 

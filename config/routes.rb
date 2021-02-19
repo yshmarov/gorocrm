@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  get "telegram_auth", to: "telegram#telegram_auth"
+  post "telegram_auth", to: "telegram#telegram_auth"
+
   root "static_public#landing_page"
   get "about", to: "static_public#about"
   get "pricing", to: "static_public#pricing"
