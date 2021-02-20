@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   get "telegram_auth", to: "telegram#telegram_auth"
   post "telegram_auth", to: "telegram#telegram_auth"
+  post "telegram/send_reminder/:id", to: "telegram#send_reminder", as: :send_reminder
+  # works same as above
+  # post "telegram/:id/send_reminder", to: "telegram#send_reminder", as: :send_reminder
 
   root "static_public#landing_page"
   get "about", to: "static_public#about"
