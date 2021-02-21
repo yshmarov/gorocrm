@@ -17,7 +17,18 @@ class Tenant < ApplicationRecord
 
   has_many :members, dependent: :destroy
   has_many :users, through: :members
-  has_many :contacts, dependent: :destroy
+
+  include Subscribable
+
+  has_many :activities, class_name: 'PublicActivity::Activity', dependent: :destroy
+  has_many :cash_accounts, dependent: :destroy
+  has_many :clients, dependent: :destroy
+  has_many :projects, dependent: :destroy
+  has_many :tasks, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :payments, dependent: :destroy
+  has_many :tags, dependent: :destroy
+  has_many :taggings, dependent: :destroy
 
   def to_s
     name
@@ -25,18 +36,11 @@ class Tenant < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
-  def should_generate_new_friendly_id?
-    # will change the slug if the name changed
-    # source https://www.rubydoc.info/github/norman/friendly_id/FriendlyId%2FSlugged:should_generate_new_friendly_id%3F
-    # https://norman.github.io/friendly_id/FriendlyId/History.html
-    name_changed?
-  end
 
   has_one_attached :logo
   validates :logo, content_type: [:png, :jpg, :jpeg],
                    size: {less_than: 100.kilobytes, message: "Logo has to be under 100 kilobytes"}
 
-  include Subscribable
 
   def can_invite_members?
     members_count < plan.max_members
