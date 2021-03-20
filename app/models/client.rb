@@ -7,7 +7,8 @@ class Client < ApplicationRecord
   has_many :tasks, through: :projects
   has_many :comments, as: :commentable, dependent: :destroy
 
-  validates :name, :email, presence: true
+  validates :name, presence: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
 
   monetize :balance, as: :balance_cents
 
