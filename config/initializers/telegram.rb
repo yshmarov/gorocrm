@@ -1,3 +1,4 @@
+TELEGRAM = "1629298034:AAF2tH3138rKh1YOFbD_geU9WzaVKeuX0js"
 #require 'telegram/bot'
 #
 #token = '1629298034:AAF2tH3138rKh1YOFbD_geU9WzaVKeuX0js'
