@@ -1,7 +1,7 @@
 <h3>
   <div class="text-center">
     Cash_accounts
-    <div class="badge badge-info">
+    <div class="badge bg-info">
       <%= @cash_accounts.count %>
     </div>
     <%= link_to t('.new', default: t("helpers.links.new")), new_cash_account_path, class: 'btn btn-primary' %>

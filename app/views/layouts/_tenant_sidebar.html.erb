@@ -14,7 +14,7 @@
     <%= sidebar_long_active_link_to clients_path do %>
       <i class="far fa-address-book"></i>
       <%= t 'sidebar.clients' %>
-      <div class="badge badge-info">
+      <div class="badge bg-info">
         <%= Client.count %>
       </div>
     <% end %>
@@ -22,7 +22,7 @@
     <%= sidebar_long_active_link_to projects_path do %>
       <i class="fa fa-tasks"></i>
       <%= t 'sidebar.projects' %>
-      <div class="badge badge-info">
+      <div class="badge bg-info">
         <%= Project.count %>
       </div>
     <% end %>
@@ -30,7 +30,7 @@
     <%= sidebar_long_active_link_to tasks_path do %>
       <i class="fa fa-check-square"></i>
       <%= t 'sidebar.tasks' %>
-      <div class="badge badge-info">
+      <div class="badge bg-info">
         <%= Task.count %>
       </div>
     <% end %>
@@ -38,7 +38,7 @@
     <%= sidebar_long_active_link_to payments_path do %>
       <i class="fa fa-money-bill"></i>
       <%= t 'sidebar.payments' %>
-      <div class="badge badge-info">
+      <div class="badge bg-info">
         <%= Payment.count %>
       </div>
     <% end %>
@@ -46,7 +46,7 @@
     <%= sidebar_long_active_link_to cash_accounts_path do %>
       <i class="fa fa-piggy-bank"></i>
       <%= t 'sidebar.cash_accounts' %>
-      <div class="badge badge-info">
+      <div class="badge bg-info">
         <%= CashAccount.count %>
       </div>
     <% end %>
@@ -54,7 +54,7 @@
     <%= sidebar_long_active_link_to members_path do %>
       <i class="fas fa-users"></i>
       <%= t 'sidebar.members' %>
-      <div class="badge badge-info">
+      <div class="badge bg-info">
         <%= Member.count %>
       </div>
     <% end %>

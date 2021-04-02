@@ -1,7 +1,7 @@
 <div class="text-center">
     <h3>
       Comments
-      <div class="badge badge-info">
+      <div class="badge bg-info">
         <%= @commentable.comments.count %>
       </div>
     </h3>
@@ -11,7 +11,7 @@
     <li class="list-group-item list-group-item-secondary">
       <%= link_to comment.member, comment.member %>
       <%= comment.created_at.strftime('%d-%m-%Y %H:%m') %>
-      <%= link_to [@commentable, comment], method: :delete, class: "badge badge-danger", data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) } do %>
+      <%= link_to [@commentable, comment], method: :delete, class: "badge bg-danger", data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) } do %>
         <i class="fa fa-trash"></i>
       <% end %>
       <%= simple_format(comment.content) %>

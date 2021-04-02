@@ -1,7 +1,7 @@
 <h3>
   <div class="text-center">
     Payments
-    <div class="badge badge-info">
+    <div class="badge bg-info">
       <%= @payments.count %>
     </div>
     <%= link_to "Client Payment", new_payment_path(payable_type: "Client"), class: 'btn btn-primary' %>

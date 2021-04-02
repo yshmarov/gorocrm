@@ -1,7 +1,7 @@
 <h3>
   <div class="text-center">
     <%= plural_table_name.capitalize %>
-    <div class="badge badge-info">
+    <div class="badge bg-info">
       <%%= @<%= plural_table_name%>.count %>
     </div>
     <%%= link_to t('.new', default: t("helpers.links.new")), new_<%= singular_table_name %>_path, class: 'btn btn-primary' %>

@@ -18,10 +18,10 @@ module ApplicationHelper
   def boolean_label(value)
     case value
       when true
-        # content_tag(:span, "Yes", class: "badge badge-success")
-        content_tag(:span, value, class: "badge badge-success")
+        # content_tag(:span, "Yes", class: "badge bg-success")
+        content_tag(:span, value, class: "badge bg-success")
       when false
-        content_tag(:span, value, class: "badge badge-danger")
+        content_tag(:span, value, class: "badge bg-danger")
     end
   end
 
@@ -44,11 +44,11 @@ module ApplicationHelper
   def status_label(status)
     case status
     when "planned"
-      content_tag(:span, status.titleize, class: "badge badge-danger")
+      content_tag(:span, status.titleize, class: "badge bg-danger")
     when "progress"
-      content_tag(:span, status.titleize, class: "badge badge-warning")
+      content_tag(:span, status.titleize, class: "badge bg-warning")
     when "done"
-      content_tag(:span, status.titleize, class: "badge badge-success")
+      content_tag(:span, status.titleize, class: "badge bg-success")
     end
   end
 
