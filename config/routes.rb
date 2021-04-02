@@ -67,8 +67,11 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
-  resources :projects
+  resources :projects do
+    member do
+      patch :change_status
+    end
+  end
   resources :tags
   resources :cash_accounts
-  
 end

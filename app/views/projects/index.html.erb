@@ -12,19 +12,14 @@
     <thead>
       <tr>
         <th>Id</th>
-    	  
         <th>Name</th>
-        
         <th>Description</th>
-        
         <th>Client</th>
-        
         <th>Payment type</th>
-        
         <th>Price</th>
         <th>Tasks Count</th>
+        <th>Status</th>
         <th>Tags</th>
-        
         <th>Actions</th>
       </tr>
     </thead>
@@ -32,19 +27,14 @@
       <% @projects.each do |project| %>
         <%= content_tag :tr, id: dom_id(project), class: dom_class(project) do %>
           <td><%= link_to project.id, project %></td>
-          
             <td><%= project.name %></td>
-          
             <td><%= project.description %></td>
-          
             <td><%= link_to project.client, project.client %></td>
-          
             <td><%= project.payment_type %></td>
-          
             <td><%= project.price_cents %></td>
             <td><%= project.tasks_count %></td>
+            <td><%= project.status %></td>
             <td><%= render 'tags/tags', model: project %></td>
-          
           <td>
             <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_project_path(project), class: 'btn btn-sm btn-warning' %>
             <%= link_to t(".destroy", default: t("helpers.links.destroy")).capitalize, project, method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-sm btn-danger' %>

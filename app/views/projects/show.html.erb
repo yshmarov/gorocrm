@@ -31,10 +31,23 @@
     <%= @project.tasks_count %>
     <br>
 
+    <b>Status:</b>
+    <%= @project.status %>
+    <br>
+
     <b>Tags:</b>
     <%= render 'tags/tags', model: @project %>
     <br>
   
+  </div>
+  <div class="card-footer">
+    <div class="btn-group">
+      <% Project::STATUSES.each do |status| %>
+        <%= link_to change_status_project_path(@project, status: status), method: :patch, class: "btn btn-sm btn-info #{'disabled' if @project.status == status}" do %>
+          <%= status %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
   <div class="card-footer">
     <%= link_to t(".edit", default: t("helpers.links.edit")).capitalize, edit_project_path(@project), class: "btn btn-sm btn-warning" %>

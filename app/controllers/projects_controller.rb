@@ -4,10 +4,17 @@ class ProjectsController < ApplicationController
   include SetCurrentMember # for role-based authorization. @current_member.admin?
   include RequireActiveSubscription # no access unless tenant has an active subscription
 
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: %w[show edit update destroy change_status]
 
   def index
     @projects = Project.all.order(created_at: :desc)
+  end
+
+  def change_status
+    if params[:status].present? && Project::STATUSES.include?(params[:status])
+      @project.update(status: params[:status])
+    end
+    redirect_to @project, notice: "Status updated to #{@project.status}"
   end
 
   def show

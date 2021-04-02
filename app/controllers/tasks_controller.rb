@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   include SetCurrentMember # for role-based authorization. @current_member.admin?
   include RequireActiveSubscription # no access unless tenant has an active subscription
 
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :change_status]
+  before_action :set_task, only: %w[show edit update destroy change_status]
 
   def index
     @q = Task.ransack(params[:q])

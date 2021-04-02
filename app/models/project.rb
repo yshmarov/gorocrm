@@ -14,6 +14,12 @@ class Project < ApplicationRecord
     PAYMENT_TYPES.map { |payment_type| [payment_type, payment_type] }
   end
 
+  STATUSES = %w[active archived]
+  validates :status, inclusion: {in: STATUSES, message: "%{value} is not available."}
+  def self.statuses
+    STATUSES.map { |status| [status, status] }
+  end
+
   def to_s
     name
   end
