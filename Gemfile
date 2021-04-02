@@ -23,7 +23,7 @@ group :development do
 end
 
 # multitenancy
-gem "devise"
+gem "devise", github: "heartcombo/devise", branch: "master"
 gem "simple_form"
 gem "devise_invitable", "~> 2.0.0"
 gem "acts_as_tenant"
@@ -42,7 +42,8 @@ gem "invisible_captcha"
 gem "omniauth-google-oauth2"
 gem "omniauth-github"
 gem "omniauth-twitter"
-gem 'omniauth-facebook'
+gem "omniauth-facebook"
+gem "omniauth-rails_csrf_protection" # for omniauth 2.0
 
 # additional functionality for importing contacts from social accounts
 gem "omnicontacts"
