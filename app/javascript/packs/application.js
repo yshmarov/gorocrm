@@ -15,7 +15,7 @@ import "@fortawesome/fontawesome-free/css/all"
 
 global.toastr = require("toastr")
 
-require("stylesheets/application.scss")
+import "../stylesheets/application"
 
 require("selectize")
 require("packs/tags")

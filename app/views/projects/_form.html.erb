@@ -1,5 +1,12 @@
 
 <%= simple_form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <ul class="text-danger">
+      <% @project.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <div class="form-inputs">
     <%= f.error_notification %>

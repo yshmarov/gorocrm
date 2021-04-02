@@ -1,6 +1,11 @@
 <%= simple_form_for [@commentable, @comment] do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <% if @comment.errors.any? %>
+    <ul class="text-danger">
+      <% @comment.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <%= f.input :content, label: false, required: true %>
   <%= f.button :submit %>
