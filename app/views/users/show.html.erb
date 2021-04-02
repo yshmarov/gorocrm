@@ -36,7 +36,7 @@
             </button>
           <% end %>
         <% else %>
-            <%= link_to omniauth_authorize_path(User, provider), class: 'btn btn-sm btn-outline-primary', data: { disable_with: "#{t(".connecting")}..." } do %>
+            <%= link_to omniauth_authorize_path(User, provider), method: :post, class: 'btn btn-sm btn-outline-primary', data: { disable_with: "#{t(".connecting")}..." } do %>
               <%= social_icon(provider) %>
               <%= t(".connect") %>
             <% end %>
@@ -65,7 +65,7 @@
 
       <div class="btn-group">
         <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="userLanguageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="userLanguageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <%= model_class.human_attribute_name(:language).capitalize %>:
             <%= @user.language %>
           </button>
@@ -79,7 +79,7 @@
   
       <div class="btn-group">
         <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="userTimeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="userTimeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <%= model_class.human_attribute_name(:time_zone).capitalize %>:
             <%= Time.zone %>
           </button>
