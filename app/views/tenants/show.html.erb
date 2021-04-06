@@ -31,16 +31,25 @@
 </div>
 <br>
 
-<% if @subscription.present? %>
-  <%= render "tenants/subscription" %>
-
-<% else %>
-  <%= link_to t(".select_a_plan"), pricing_path, class: "btn btn-danger" %>
-  <br>
-<% end %>
-
-<% if @charges.any? %>
-  <br>
-  <%= render "tenants/charges" %>
-  <br>
-<% end %>
+<div class="card shadow">
+  <div class="card-header">
+    Billing
+  </div>
+  <div class="card-body">
+    <%= link_to t('navigation.pricing'), pricing_path %>
+    <br>
+    <b>Customer id:</b>
+    <%= current_tenant.stripe_customer_id %>
+    <br>
+    <b>Plan:</b>
+    <%= current_tenant.plan %>
+    <br>
+    <b>Subscription status:</b>
+    <%= current_tenant.subscription_status %>
+    <br>
+    <b>Subscription end:</b>
+    <%= current_tenant.current_period_end %>
+    <br>
+    <%= link_to "Billing Settings", billing_portal_path, method: :post, data: { disable_with: "validating..."} %>
+  </div>
+</div>

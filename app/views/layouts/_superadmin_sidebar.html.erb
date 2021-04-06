@@ -22,30 +22,6 @@
       </div>
     <% end %>
   
-    <%= sidebar_long_active_link_to plans_path do %>
-      <i class="fas fa-tags"></i>
-      <%= t 'navigation.plans' %>
-      <div class="badge bg-info">
-        <%= Plan.count %>
-      </div>
-    <% end %>
-  
-    <%= sidebar_long_active_link_to superadmin_subscriptions_path do %>
-      <i class="fas fa-business-time"></i>
-      <%= t 'navigation.subscriptions' %>
-      <div class="badge bg-info">
-        <%= Subscription.count %>
-      </div>
-    <% end %>
-  
-    <%= sidebar_long_active_link_to superadmin_charges_path do %>
-      <i class="fas fa-money-bill"></i>
-      <%= t 'navigation.charges' %>
-      <div class="badge bg-info">
-        <%= Charge.count %>
-      </div>
-    <% end %>
-
   </ul>
 </div>
 <br>

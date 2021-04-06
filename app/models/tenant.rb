@@ -18,8 +18,6 @@ class Tenant < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :users, through: :members
 
-  include Subscribable
-
   has_many :activities, class_name: 'PublicActivity::Activity', dependent: :destroy
   has_many :cash_accounts, dependent: :destroy
   has_many :clients, dependent: :destroy
@@ -40,10 +38,5 @@ class Tenant < ApplicationRecord
   has_one_attached :logo
   validates :logo, content_type: [:png, :jpg, :jpeg],
                    size: {less_than: 100.kilobytes, message: "Logo has to be under 100 kilobytes"}
-
-
-  def can_invite_members?
-    members_count < plan.max_members
-  end
 
 end

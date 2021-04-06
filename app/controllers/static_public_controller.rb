@@ -6,7 +6,7 @@ class StaticPublicController < ApplicationController
   end
 
   def pricing
-    @plans = Plan.all.order(amount: :asc)
+    @pricing = Stripe::Price.list(lookup_keys: ["good_year", "good_month"], expand: ["data.product"]).data.sort_by {|p| p.unit_amount}
   end
 
   def privacy

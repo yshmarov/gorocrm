@@ -21,14 +21,9 @@ Rails.application.routes.draw do
 
   authenticated :user, lambda { |u| u.superadmin? } do
     scope :superadmin, as: "superadmin" do
-      root "superadmin#dashboard"
+      root "superadmin#users"
       get "tenants", to: "superadmin#tenants"
       get "users", to: "superadmin#users"
-      get "charges", to: "superadmin#charges"
-      get "subscriptions", to: "superadmin#subscriptions"
-    end
-    scope :superadmin do
-      resources :plans
     end
   end
 
@@ -44,8 +39,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :subscriptions, only: [:create, :destroy]
-  resources :charges, only: [:create]
+  # stripe
+  post "checkout", to: "checkout#create"
+  get "checkout/success", to: "checkout#success"
+  get "checkout/failure", to: "checkout#failure"
+  post "billing_portal", to: "billing_portal#create"
+  post "webhooks", to: "webhooks#create"
 
   resources :members, except: [:create, :new] do
     get :invite, on: :collection

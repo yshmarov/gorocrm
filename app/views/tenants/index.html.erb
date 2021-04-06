@@ -18,7 +18,6 @@
         <th><%= model_class.human_attribute_name(:active) %></th>
         <th></th>
         <th></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -43,9 +42,6 @@
                 <%= tenant.plan %></td>
               </span>
             <% end %>
-          <td>
-            <%= boolean_label(tenant.subscription.active?) if tenant.subscription.present? %>
-          </td>
           <td>
             <% if current_user.tenants.include?(tenant) %>
               <% if current_user.tenant == tenant %>

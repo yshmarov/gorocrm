@@ -2,32 +2,29 @@
   <%= t(".title") %>
 </h2>
 
-<br/>
+<br>
 
-<div class="card-deck">
-  <% @plans.each do |plan| %>
-    <div class="card shadow text-center">
+<div class="row row-cols-1 row-cols-md-2 g-4 text-center">
+  <% @pricing.each do |price| %>
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header">
+        <b><%= price.product.name %></b>
+      </div>
       <div class="card-body">
-        <h3 class="card-title font-weight-bold">
-          <em>
-          <%= plan.name %>
-          </em>
-        </h3>
-        <br/>
-        <%= plan.currency %>
-        <b style="font-size: 1.9em;">
-          <%= plan.amount/100 %>
+        <b>
+          <%= price.unit_amount/100 %>
+          <%= price.currency %>
+          /
+          <%= price.recurring.interval %>
         </b>
-        /
-        <%= plan.interval %>
-        <hr>
-        <small>
-          <%= pluralize(plan.max_members, "user", plural: "users") %>
-        </small>
+        <br>
+        <%= price.product.metadata %>
       </div>
       <div class="card-footer">
-        <%= subscribe_to(plan) %>
+        <%= link_to "Pay #{price.unit_amount/100} per #{price.recurring.interval}", checkout_path(price: price.id), method: :post, remote: true, data: { disable_with: "validating..."} %>
       </div>
     </div>
+  </div>
   <% end %>
 </div>

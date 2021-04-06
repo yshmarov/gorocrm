@@ -1,14 +1,16 @@
-<div class="jumbotron shadow text-center">
-  <h2>
-    Goro CRM - программа для управление юридической фирмой.
-  </h2>
-  <hr>
-  <% unless user_signed_in? %>
-    <% User.omniauth_providers.each do |provider| %>
-      <%= link_to omniauth_authorize_path(User, provider), method: :post, class: "btn btn-md btn-outline-#{social_color(provider)}", data: { disable_with: "#{t("users.show.connecting")}..." } do %>
-        Sign in with
-        <%= social_icon(provider) %>
+<div class="card shadow text-center">
+  <div class="card-body">
+    <h2>
+      Goro CRM - программа для управление юридической фирмой.
+    </h2>
+    <% unless user_signed_in? %>
+      <hr>
+      <% User.omniauth_providers.each do |provider| %>
+        <%= link_to omniauth_authorize_path(User, provider), method: :post, class: "btn btn-md btn-outline-#{social_color(provider)}", data: { disable_with: "#{t("users.show.connecting")}..." } do %>
+          Sign in with
+          <%= social_icon(provider) %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

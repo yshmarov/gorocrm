@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_202009) do
+ActiveRecord::Schema.define(version: 2021_04_02_213000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,16 +72,6 @@ ActiveRecord::Schema.define(version: 2021_04_02_202009) do
     t.bigint "tenant_id", null: false
     t.integer "payments_count", default: 0, null: false
     t.index ["tenant_id"], name: "index_cash_accounts_on_tenant_id"
-  end
-
-  create_table "charges", force: :cascade do |t|
-    t.bigint "tenant_id", null: false
-    t.bigint "subscription_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.text "metadata"
-    t.index ["subscription_id"], name: "index_charges_on_subscription_id"
-    t.index ["tenant_id"], name: "index_charges_on_tenant_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -154,16 +144,6 @@ ActiveRecord::Schema.define(version: 2021_04_02_202009) do
     t.index ["tenant_id"], name: "index_payments_on_tenant_id"
   end
 
-  create_table "plans", force: :cascade do |t|
-    t.string "name"
-    t.integer "amount"
-    t.string "currency"
-    t.string "interval"
-    t.integer "max_members"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "projects", force: :cascade do |t|
     t.bigint "tenant_id", null: false
     t.string "name"
@@ -177,16 +157,6 @@ ActiveRecord::Schema.define(version: 2021_04_02_202009) do
     t.string "status", default: "active"
     t.index ["client_id"], name: "index_projects_on_client_id"
     t.index ["tenant_id"], name: "index_projects_on_tenant_id"
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.bigint "plan_id", null: false
-    t.bigint "tenant_id", null: false
-    t.datetime "ends_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
-    t.index ["tenant_id"], name: "index_subscriptions_on_tenant_id", unique: true
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -236,6 +206,10 @@ ActiveRecord::Schema.define(version: 2021_04_02_202009) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.integer "members_count", default: 0, null: false
+    t.string "plan"
+    t.string "subscription_status", default: "incomplete"
+    t.string "stripe_customer_id"
+    t.datetime "current_period_end"
     t.index ["slug"], name: "index_tenants_on_slug", unique: true
   end
 
@@ -297,8 +271,6 @@ ActiveRecord::Schema.define(version: 2021_04_02_202009) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "tenants"
   add_foreign_key "cash_accounts", "tenants"
-  add_foreign_key "charges", "subscriptions"
-  add_foreign_key "charges", "tenants"
   add_foreign_key "clients", "tenants"
   add_foreign_key "comments", "members"
   add_foreign_key "comments", "tenants"
@@ -308,8 +280,6 @@ ActiveRecord::Schema.define(version: 2021_04_02_202009) do
   add_foreign_key "payments", "tenants"
   add_foreign_key "projects", "clients"
   add_foreign_key "projects", "tenants"
-  add_foreign_key "subscriptions", "plans"
-  add_foreign_key "subscriptions", "tenants"
   add_foreign_key "taggings", "tags"
   add_foreign_key "taggings", "tenants"
   add_foreign_key "tags", "tenants"
