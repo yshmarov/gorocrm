@@ -20,7 +20,7 @@
     <%= f.input :payment_type, collection: Project.payment_types %>
     <%= f.input :price_cents %>
     <%= f.label :tags %>
-    <%= f.select :tag_ids, Tag.where(category: "project").pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" } %>
+    <%= f.select :tag_ids, Tag.where(category: "project").pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
   </div>
 
   <div class="form-actions">

@@ -11,6 +11,7 @@
     "bootstrap": "^5.0.0-beta3",
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
+    "jquery": "^3.6.0",
     "selectize": "^0.12.6",
     "toastr": "^2.1.4",
     "turbolinks": "^5.2.0",

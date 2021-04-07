@@ -19,7 +19,7 @@
     <%= f.input :done_at, as: :date, html5: true %>
     <%= f.input :duration_minutes %>
     <%= f.label :tags %>
-    <%= f.select :tag_ids, Tag.where(category: "task").pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" } %>
+    <%= f.select :tag_ids, Tag.where(category: "task").pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
   </div>
 
   <div class="form-actions">
