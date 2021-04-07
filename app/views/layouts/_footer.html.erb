@@ -24,13 +24,13 @@
         <%= link_to t('navigation.pricing'), pricing_path, class: "#{'active font-weight-bold' if current_page?(pricing_path)}" %>
         <br/>
         <%= link_to t('navigation.terms'), terms_path, class: "#{'active font-weight-bold' if current_page?(terms_path)}" %>
-        <br/>
-        <%= link_to t('navigation.privacy'), privacy_path, class: "#{'active font-weight-bold' if current_page?(privacy_path)}" %>
       </div>
       <div class="col-lg-4">
         <%= link_to "https://goro.ua", target: :_blank do %>
           Наш веб-сайт
           <div class="fa fa-external-link-alt"></div>
+        <br/>
+        <%= link_to t('navigation.privacy'), privacy_path, class: "#{'active font-weight-bold' if current_page?(privacy_path)}" %>
         <% end %>
         <br/>
       </div>
