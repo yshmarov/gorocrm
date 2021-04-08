@@ -7,7 +7,8 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %w[show edit update destroy change_status]
 
   def index
-    @projects = Project.all.order(created_at: :desc)
+    @q = Project.ransack(params[:q])
+    @pagy, @projects = pagy(@q.result.includes(:client).order("projects.created_at DESC"))
     respond_to do |format|
       format.html
       format.pdf do

@@ -1,3 +1,4 @@
+<% model_class = Project %>
 <h3>
   <div class="text-center">
     Projects
@@ -5,21 +6,55 @@
       <%= @projects.count %>
     </div>
     <%= link_to t('.new', default: t("helpers.links.new")), new_project_path, class: 'btn btn-primary' %>
-    <%= link_to "PDF", projects_path(format: :pdf), class: 'btn btn-primary' %>
+    <%= link_to "PDF", projects_path(format: :pdf), class: 'btn btn-danger' %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <i class="fa fa-search"></i>
+      Search
+    </button>
+    <% if params.has_key?(:q) %>
+      <%= link_to "Unfilter", projects_path, class: "btn btn-secondary" %>
+    <% end %>
   </div>
 </h3>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Search</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= search_form_for @q, url: projects_path do |f| %>
+          <%= model_class.human_attribute_name(:client) %>
+          <%= f.select :client_name_cont, Client.all.map{|c| [c.name, c.name]}, {include_blank: Client.all.length > 1}, class: 'selectize' %>
+          <%= model_class.human_attribute_name(:name) %>
+          <%= f.search_field :name_cont, class: "form-control" %>
+          <%= model_class.human_attribute_name(:status) %>
+          <%= f.select :status_eq, Project.statuses, {:include_blank => true}, :class => "form-control" %>
+          <br>
+          <%= f.button :submit, class: "btn btn-primary btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover table-sm table-light shadow">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
+        <th><%= sort_link(@q, :id) %></th>
+        <th><%= sort_link(@q, :name) %></th>
         <th>Description</th>
         <th>Client</th>
-        <th>Payment type</th>
+        <th><%= sort_link(@q, :payment_type) %></th>
         <th>Price</th>
-        <th>Tasks Count</th>
-        <th>Status</th>
+        <th><%= sort_link(@q, :tasks_count) %></th>
+        <th><%= sort_link(@q, :status) %></th>
         <th>Tags</th>
         <th>Actions</th>
       </tr>
@@ -32,7 +67,7 @@
             <td><%= project.description %></td>
             <td><%= link_to project.client, project.client %></td>
             <td><%= project.payment_type %></td>
-            <td><%= project.price_cents %></td>
+            <td><%= project.price %></td>
             <td><%= project.tasks_count %></td>
             <td><%= project.status %></td>
             <td><%= render 'tags/tags', model: project %></td>
