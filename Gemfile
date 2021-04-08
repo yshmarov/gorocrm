@@ -64,3 +64,6 @@ gem "chartkick"
 gem 'groupdate'
 gem "httparty", "~> 0.18" # send messages to telegram
 gem 'telegram-bot-ruby'
+gem 'wicked_pdf'
+gem "wkhtmltopdf-binary", group: :development
+gem "wkhtmltopdf-heroku", group: :production

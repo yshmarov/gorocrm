@@ -8,6 +8,14 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Projects",
+               page_size: "A4",
+               template: "projects/project.pdf.erb"
+      end
+    end
   end
 
   def change_status
