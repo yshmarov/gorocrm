@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_101902) do
+ActiveRecord::Schema.define(version: 2021_04_14_165541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,9 @@ ActiveRecord::Schema.define(version: 2021_04_06_101902) do
     t.integer "tasks_count", default: 0, null: false
     t.integer "payments_count", default: 0, null: false
     t.integer "payments_sum", default: 0, null: false
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
     t.index ["roles"], name: "index_members_on_roles", using: :gin
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"

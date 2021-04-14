@@ -7,6 +7,9 @@
     </h4>
   </div>
   <div class="card-body">
+    <strong><%= model_class.human_attribute_name(:full_name).capitalize %>:</strong>
+    <%= @member %>
+    <br>
     <strong><%= model_class.human_attribute_name(:user).capitalize %>:</strong>
     <%= @member.user %>
     <br>

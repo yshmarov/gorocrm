@@ -10,7 +10,7 @@ class Member < ApplicationRecord
   monetize :balance, as: :balance_cents
 
   def to_s
-    user.email.to_s
+    full_name
   end
 
   extend FriendlyId
@@ -21,6 +21,15 @@ class Member < ApplicationRecord
     update_column :payments_sum, payments.map(&:amount).sum
     update_column :balance, payments_sum
   end
+
+  def full_name
+    [last_name, first_name, middle_name].join(" ")
+  end
+
+  def fullest_name
+    [last_name, first_name, middle_name].join(" ")
+  end
+
 
   include Roleable
 

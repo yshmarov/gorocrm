@@ -69,7 +69,7 @@ class MembersController < ApplicationController
   end
 
   def member_params
-    params.require(:member).permit(*Member::ROLES)
+    params.require(:member).permit(*Member::ROLES, :first_name, :middle_name, :last_name)
   end
 
   def require_tenant_admin

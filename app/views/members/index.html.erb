@@ -26,8 +26,8 @@
     <thead>
       <tr>
         <th><%= sort_link(@q, :id, default_order: :desc) %></th>
-        <th><%= sort_link(@q, :user_email) %></th>
-        <th><%= sort_link(@q, :tenant_name) %></th>
+        <th><%= sort_link(@q, :last_name, model_class.human_attribute_name(:full_name)) %></th>
+        <th><%= sort_link(@q, :user_email, model_class.human_attribute_name(:user)) %></th>
         <th><%= sort_link(@q, :invitation) %></th>
         <th><%= model_class.human_attribute_name(:roles).capitalize %></th>
         <th><%= sort_link(@q, :balance) %></th>
@@ -39,8 +39,8 @@
       <% @members.each do |member| %>
         <tr>
           <td><%= link_to member.id, member %></td>
+          <td><%= member %></td>
           <td><%= member.user %></td>
-          <td><%= member.tenant %></td>
           <td>
             <% if member.user.created_by_invite? %>
                 <span class="small">
