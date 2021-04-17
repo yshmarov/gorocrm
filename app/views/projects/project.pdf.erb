@@ -2,3 +2,33 @@ A PDF
 
 <%= Date.today %>
 <%= @projects.count %>
+<table style="width:100%">
+  <thead>
+    <tr>
+      <th>id
+      <th>name
+      <th>Description</th>
+      <th>Client</th>
+      <th>payment_type
+      <th>Price</th>
+      <th>tasks_count
+      <th>status
+      <th>Tags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <%= content_tag :tr, id: dom_id(project), class: dom_class(project) do %>
+        <td><%= project.id %></td>
+        <td><%= project.name %></td>
+        <td><%= project.description %></td>
+        <td><%= project.client %></td>
+        <td><%= project.payment_type %></td>
+        <td><%= project.price %></td>
+        <td><%= project.tasks_count %></td>
+        <td><%= project.status %></td>
+        <td><%= project.tags.pluck(:name) %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

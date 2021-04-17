@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "Projects",
+               orientation: "Portrait",
                page_size: "A4",
                template: "projects/project.pdf.erb"
       end
